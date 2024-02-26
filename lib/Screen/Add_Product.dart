@@ -1523,13 +1523,15 @@ class _AddProductState extends State<AddProduct> {
       getSubCatModel = null;
       var result = await response.stream.bytesToString();
       var finalResult = jsonDecode(result);
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return showAlertDialog(context);
-        },
-      );
-      Fluttertoast.showToast(msg: "${finalResult['message']}");
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return showAlertDialog(context);
+      //   },
+      // );
+      Fluttertoast.showToast(
+          msg: "${finalResult['message']}" ". It's in review now.");
+      Navigator.pop(context);
 
       setState(() {
         isLodding = false;

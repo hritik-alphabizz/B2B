@@ -145,7 +145,6 @@ class Media extends StatefulWidget {
 }
 
 class _MediaState extends State<Media> with TickerProviderStateMixin {
-
   String? productImageUrl;
   String? broncherImageUrl;
   bool _isNetworkAvail = true;
@@ -169,7 +168,8 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
     super.initState();
     scrollOffset = 0;
     getMedia();
-    buttonController =  AnimationController(duration:  Duration(milliseconds: 2000), vsync: this);
+    buttonController = AnimationController(
+        duration: Duration(milliseconds: 2000), vsync: this);
     scrollController = ScrollController(keepScrollOffset: true);
     scrollController!.addListener(_transactionscrollListener);
 
@@ -189,11 +189,11 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
 
   _transactionscrollListener() {
     if (scrollController!.offset >=
-        scrollController!.position.maxScrollExtent &&
+            scrollController!.position.maxScrollExtent &&
         !scrollController!.position.outOfRange) {
       if (mounted)
         setState(
-              () {
+          () {
             scrollLoadmore = true;
             getMedia();
           },
@@ -204,50 +204,40 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: customAppBar(context: context, text: "Media", isTrue: true),
-         appBar: getAppBar("Add Media",context),
+        // appBar: customAppBar(context: context, text: "Media", isTrue: true),
+        appBar: getAppBar("Add Media", context),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            _showImageSourceDialog(context);
-          },
+            onPressed: () {
+              _showImageSourceDialog(context);
+            },
             child: const Icon(Icons.add)),
         body: _showContent());
   }
 
   _showContent() {
-    return
-      Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-
-              controller: scrollController,
-              shrinkWrap: true,
-              padding: EdgeInsetsDirectional.only(
-                  bottom: 5, start: 10, end: 10),
-              itemCount: mediaList.length,
-              itemBuilder: (context, index) {
-
-
-
-                MediaModel? item;
-                item = mediaList.isEmpty ? null : mediaList[index];
-                return item == null ? Container() : getMediaItem(index);
-
-
-
-              },
-            ),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            controller: scrollController,
+            shrinkWrap: true,
+            padding: EdgeInsetsDirectional.only(bottom: 5, start: 10, end: 10),
+            itemCount: mediaList.length,
+            itemBuilder: (context, index) {
+              MediaModel? item;
+              item = mediaList.isEmpty ? null : mediaList[index];
+              return item == null ? Container() : getMediaItem(index);
+            },
           ),
-          scrollGettingData
-              ? Padding(
-            padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
-            child: CircularProgressIndicator(),
-          )
-              : Container(),
-        ],
-
-      );
+        ),
+        scrollGettingData
+            ? Padding(
+                padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
+                child: CircularProgressIndicator(),
+              )
+            : Container(),
+      ],
+    );
   }
 
   getAppBar(String title, BuildContext context) {
@@ -285,17 +275,20 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
       actions: [
         (widget.from == "other" || widget.from == 'variant')
             ? TextButton(
-            onPressed: () {
-              if (widget.from == "other") {
-                // otherPhotos.addAll(otherImgList);
-                // otherImageUrl.addAll(otherImgUrlList);
-              } else if (widget.from == 'variant') {
-                // variationList[widget.pos].images = variantImgList;
-                // variationList[widget.pos].imagesUrl = variantImgUrlList;
-              }
-              Navigator.pop(context,otherImgUrlList);
-            },
-            child: Text('Done',style: TextStyle(color: colors.primary),))
+                onPressed: () {
+                  if (widget.from == "other") {
+                    // otherPhotos.addAll(otherImgList);
+                    // otherImageUrl.addAll(otherImgUrlList);
+                  } else if (widget.from == 'variant') {
+                    // variationList[widget.pos].images = variantImgList;
+                    // variationList[widget.pos].imagesUrl = variantImgUrlList;
+                  }
+                  Navigator.pop(context, otherImgUrlList);
+                },
+                child: Text(
+                  'Done',
+                  style: TextStyle(color: colors.primary),
+                ))
             : Container()
       ],
     );
@@ -318,14 +311,14 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
                 _playAnimation();
 
                 Future.delayed(Duration(seconds: 2)).then(
-                      (_) async {
+                  (_) async {
                     //_isNetworkAvail = await isNetworkAvailable();
                     if (_isNetworkAvail) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              super.widget)).then((value) {
+                                  super.widget)).then((value) {
                         setState(() {});
                       });
                     } else {
@@ -364,7 +357,7 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
 
         try {
           var parameter = {
-          'seller_id': "1",
+            'seller_id': userId,
             // LIMIT: perPage.toString(),
             // OFFSET: scrollOffset.toString(),
 
@@ -374,8 +367,10 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
           if (widget.from == "video") {
             parameter["type"] = "video";
           }
-          Response response =
-          await post(getMediaApi, body: parameter,).timeout(Duration(seconds: timeOut));
+          Response response = await post(
+            getMediaApi,
+            body: parameter,
+          ).timeout(Duration(seconds: timeOut));
           var getdata = json.decode(response.body);
           print('____asasasas______${getMediaApi}_____${parameter}____');
           bool error = getdata["error"];
@@ -428,69 +423,57 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
         timeInSecForIosWeb: 1,
         backgroundColor: colors.primary,
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 
   getMediaItem(int index) {
     return Card(
       child: InkWell(
         onTap: () {
-
           setState(() {
             print('___ASasAS_______${widget.from}_________');
             mediaList[index].isSelected = !mediaList[index].isSelected;
             if (widget.from == "main") {
               // productImage = mediaList[index].subDic! + "" + mediaList[index].name!;
               productImageUrl = mediaList[index].image!;
-              Navigator.pop(context,productImageUrl);
+              Navigator.pop(context, productImageUrl);
             } else if (widget.from == "video") {
               //uploadedVideoName = mediaList[index].subDic! + "" + mediaList[index].name!;
               Navigator.pop(context);
             } else if (widget.from == "other") {
               if (mediaList[index].isSelected) {
-                otherImgList.add(mediaList[index].subDic! + "" + mediaList[index].name!);
+                otherImgList.add(
+                    mediaList[index].subDic! + "" + mediaList[index].name!);
                 print(mediaList[index].image!);
                 otherImgUrlList.add(mediaList[index].image!.split('.com/')[1]);
                 print(otherImgUrlList);
               } else {
-                otherImgList.remove(mediaList[index].subDic! + "" + mediaList[index].name!);
+                otherImgList.remove(
+                    mediaList[index].subDic! + "" + mediaList[index].name!);
                 otherImgUrlList.remove(mediaList[index].image!.split('B2B')[1]);
                 print(otherImgUrlList);
-
               }
-            }
-            else if(widget.from=='Broncherimage'){
+            } else if (widget.from == 'Broncherimage') {
               print('===========bronger image');
               broncherImageUrl = mediaList[index].image!;
-              Navigator.pop(context,broncherImageUrl);
-
-            }
-
-
-
-
-
-            else if (widget.from == 'variant') {
-
+              Navigator.pop(context, broncherImageUrl);
+            } else if (widget.from == 'variant') {
               if (mediaList[index].isSelected) {
                 print('if');
-                variantImgList.add(mediaList[index].subDic! + "" + mediaList[index].name!);
+                variantImgList.add(
+                    mediaList[index].subDic! + "" + mediaList[index].name!);
                 variantImgUrlList.add(mediaList[index].image!);
               } else {
                 print('else');
 
-                variantImgList.remove(mediaList[index].subDic! + "" + mediaList[index].name!);
+                variantImgList.remove(
+                    mediaList[index].subDic! + "" + mediaList[index].name!);
                 variantImgUrlList.remove(mediaList[index].image!);
               }
             }
-
           });
-
-
-
         },
-        onLongPress: (){},
+        onLongPress: () {},
         child: Stack(
           children: [
             Row(
@@ -526,22 +509,21 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
             ),
             mediaList[index].isSelected
                 ? Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.check_circle,
-                  color: colors.primary,
-                ),
-              ),
-            )
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.check_circle,
+                        color: colors.primary,
+                      ),
+                    ),
+                  )
                 : Container()
           ],
         ),
       ),
     );
   }
-
 
   Future<void> _showImageSourceDialog(BuildContext context) async {
     showDialog(
@@ -662,60 +644,56 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
 //   );
 // }
 
-  final ImagePicker _imagePicker = ImagePicker() ;
-  List <XFile?> list  = [] ;
+  final ImagePicker _imagePicker = ImagePicker();
+  List<XFile?> list = [];
   Future<void> chooseImage(ImageSource source) async {
-    XFile? image ;
-    if(source == ImageSource.gallery){
-       list = await _imagePicker.pickMultiImage(maxWidth:600,maxHeight:600);
-    }else {
-       image =  await _imagePicker.pickImage(source: source,maxWidth:600,maxHeight:600 );
-       list.add(image);
+    XFile? image;
+    if (source == ImageSource.gallery) {
+      list = await _imagePicker.pickMultiImage(maxWidth: 600, maxHeight: 600);
+    } else {
+      image = await _imagePicker.pickImage(
+          source: source, maxWidth: 600, maxHeight: 600);
+      list.add(image);
     }
 
-    if(list.isNotEmpty){
-      uplaodeImageToServer() ;
+    if (list.isNotEmpty) {
+      uplaodeImageToServer();
     }
-
   }
 
-
-  uplaodeImageToServer() async{
+  uplaodeImageToServer() async {
     var headers = {
       'Cookie': 'ci_session=3ca670457a58a29b557230b2f82b897ca54ca7e0'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('${baseUrl}upload_media'));
-    request.fields.addAll({
-      'seller_id': userId ?? '74'
-    });
+    var request =
+        http.MultipartRequest('POST', Uri.parse('${baseUrl}upload_media'));
+    request.fields.addAll({'seller_id': userId ?? '74'});
 
     for (var element in list) {
       print(element!.path ?? '');
 
-      request.files.add(await http.MultipartFile.fromPath('documents[]', element?.path ?? ''));
+      request.files.add(await http.MultipartFile.fromPath(
+          'documents[]', element?.path ?? ''));
     }
 
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalresult = jsonDecode(result);
+      print(finalresult.toString());
 
-    var result = await response.stream.bytesToString();
-    var finalresult = jsonDecode(result);
-
-    if(!(finalresult['error'])) {
-      scrollLoadmore= true ;
-      setState(() {});
-      getMedia();
-    }else{
-      print(finalresult['message']);
-      Fluttertoast.showToast(msg: finalresult['message']);
+      if (!(finalresult['error'])) {
+        scrollLoadmore = true;
+        setState(() {});
+        getMedia();
+      } else {
+        print(finalresult['message'] + "RESSPONSE");
+        Fluttertoast.showToast(msg: finalresult['message']);
+      }
+    } else {
+      print(response.reasonPhrase);
     }
-    }
-    else {
-    print(response.reasonPhrase);
-    }
-
   }
-
 }
