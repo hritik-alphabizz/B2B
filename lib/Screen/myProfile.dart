@@ -337,24 +337,13 @@ class _MyProfileState extends State<MyProfile> {
       nameController.text = namee;
       emailController.text = emaill;
       mobileController.text = mobilee;
-      // companycontroller.text = companyName2;
-      //businessAddressController.text = bussinessAddress ;
-      // companycontroller.text =
-      // gstController.text = gstNumber;
-      // udyogController.text = "${widget.udyogNumber}";
-      //
-      // businessCategoryController.text = "${widget.bussinessCategory}";
-      //  countryController.text = "${widget.country}";
-      //  stateController.text = "${widget.state}";
-      //
-      //  categoryValue="${widget.bussinessCategory}";
-      // countryValue= widget.country;
-      //  stateValue= widget.state;
-      //
+      udyogController.text = profileStore2['seller_data']['udyog_num'] ?? "";
+      cityController.text = city2 ?? "";
+      anyController.text = profileStore2['seller_data']['other_number'] ?? "";
+
       districtController.text = district2;
       areaController.text = area2;
       pincodeController.text = pinCode2;
-      cityController.text = city2;
       businessAddressController.text =
           profileStore2['seller_data']['company_address'] ?? '';
       companycontroller.text = profileStore2['seller_data']['store_name'] ?? '';
@@ -370,7 +359,6 @@ class _MyProfileState extends State<MyProfile> {
       linkdinController.text = profileStore2['seller_data']['linkedin'] ?? '';
       pincodeController.text = profileStore2['data']['pincode'] ?? '';
       areaController.text = profileStore2['data']['area'] ?? '';
-      cityController.text = profileStore2['data']['city_name'] ?? '';
 
       businessCategory();
       getCountries();
@@ -383,6 +371,7 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
+    print(city2.toString() + "CITY NAME");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: customAppBar(context: context, text: "My Profile", isTrue: false),

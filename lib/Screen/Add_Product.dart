@@ -1392,6 +1392,7 @@ class _AddProductState extends State<AddProduct> {
                                   isLodding ? "please wait..." : "Add Product",
                               onPress: () {
                                 if (_formKey.currentState!.validate()) {
+                                  addToMyList();
                                   addProductApi();
                                 }
                               }),
@@ -1415,6 +1416,18 @@ class _AddProductState extends State<AddProduct> {
               ),
             ),
     );
+  }
+
+  void addToMyList() {
+    //  String text = controller1.text;
+    myList.clear();
+    myList2.clear();
+    for (int i = 0; i < controllersOfController.length; i++) {
+      if (controllersOfController[i][0].text.isNotEmpty) {
+        myList.add(controllersOfController[i][0].text);
+        myList2.add(controllersOfController[i][1].text);
+      }
+    }
   }
 
   TextEditingController tagC = TextEditingController();
@@ -1587,15 +1600,6 @@ class _AddProductState extends State<AddProduct> {
 
   List<String> myList = [];
   List<String> myList2 = [];
-
-  void addToMyList() {
-    //  String text = controller1.text;
-    for (int i = 0; i < controllersOfController.length; i++) {
-      controllersOfController[i].forEach((element) {
-        myList.add(element.text);
-      });
-    }
-  }
 
   @override
   void dispose() {

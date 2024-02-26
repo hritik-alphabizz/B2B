@@ -482,7 +482,11 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
                   mediaList[index].image!,
                   height: 200,
                   width: 200,
-                  //errorBuilder: (context, error, stackTrace) => erroWidget(200),
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    "Images/Splash screen.png",
+                    height: 200,
+                    width: 200,
+                  ),
                   color: Colors.black
                       .withOpacity(mediaList[index].isSelected ? 1 : 0),
                   colorBlendMode: BlendMode.color,

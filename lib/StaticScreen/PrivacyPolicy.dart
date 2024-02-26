@@ -16,20 +16,22 @@ class PrivacyPolicy extends StatefulWidget {
 }
 
 class _PrivacyPolicyState extends State<PrivacyPolicy> {
-
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-  new GlobalKey<RefreshIndicatorState>();
+      new GlobalKey<RefreshIndicatorState>();
 
   Future<Null> _refresh() {
     return callApi();
   }
+
   Future<Null> callApi() async {
     getPrivacyPolicyApi();
   }
+
   void initState() {
     super.initState();
     getPrivacyPolicyApi();
   }
+
   var privacyPolicy;
   var privacyPolicyTitle;
   getPrivacyPolicyApi() async {
@@ -40,18 +42,16 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      final result =  await response.stream.bytesToString();
+      final result = await response.stream.bytesToString();
       final jsonResponse = json.decode(result);
       setState(() {
         privacyPolicy = jsonResponse['data']['privacy_policy'];
         // privacyPolicyTitle = jsonResponse['data']['title'];
       });
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +59,20 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
       key: _refreshIndicatorKey,
       onRefresh: _refresh,
       child: Scaffold(
-        appBar: customAppBar(text: "Privacy Policy",isTrue: false, context: context),
-          body: ListView(
-            children: [
-              privacyPolicy == null || privacyPolicy == "" ? Center(child: CircularProgressIndicator(color: colors.black,)) :
-              Html(
-                  data:"${privacyPolicy}"
-              ),
-            ],
-          ),
+        appBar: customAppBar(
+            text: "Privacy Policy", isTrue: false, context: context),
+        body: ListView(
+          children: [
+            privacyPolicy == null || privacyPolicy == ""
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: colors.black,
+                  ))
+                : Html(
+                    data:
+                        "${privacyPolicy.toString().replaceAll("[", "").replaceAll("]", "")}"),
+          ],
+        ),
       ),
     );
   }

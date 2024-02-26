@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 import '../Api.path.dart';
 import '../color.dart';
@@ -16,20 +16,22 @@ class TermCondition extends StatefulWidget {
 }
 
 class _TermConditionState extends State<TermCondition> {
-
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-  new GlobalKey<RefreshIndicatorState>();
+      new GlobalKey<RefreshIndicatorState>();
 
   Future<Null> _refresh() {
     return callApi();
   }
+
   Future<Null> callApi() async {
     getPrivacyPolicyApi();
   }
+
   void initState() {
     super.initState();
     getPrivacyPolicyApi();
   }
+
   var termsConditions;
   getPrivacyPolicyApi() async {
     var headers = {
@@ -39,18 +41,16 @@ class _TermConditionState extends State<TermCondition> {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      final result =  await response.stream.bytesToString();
+      final result = await response.stream.bytesToString();
       final jsonResponse = json.decode(result);
       setState(() {
         termsConditions = jsonResponse['data']['terms_conditions'];
         // privacyPolicyTitle = jsonResponse['data']['title'];
       });
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +58,18 @@ class _TermConditionState extends State<TermCondition> {
       key: _refreshIndicatorKey,
       onRefresh: _refresh,
       child: Scaffold(
-        appBar: customAppBar(text: "Terms & Conditions",isTrue: false, context: context),
+        appBar: customAppBar(
+            text: "Terms & Conditions", isTrue: false, context: context),
         body: ListView(
           children: [
-            termsConditions == null || termsConditions == "" ? Center(child: CircularProgressIndicator(color: colors.black,)) :
-            Html(
-                data:"${termsConditions}"
-            ),
+            termsConditions == null || termsConditions == ""
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: colors.black,
+                  ))
+                : Html(
+                    data:
+                        "${termsConditions.toString().replaceAll("[", "").replaceAll("]", "")}"),
           ],
         ),
       ),
