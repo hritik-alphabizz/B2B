@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:b2b/AuthView/register.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
@@ -307,6 +308,7 @@ class _MyProfileState extends State<MyProfile> {
       profileStore2 = profileStore;
       setState(() {});
     }
+    log(profileStore2.toString());
     if (profileStore2['error'] == false) {
       imagee = "${profileStore2['data']['broucher']}";
       namee = "${profileStore2['data']['username']}";
@@ -1409,10 +1411,11 @@ class _MyProfileState extends State<MyProfile> {
       'other_number': anyController.text,
       'partner': partnerNameController.text,
       'partner_number': partnerNumberController.text,
+      "web_link": websiteController.text,
       'facebook': facebookController.text,
       'instagram': instaController.text,
       'linkedin': linkdinController.text,
-      'type_of_seller': "$categoryValue",
+      'type_of_seller': categoryValue,
       'state': "$stateValue",
       'destrict': districtController.text,
       'city': cityController.text,

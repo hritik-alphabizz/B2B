@@ -41,7 +41,7 @@ class _ClientScreenState extends State<ClientScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getClientApi();
+    getClientApi("");
     businessCategory();
   }
 
@@ -55,6 +55,8 @@ class _ClientScreenState extends State<ClientScreen> {
     "Price - Low to High",
     "Price - High to Low"
   ];
+  List<String> cityList = [];
+  String? selectedCity;
 
   List<String> bussinessCat = [
     "Manufacturers",
@@ -563,7 +565,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                                       .indexOf(element);
                                               businessId = element.id;
                                               businessName = element.name;
-                                              getClientApi();
+                                              getClientApi("");
                                               setState(() {});
                                             }
                                           });
@@ -592,41 +594,124 @@ class _ClientScreenState extends State<ClientScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: const Text(
+                                    "City",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  height: 35,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(
+                                          color:
+                                              colors.black.withOpacity(0.4))),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton2<String>(
+                                      //value: selectedBusiness[0],
+                                      isExpanded: true,
+
+                                      hint: const Text(
+                                        "Cities",
+                                        style: TextStyle(
+                                            color: colors.black, fontSize: 13),
+                                      ),
+                                      // dropdownColor: colors.primary,
+                                      value: selectedCity,
+                                      // icon: const Padding(
+                                      //   padding: EdgeInsets.only(right:10.0),
+                                      //   child: Icon(Icons.keyboard_arrow_down_rounded,  color:colors.secondary,size: 10,),
+                                      // ),
+                                      // style:  const TextStyle(color: colors.secondary,fontWeight: FontWeight.bold),
+                                      underline: Container(
+                                        width: 10,
+                                        color: colors.white,
+                                      ),
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          selectedCity = value!;
+                                        });
+                                        getClientApi(selectedCity == "All"
+                                            ? ""
+                                            : selectedCity ?? "");
+                                      },
+                                      items: cityList.map((items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 0),
+                                            child: Text(
+                                              items,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                  color: colors.black),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: InkWell(
-                            onTap: () {
-                              // for (int i = 0;
-                              //     i < getClientModel!.data!.length;
-                              //     i++) {
-                              //   print(getClientModel!.data![i].vendorData![0]
-                              //           .sellerInfo!.latitude!
-                              //           .toString() +
-                              //       "LaTITUDE");
-                              // }
+                    Visibility(
+                      visible: getClientModel!.data!.isNotEmpty,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: InkWell(
+                              onTap: () {
+                                // for (int i = 0;
+                                //     i < getClientModel!.data!.length;
+                                //     i++) {
+                                //   print(getClientModel!.data![i].vendorData![0]
+                                //           .sellerInfo!.latitude!
+                                //           .toString() +
+                                //       "LaTITUDE");
+                                // }
 
-                              //  print(getClientModel!.data.toString());
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => GoogleMapClient(
-                                          model: getClientModel!.data)));
-                            },
-                            child: Container(
-                                height: 30,
-                                width: 30,
-                                decoration: BoxDecoration(
-                                    color: colors.primary,
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.location_on_outlined,
-                                  color: colors.white,
-                                )))),
+                                //  print(getClientModel!.data.toString());
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GoogleMapClient(
+                                            model: getClientModel!.data)));
+                              },
+                              child: Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      color: colors.primary,
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: const Center(
+                                      child: Icon(
+                                    Icons.location_on_outlined,
+                                    color: colors.white,
+                                  )))),
+                        ),
                       ),
                     ),
                     getSubcat(),
@@ -1046,7 +1131,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
+                                                              .all(
                                                               Radius.circular(
                                                                   6)),
                                                       border: Border.all(
@@ -1064,8 +1149,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius
+                                                                    .all(Radius
                                                                         .circular(
                                                                             50)),
                                                             color: getClientModel!
@@ -1106,9 +1190,9 @@ class _ClientScreenState extends State<ClientScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius.circular(
-                                                                        50)),
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
                                                             color: getClientModel!
                                                                         .data![
                                                                             i]
@@ -1141,9 +1225,9 @@ class _ClientScreenState extends State<ClientScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius.circular(
-                                                                        50)),
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
                                                             color: getClientModel!
                                                                         .data![
                                                                             i]
@@ -1188,10 +1272,16 @@ class _ClientScreenState extends State<ClientScreen> {
                                                     getClientModel!
                                                         .data![i]
                                                         .vendorData![index]
-                                                        .sellerInfo!
+                                                        .productInfo!
                                                         .id
                                                         .toString(),
-                                                    mobileNo);
+                                                    mobileNo,
+                                                    getClientModel!
+                                                            .data![i]
+                                                            .vendorData![index]
+                                                            .sellerDataInfo!
+                                                            .id ??
+                                                        "");
                                               },
                                             ),
                                           )
@@ -1217,7 +1307,7 @@ class _ClientScreenState extends State<ClientScreen> {
   GetClientModel? getClientModel;
   List<dataListClient> productList = [];
 
-  getClientApi() async {
+  getClientApi(String city) async {
     setState(() {
       isLoading = true;
     });
@@ -1225,12 +1315,15 @@ class _ClientScreenState extends State<ClientScreen> {
     var headers = {
       'Cookie': 'ci_session=956d314ffb2d0bd8f223c4cb36883058400b2dc5'
     };
+    cityList.clear();
+    cityList.add("All");
     var request = http.MultipartRequest('POST', Uri.parse('${baseUrl}clients'));
     request.fields.addAll({
       'seller_id': userId.toString(),
       'type': '2',
       "buisness_category":
-          businessName == null || businessName == "" ? "" : "${businessName}"
+          businessName == null || businessName == "" ? "" : "${businessName}",
+      'city': city.toString()
     });
     print('_____request data_____${request.fields}____${request}_____');
     request.headers.addAll(headers);
@@ -1243,6 +1336,24 @@ class _ClientScreenState extends State<ClientScreen> {
         getClientModel = finalResult;
         isLoading = false;
       });
+      for (int i = 0; i < getClientModel!.data!.length; i++) {
+        for (int j = 0; j < getClientModel!.data![i].vendorData!.length; j++) {
+          if (getClientModel!.data![i].vendorData![j].sellerInfo!.city!
+                  .toString()
+                  .trim()
+                  .isNotEmpty &&
+              !cityList.contains(getClientModel!
+                  .data![i].vendorData![j].sellerInfo!.city
+                  .toString())) {
+            cityList.add(getClientModel!
+                    .data![i].vendorData![j].sellerInfo!.city
+                    .toString() ??
+                '');
+            print(
+                "${getClientModel!.data![i].vendorData![j].sellerInfo!.city.toString()} City name");
+          }
+        }
+      }
     } else {
       setState(() {
         isLoading = false;
@@ -1643,7 +1754,7 @@ class _ClientScreenState extends State<ClientScreen> {
   String? controller;
   String? OTPIS;
 
-  sendOtpCotactSuplier(String ProductId) async {
+  sendOtpCotactSuplier(String ProductId, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=aa35b4867a14620a4c973d897c5ae4ec6c25ee8e'
     };
@@ -1676,14 +1787,15 @@ class _ClientScreenState extends State<ClientScreen> {
         });
 
         Navigator.pop(context);
-        showDialogverifyContactSuplier(ProductId);
+        showDialogverifyContactSuplier(ProductId, sellerId);
       }
     } else {
       print(response.reasonPhrase);
     }
   }
 
-  void showDialogContactSuplier(String productId, String? mobile) async {
+  void showDialogContactSuplier(
+      String productId, String? mobile, String sellerId) async {
     yourMobileNumber.text = mobile ?? '';
     return await showDialog(
         context: context,
@@ -1855,7 +1967,7 @@ class _ClientScreenState extends State<ClientScreen> {
                           onPress: () {
                             if (_Cotact.currentState!.validate()) {
                               print("gggggggggggggggg");
-                              sendOtpCotactSuplier(productId);
+                              sendOtpCotactSuplier(productId, sellerId);
                             }
                           },
                         )
@@ -1869,7 +1981,8 @@ class _ClientScreenState extends State<ClientScreen> {
         });
   }
 
-  void showDialogverifyContactSuplier(String productIddd) async {
+  void showDialogverifyContactSuplier(
+      String productIddd, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1945,7 +2058,7 @@ class _ClientScreenState extends State<ClientScreen> {
                       InkWell(
                         onTap: () {
                           if (controller == OTPIS) {
-                            sendEnqury(productIddd);
+                            sendEnqury(productIddd, sellerId);
                           } else {
                             Fluttertoast.showToast(msg: 'Enter Correct OTP');
                           }
@@ -1973,7 +2086,7 @@ class _ClientScreenState extends State<ClientScreen> {
         });
   }
 
-  Future<void> sendEnqury(String productid) async {
+  Future<void> sendEnqury(String productid, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=ff1e2af38a215d1057b062b8ff903fc27b0c488b'
     };
@@ -1987,12 +2100,16 @@ class _ClientScreenState extends State<ClientScreen> {
         'city': YourcityController.text.toString(),
         'product_id': productid.toString(),
         'sup_type': "Client",
+        'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
+        'sup_type': "Client",
+        'seller_id': sellerId ?? "",
+        'city': city2
       });
     }
 

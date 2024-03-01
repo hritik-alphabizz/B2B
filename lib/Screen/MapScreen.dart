@@ -103,6 +103,7 @@ class _GogglemapState extends State<Gogglemap> {
       LatLngBounds(southwest: LatLng(0, 0), northeast: LatLng(0, 0)));
   @override
   Widget build(BuildContext context) {
+    print("1");
     return Scaffold(
       appBar:
           customAppBar(context: context, text: "Near Sellers", isTrue: false),

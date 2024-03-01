@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:b2b/Model/Get_cat_by_product_model.dart';
 import 'package:b2b/Model/temp_model.dart';
 import 'package:b2b/widgets/Appbar.dart';
@@ -10,28 +11,30 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class GoogleMapHome extends StatefulWidget {
-  GoogleMapHome({super.key,this.model});
+  GoogleMapHome({super.key, this.model});
   List<dataListHome>? model;
 
   @override
   State<GoogleMapHome> createState() => _GoogleMapHomeState();
 }
+
 class _GoogleMapHomeState extends State<GoogleMapHome> {
   late GoogleMapController mapController;
 
   final Set<Marker> markers = {
     const Marker(
       markerId: MarkerId('1'),
-      position: LatLng(22.751247256865494, 75.89504445001252), // Replace with the coordinates of your placeMark
+      position: LatLng(22.751247256865494,
+          75.89504445001252), // Replace with the coordinates of your placeMark
       infoWindow: InfoWindow(title: 'Vijay Nagar'),
     ),
     // Add more markers as needed
   };
-  List  <Marker> list = [];
+  List<Marker> list = [];
 
-  List <String> lat = [];
-  List <String> long = [];
-  List <String> restoName = [];
+  List<String> lat = [];
+  List<String> long = [];
+  List<String> restoName = [];
 
   @override
   void initState() {
@@ -39,27 +42,30 @@ class _GoogleMapHomeState extends State<GoogleMapHome> {
     super.initState();
     _getAddressFromLatLng();
     widget.model?.forEach((element) {
-
       element.products?.forEach((element) {
-        if(element.latitude != '' && element.longitude != '' )
-        {
+        if (element.latitude != '' && element.longitude != '') {
           lat.add(element.latitude ?? "0.0");
           long.add(element.longitude ?? "0.0");
         }
         restoName.add(element.storeName ?? "");
-
       });
     });
 
-    for(int i =0; i<lat.length;i ++ ){
-      list.add(Marker(
-        markerId: MarkerId('1'),
-        position: LatLng(double.parse(lat[i]), double.parse(long[i])), // Replace with the coordinates of your placeMark
-        infoWindow: InfoWindow(title: restoName[i]),
-      ),);
-
+    for (int i = 0; i < lat.length; i++) {
+      list.add(
+        Marker(
+          markerId: MarkerId('1'),
+          position: LatLng(
+              double.parse(lat[i]),
+              double.parse(
+                  long[i])), // Replace with the coordinates of your placeMark
+          infoWindow: InfoWindow(title: restoName[i]),
+        ),
+      );
     }
+    _moveToAllMarkers();
   }
+
   var homelat;
   var homeLong;
   String? _currentAddress;
@@ -73,22 +79,19 @@ class _GoogleMapHomeState extends State<GoogleMapHome> {
         Placemark place = p[0];
         setState(() {
           _currentAddress =
-          "${place.street}, ${place.subLocality}, ${place.locality}, ${place.country}";
-
-
+              "${place.street}, ${place.subLocality}, ${place.locality}, ${place.country}";
         });
-      } catch (e) {
-
-      }
+      } catch (e) {}
     });
   }
+
   Future getUserCurrentLocation() async {
     var status = await Permission.location.request();
     if (status.isDenied) {
       Fluttertoast.showToast(msg: "Permision is requiresd");
     } else if (status.isGranted) {
       await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high)
+              desiredAccuracy: LocationAccuracy.high)
           .then((position) {
         if (mounted) {
           setState(() {
@@ -98,31 +101,62 @@ class _GoogleMapHomeState extends State<GoogleMapHome> {
           });
         }
       });
-
-
     } else if (status.isPermanentlyDenied) {
       openAppSettings();
     }
   }
+
+  Future<void> _moveToAllMarkers() async {
+    if (markers.isEmpty || mapController == null) return;
+
+    LatLngBounds bounds = _boundsFromMarkers(markers);
+    await mapController!.animateCamera(
+      CameraUpdate.newLatLngBounds(bounds, 50),
+    );
+  }
+
+  LatLngBounds _boundsFromMarkers(Set<Marker> markers) {
+    double minLat = markers.first.position.latitude;
+    double minLng = markers.first.position.longitude;
+    double maxLat = markers.first.position.latitude;
+    double maxLng = markers.first.position.longitude;
+
+    for (Marker marker in markers) {
+      final lat = marker.position.latitude;
+      final lng = marker.position.longitude;
+      minLat = min(lat, minLat);
+      minLng = min(lng, minLng);
+      maxLat = max(lat, maxLat);
+      maxLng = max(lng, maxLng);
+    }
+
+    return LatLngBounds(
+      southwest: LatLng(minLat, minLng),
+      northeast: LatLng(maxLat, maxLng),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("2");
 
     return Scaffold(
-      appBar: customAppBar(context: context, text: "Near Sellers", isTrue: false),
-
-      body: homelat==null ? const Center(child: CircularProgressIndicator()) : GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(homelat, homeLong), // Initial map coordinates
-          zoom: 14.0, // Initial zoom level
-        ),
-        onMapCreated: (controller) {
-          setState(() {
-            mapController = controller;
-          });
-        },
-        markers:Set<Marker>.of(list),
-      ),
+      appBar:
+          customAppBar(context: context, text: "Near Sellers", isTrue: false),
+      body: homelat == null
+          ? const Center(child: CircularProgressIndicator())
+          : GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(homelat, homeLong), // Initial map coordinates
+                zoom: 8.0, // Initial zoom level
+              ),
+              onMapCreated: (controller) {
+                setState(() {
+                  mapController = controller;
+                });
+              },
+              markers: Set<Marker>.of(list),
+            ),
     );
-
   }
 }

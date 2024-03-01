@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:b2b/Screen/HomeScreen.dart';
 import 'package:b2b/Screen/MapHomeScreen.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Api.path.dart';
@@ -39,6 +41,9 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
     getProductDetailsApi();
   }
 
+  final CarouselController carouselController = CarouselController();
+  int currentIndex = 0;
+
   Future<void> openMap(String latitude, String longitude) async {
     String googleUrl = "";
     if (latitude == "" || latitude == "null") {
@@ -55,6 +60,8 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
       throw 'Could not open the map.';
     }
   }
+
+  List<String> images = [];
 
   String? mNo;
   getProfile() async {
@@ -107,38 +114,100 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              final imageProvider = Image.network(
-                                      getHomeProductDetails?.data.first.image ??
-                                          "")
-                                  .image;
+                              final imageProvider =
+                                  Image.network(images[currentIndex] ?? "")
+                                      .image;
                               showImageViewer(context, imageProvider,
                                   onViewerDismissed: () {
                                 print("dismissed");
                               });
                             },
                             child: Container(
-                                height: 250,
+                                height: 200,
                                 width: double.infinity,
                                 child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: getHomeProductDetails
-                                                    ?.data?.first.image ==
-                                                null ||
-                                            getHomeProductDetails
-                                                    ?.data?.first.image ==
-                                                " "
-                                        ? Image.asset(
-                                            "Images/no-image-icon.png",
-                                            height: 200,
-                                            width: double.infinity,
-                                            fit: BoxFit.fill,
-                                          )
-                                        : InteractiveViewer(
-                                            child: Image.network(
-                                            "${getHomeProductDetails?.data?.first.image}",
-                                            fit: BoxFit.fill,
-                                          )))),
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: getHomeProductDetails
+                                                  ?.data?.first.image ==
+                                              null ||
+                                          getHomeProductDetails
+                                                  ?.data?.first.image ==
+                                              " "
+                                      ? Image.asset(
+                                          "Images/no-image-icon.png",
+                                          height: 200,
+                                          width: double.infinity,
+                                          fit: BoxFit.fill,
+                                        )
+                                      : CarouselSlider(
+                                          items: images
+                                              .map(
+                                                (item) => Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: InteractiveViewer(
+                                                      child: Image.network(
+                                                        item,
+                                                        fit: BoxFit.fill,
+                                                        width: double.infinity,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                          carouselController:
+                                              carouselController,
+                                          options: CarouselOptions(
+                                            scrollPhysics:
+                                                const BouncingScrollPhysics(),
+                                            autoPlay: true,
+                                            autoPlayInterval:
+                                                const Duration(seconds: 3),
+                                            autoPlayAnimationDuration:
+                                                const Duration(
+                                                    milliseconds: 500),
+                                            aspectRatio: 2,
+                                            viewportFraction: 1,
+                                            onPageChanged: (index, reason) {
+                                              setState(() {
+                                                currentIndex = index;
+                                              });
+                                            },
+                                          ),
+                                        ),
+
+                                  //  InteractiveViewer(
+                                  //     child: Image.network(
+                                  //     "${getHomeProductDetails?.data?.first.image}",
+                                  //     fit: BoxFit.fill,
+                                  //   )
+                                  //   )
+                                )),
                           ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 7),
+                              child: AnimatedSmoothIndicator(
+                                activeIndex: currentIndex,
+                                count: images.length ?? 0,
+                                effect: const SlideEffect(
+                                  spacing: 5.6,
+                                  radius: 10.0,
+                                  dotWidth: 7.0,
+                                  dotHeight: 7.0,
+                                  dotColor: Color.fromRGBO(246, 137, 133, 0.5),
+                                  activeDotColor: colors.primary,
+                                ),
+                              ),
+                            ),
+                          ),
+
                           const SizedBox(
                             height: 20,
                           ),
@@ -663,20 +732,30 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Container(
-                                    color: Colors.transparent,
-                                    child: Btn(
-                                      height: 40,
-                                      width: 150,
-                                      title: "Contact Supplier",
-                                      onPress: () {
-                                        showDialogContactSuplier(
-                                            getHomeProductDetails
-                                                    ?.data.first.id ??
-                                                "",
-                                            mobilee);
-                                      },
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 30.0),
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: Btn(
+                                        height: 40,
+                                        width: 150,
+                                        title: "Contact Supplier",
+                                        onPress: () {
+                                          showDialogContactSuplier(
+                                              getHomeProductDetails
+                                                      ?.data.first.id ??
+                                                  "",
+                                              mobilee,
+                                              getHomeProductDetails
+                                                      ?.data.first.sellerId ??
+                                                  "");
+                                        },
+                                      ),
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    width: 50,
                                   ),
                                 ],
                               ),
@@ -699,7 +778,8 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
   String? controller;
   String? OTPIS;
 
-  void showDialogContactSuplier(String productId, Mobile) async {
+  void showDialogContactSuplier(
+      String productId, Mobile, String sellerId) async {
     print('______sasdsd____${productId}_________');
     return await showDialog(
         context: context,
@@ -884,7 +964,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                           title: "Send OTP",
                           onPress: () {
                             if (_Cotact.currentState!.validate()) {
-                              sendOtpCotactSuplier(productId);
+                              sendOtpCotactSuplier(productId, sellerId);
                             }
                           },
                         )
@@ -898,7 +978,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         });
   }
 
-  sendOtpCotactSuplier(String ProductId) async {
+  sendOtpCotactSuplier(String ProductId, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=aa35b4867a14620a4c973d897c5ae4ec6c25ee8e'
     };
@@ -932,14 +1012,15 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         });
 
         Navigator.pop(context);
-        showDialogverifyContactSuplier(ProductId);
+        showDialogverifyContactSuplier(ProductId, sellerId);
       }
     } else {
       print(response.reasonPhrase);
     }
   }
 
-  void showDialogverifyContactSuplier(String productIddd) async {
+  void showDialogverifyContactSuplier(
+      String productIddd, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1018,7 +1099,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                         title: "Verify OTP",
                         onPress: () {
                           if (controller == OTPIS) {
-                            sendEnqury(productIddd);
+                            sendEnqury(productIddd, sellerId);
                           } else {
                             Fluttertoast.showToast(msg: 'Enter Correct OTP');
                           }
@@ -1033,7 +1114,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         });
   }
 
-  Future<void> sendEnqury(String productid) async {
+  Future<void> sendEnqury(String productid, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=ff1e2af38a215d1057b062b8ff903fc27b0c488b'
     };
@@ -1045,13 +1126,18 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         'name': yournamecontroller.text.toString(),
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
-        'product_id': productid.toString()
+        'product_id': productid.toString(),
+        'sup_type': "Product Details",
+        'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
+        'sup_type': "Product Details",
+        'seller_id': sellerId ?? "",
+        'city': city2
       });
     }
     print('____sassasadad______${request.fields}_________');
@@ -1092,6 +1178,10 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
       var finalResult = GetHomeProductDetailsModel.fromJson(jsonDecode(result));
       setState(() {
         getHomeProductDetails = finalResult;
+        if (getHomeProductDetails!.data[0].image.isNotEmpty) {
+          images.add(getHomeProductDetails!.data[0].image);
+          images.addAll(getHomeProductDetails!.data[0].otherImages);
+        }
       });
       log('____Aaa______${result}_________');
     } else {

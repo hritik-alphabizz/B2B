@@ -7,19 +7,20 @@
 
 class GetClientModel {
   GetClientModel({
-      bool? error, 
-      String? message, 
-      List<dynamic>? filters, 
-      String? total, 
-      String? offset, 
-      List<dataListClient>? data,}){
+    bool? error,
+    String? message,
+    List<dynamic>? filters,
+    String? total,
+    String? offset,
+    List<dataListClient>? data,
+  }) {
     _error = error;
     _message = message;
     _filters = filters;
     _total = total;
     _offset = offset;
     _data = data;
-}
+  }
 
   GetClientModel.fromJson(dynamic json) {
     _error = json['error'];
@@ -45,19 +46,22 @@ class GetClientModel {
   String? _total;
   String? _offset;
   List<dataListClient>? _data;
-GetClientModel copyWith({  bool? error,
-  String? message,
-  List<dynamic>? filters,
-  String? total,
-  String? offset,
-  List<dataListClient>? data,
-}) => GetClientModel(  error: error ?? _error,
-  message: message ?? _message,
-  filters: filters ?? _filters,
-  total: total ?? _total,
-  offset: offset ?? _offset,
-  data: data ?? _data,
-);
+  GetClientModel copyWith({
+    bool? error,
+    String? message,
+    List<dynamic>? filters,
+    String? total,
+    String? offset,
+    List<dataListClient>? data,
+  }) =>
+      GetClientModel(
+        error: error ?? _error,
+        message: message ?? _message,
+        filters: filters ?? _filters,
+        total: total ?? _total,
+        offset: offset ?? _offset,
+        data: data ?? _data,
+      );
   bool? get error => _error;
   String? get message => _message;
   List<dynamic>? get filters => _filters;
@@ -79,7 +83,6 @@ GetClientModel copyWith({  bool? error,
     }
     return map;
   }
-
 }
 
 /// category_name : "Plastic"
@@ -87,11 +90,12 @@ GetClientModel copyWith({  bool? error,
 
 class dataListClient {
   dataListClient({
-      String? categoryName, 
-      List<VendorData>? vendorData,}){
+    String? categoryName,
+    List<VendorData>? vendorData,
+  }) {
     _categoryName = categoryName;
     _vendorData = vendorData;
-}
+  }
 
   dataListClient.fromJson(dynamic json) {
     _categoryName = json['category_name'];
@@ -104,11 +108,14 @@ class dataListClient {
   }
   String? _categoryName;
   List<VendorData>? _vendorData;
-dataListClient copyWith({  String? categoryName,
-  List<VendorData>? vendorData,
-}) => dataListClient(  categoryName: categoryName ?? _categoryName,
-  vendorData: vendorData ?? _vendorData,
-);
+  dataListClient copyWith({
+    String? categoryName,
+    List<VendorData>? vendorData,
+  }) =>
+      dataListClient(
+        categoryName: categoryName ?? _categoryName,
+        vendorData: vendorData ?? _vendorData,
+      );
   String? get categoryName => _categoryName;
   List<VendorData>? get vendorData => _vendorData;
 
@@ -120,7 +127,6 @@ dataListClient copyWith({  String? categoryName,
     }
     return map;
   }
-
 }
 
 /// seller_id : "515"
@@ -130,35 +136,45 @@ dataListClient copyWith({  String? categoryName,
 
 class VendorData {
   VendorData({
-      String? sellerId, 
-      ProductInfo? productInfo, 
-      SellerInfo? sellerInfo, 
-      SellerDataInfo? sellerDataInfo,}){
+    String? sellerId,
+    ProductInfo? productInfo,
+    SellerInfo? sellerInfo,
+    SellerDataInfo? sellerDataInfo,
+  }) {
     _sellerId = sellerId;
     _productInfo = productInfo;
     _sellerInfo = sellerInfo;
     _sellerDataInfo = sellerDataInfo;
-}
+  }
 
   VendorData.fromJson(dynamic json) {
     _sellerId = json['seller_id'];
-    _productInfo = json['product_info'] != null ? ProductInfo.fromJson(json['product_info']) : null;
-    _sellerInfo = json['seller_info'] != null ? SellerInfo.fromJson(json['seller_info']) : null;
-    _sellerDataInfo = json['seller_data_info'] != null ? SellerDataInfo.fromJson(json['seller_data_info']) : null;
+    _productInfo = json['product_info'] != null
+        ? ProductInfo.fromJson(json['product_info'])
+        : null;
+    _sellerInfo = json['seller_info'] != null
+        ? SellerInfo.fromJson(json['seller_info'])
+        : null;
+    _sellerDataInfo = json['seller_data_info'] != null
+        ? SellerDataInfo.fromJson(json['seller_data_info'])
+        : null;
   }
   String? _sellerId;
   ProductInfo? _productInfo;
   SellerInfo? _sellerInfo;
   SellerDataInfo? _sellerDataInfo;
-VendorData copyWith({  String? sellerId,
-  ProductInfo? productInfo,
-  SellerInfo? sellerInfo,
-  SellerDataInfo? sellerDataInfo,
-}) => VendorData(  sellerId: sellerId ?? _sellerId,
-  productInfo: productInfo ?? _productInfo,
-  sellerInfo: sellerInfo ?? _sellerInfo,
-  sellerDataInfo: sellerDataInfo ?? _sellerDataInfo,
-);
+  VendorData copyWith({
+    String? sellerId,
+    ProductInfo? productInfo,
+    SellerInfo? sellerInfo,
+    SellerDataInfo? sellerDataInfo,
+  }) =>
+      VendorData(
+        sellerId: sellerId ?? _sellerId,
+        productInfo: productInfo ?? _productInfo,
+        sellerInfo: sellerInfo ?? _sellerInfo,
+        sellerDataInfo: sellerDataInfo ?? _sellerDataInfo,
+      );
   String? get sellerId => _sellerId;
   ProductInfo? get productInfo => _productInfo;
   SellerInfo? get sellerInfo => _sellerInfo;
@@ -178,7 +194,6 @@ VendorData copyWith({  String? sellerId,
     }
     return map;
   }
-
 }
 
 /// id : "5"
@@ -219,43 +234,44 @@ VendorData copyWith({  String? sellerId,
 /// partner_address : ""
 
 class SellerDataInfo {
-  SellerDataInfo({
-      String? id, 
-      String? userId, 
-      dynamic slug, 
-      dynamic categoryIds, 
-      String? storeName, 
-      dynamic storeDescription, 
-      dynamic logo, 
-      dynamic storeUrl, 
-      String? noOfRatings, 
-      String? rating, 
-      dynamic bankName, 
-      dynamic bankCode, 
-      dynamic accountName, 
-      dynamic accountNumber, 
-      dynamic nationalIdentityCard, 
-      dynamic addressProof, 
-      String? authorizedSignature, 
-      dynamic panNumber, 
-      dynamic taxName, 
-      String? taxNumber, 
-      dynamic permissions, 
-      String? commission, 
-      String? status, 
-      String? dateAdded, 
-      String? udyogNum, 
-      String? partner, 
-      String? otherNumber, 
-      String? partnerNumber, 
-      String? companyAddress, 
-      String? facebook, 
-      String? instagram, 
-      String? webLink, 
-      String? linkedin, 
-      String? purchaseId, 
-      String? sellerCategoryId, 
-      String? partnerAddress,}){
+  SellerDataInfo(
+      {String? id,
+      String? userId,
+      dynamic slug,
+      dynamic categoryIds,
+      String? storeName,
+      dynamic storeDescription,
+      dynamic logo,
+      dynamic storeUrl,
+      String? noOfRatings,
+      String? rating,
+      dynamic bankName,
+      dynamic bankCode,
+      dynamic accountName,
+      dynamic accountNumber,
+      dynamic nationalIdentityCard,
+      dynamic addressProof,
+      String? authorizedSignature,
+      dynamic panNumber,
+      dynamic taxName,
+      String? taxNumber,
+      dynamic permissions,
+      String? commission,
+      String? status,
+      String? dateAdded,
+      String? udyogNum,
+      String? partner,
+      String? otherNumber,
+      String? partnerNumber,
+      String? companyAddress,
+      String? facebook,
+      String? instagram,
+      String? webLink,
+      String? linkedin,
+      String? purchaseId,
+      String? sellerCategoryId,
+      String? partnerAddress,
+      String? city}) {
     _id = id;
     _userId = userId;
     _slug = slug;
@@ -291,8 +307,9 @@ class SellerDataInfo {
     _linkedin = linkedin;
     _purchaseId = purchaseId;
     _sellerCategoryId = sellerCategoryId;
+    _city = city;
     _partnerAddress = partnerAddress;
-}
+  }
 
   SellerDataInfo.fromJson(dynamic json) {
     _id = json['id'];
@@ -330,6 +347,7 @@ class SellerDataInfo {
     _linkedin = json['linkedin'];
     _purchaseId = json['purchase_id'];
     _sellerCategoryId = json['seller_category_id'];
+    _city = json['city'];
     _partnerAddress = json['partner_address'];
   }
   String? _id;
@@ -367,80 +385,86 @@ class SellerDataInfo {
   String? _linkedin;
   String? _purchaseId;
   String? _sellerCategoryId;
+  String? _city;
   String? _partnerAddress;
-SellerDataInfo copyWith({  String? id,
-  String? userId,
-  dynamic slug,
-  dynamic categoryIds,
-  String? storeName,
-  dynamic storeDescription,
-  dynamic logo,
-  dynamic storeUrl,
-  String? noOfRatings,
-  String? rating,
-  dynamic bankName,
-  dynamic bankCode,
-  dynamic accountName,
-  dynamic accountNumber,
-  dynamic nationalIdentityCard,
-  dynamic addressProof,
-  String? authorizedSignature,
-  dynamic panNumber,
-  dynamic taxName,
-  String? taxNumber,
-  dynamic permissions,
-  String? commission,
-  String? status,
-  String? dateAdded,
-  String? udyogNum,
-  String? partner,
-  String? otherNumber,
-  String? partnerNumber,
-  String? companyAddress,
-  String? facebook,
-  String? instagram,
-  String? webLink,
-  String? linkedin,
-  String? purchaseId,
-  String? sellerCategoryId,
-  String? partnerAddress,
-}) => SellerDataInfo(  id: id ?? _id,
-  userId: userId ?? _userId,
-  slug: slug ?? _slug,
-  categoryIds: categoryIds ?? _categoryIds,
-  storeName: storeName ?? _storeName,
-  storeDescription: storeDescription ?? _storeDescription,
-  logo: logo ?? _logo,
-  storeUrl: storeUrl ?? _storeUrl,
-  noOfRatings: noOfRatings ?? _noOfRatings,
-  rating: rating ?? _rating,
-  bankName: bankName ?? _bankName,
-  bankCode: bankCode ?? _bankCode,
-  accountName: accountName ?? _accountName,
-  accountNumber: accountNumber ?? _accountNumber,
-  nationalIdentityCard: nationalIdentityCard ?? _nationalIdentityCard,
-  addressProof: addressProof ?? _addressProof,
-  authorizedSignature: authorizedSignature ?? _authorizedSignature,
-  panNumber: panNumber ?? _panNumber,
-  taxName: taxName ?? _taxName,
-  taxNumber: taxNumber ?? _taxNumber,
-  permissions: permissions ?? _permissions,
-  commission: commission ?? _commission,
-  status: status ?? _status,
-  dateAdded: dateAdded ?? _dateAdded,
-  udyogNum: udyogNum ?? _udyogNum,
-  partner: partner ?? _partner,
-  otherNumber: otherNumber ?? _otherNumber,
-  partnerNumber: partnerNumber ?? _partnerNumber,
-  companyAddress: companyAddress ?? _companyAddress,
-  facebook: facebook ?? _facebook,
-  instagram: instagram ?? _instagram,
-  webLink: webLink ?? _webLink,
-  linkedin: linkedin ?? _linkedin,
-  purchaseId: purchaseId ?? _purchaseId,
-  sellerCategoryId: sellerCategoryId ?? _sellerCategoryId,
-  partnerAddress: partnerAddress ?? _partnerAddress,
-);
+  SellerDataInfo copyWith({
+    String? id,
+    String? userId,
+    dynamic slug,
+    dynamic categoryIds,
+    String? storeName,
+    dynamic storeDescription,
+    dynamic logo,
+    dynamic storeUrl,
+    String? noOfRatings,
+    String? rating,
+    dynamic bankName,
+    dynamic bankCode,
+    dynamic accountName,
+    dynamic accountNumber,
+    dynamic nationalIdentityCard,
+    dynamic addressProof,
+    String? authorizedSignature,
+    dynamic panNumber,
+    dynamic taxName,
+    String? taxNumber,
+    dynamic permissions,
+    String? commission,
+    String? status,
+    String? dateAdded,
+    String? udyogNum,
+    String? partner,
+    String? otherNumber,
+    String? partnerNumber,
+    String? companyAddress,
+    String? facebook,
+    String? instagram,
+    String? webLink,
+    String? linkedin,
+    String? purchaseId,
+    String? sellerCategoryId,
+    String? partnerAddress,
+    String? city,
+  }) =>
+      SellerDataInfo(
+        id: id ?? _id,
+        userId: userId ?? _userId,
+        slug: slug ?? _slug,
+        categoryIds: categoryIds ?? _categoryIds,
+        storeName: storeName ?? _storeName,
+        storeDescription: storeDescription ?? _storeDescription,
+        logo: logo ?? _logo,
+        storeUrl: storeUrl ?? _storeUrl,
+        noOfRatings: noOfRatings ?? _noOfRatings,
+        rating: rating ?? _rating,
+        bankName: bankName ?? _bankName,
+        bankCode: bankCode ?? _bankCode,
+        accountName: accountName ?? _accountName,
+        accountNumber: accountNumber ?? _accountNumber,
+        nationalIdentityCard: nationalIdentityCard ?? _nationalIdentityCard,
+        addressProof: addressProof ?? _addressProof,
+        authorizedSignature: authorizedSignature ?? _authorizedSignature,
+        panNumber: panNumber ?? _panNumber,
+        taxName: taxName ?? _taxName,
+        taxNumber: taxNumber ?? _taxNumber,
+        permissions: permissions ?? _permissions,
+        commission: commission ?? _commission,
+        status: status ?? _status,
+        dateAdded: dateAdded ?? _dateAdded,
+        udyogNum: udyogNum ?? _udyogNum,
+        partner: partner ?? _partner,
+        otherNumber: otherNumber ?? _otherNumber,
+        partnerNumber: partnerNumber ?? _partnerNumber,
+        companyAddress: companyAddress ?? _companyAddress,
+        facebook: facebook ?? _facebook,
+        instagram: instagram ?? _instagram,
+        webLink: webLink ?? _webLink,
+        linkedin: linkedin ?? _linkedin,
+        purchaseId: purchaseId ?? _purchaseId,
+        sellerCategoryId: sellerCategoryId ?? _sellerCategoryId,
+        city: city ?? _city,
+        partnerAddress: partnerAddress ?? _partnerAddress,
+      );
   String? get id => _id;
   String? get userId => _userId;
   dynamic get slug => _slug;
@@ -476,6 +500,8 @@ SellerDataInfo copyWith({  String? id,
   String? get linkedin => _linkedin;
   String? get purchaseId => _purchaseId;
   String? get sellerCategoryId => _sellerCategoryId;
+  String? get city => _city;
+
   String? get partnerAddress => _partnerAddress;
 
   Map<String, dynamic> toJson() {
@@ -515,10 +541,10 @@ SellerDataInfo copyWith({  String? id,
     map['linkedin'] = _linkedin;
     map['purchase_id'] = _purchaseId;
     map['seller_category_id'] = _sellerCategoryId;
+    map['city'] = _city;
     map['partner_address'] = _partnerAddress;
     return map;
   }
-
 }
 
 /// id : "515"
@@ -573,55 +599,56 @@ SellerDataInfo copyWith({  String? id,
 
 class SellerInfo {
   SellerInfo({
-      String? id, 
-      dynamic ipAddress, 
-      String? username, 
-      String? password, 
-      dynamic normalPassword, 
-      String? email, 
-      String? mobile, 
-      dynamic image, 
-      String? balance, 
-      dynamic activationSelector, 
-      dynamic activationCode, 
-      dynamic forgottenPasswordSelector, 
-      dynamic forgottenPasswordCode, 
-      dynamic forgottenPasswordTime, 
-      dynamic rememberSelector, 
-      dynamic rememberCode, 
-      String? createdOn, 
-      String? lastLogin, 
-      dynamic active, 
-      dynamic company, 
-      String? address, 
-      String? bonusType, 
-      dynamic bonus, 
-      String? cashReceived, 
-      dynamic dob, 
-      dynamic countryCode, 
-      String? city, 
-      String? destrict, 
-      String? area, 
-      dynamic street, 
-      String? pincode, 
-      dynamic serviceableZipcodes, 
-      dynamic apikey, 
-      dynamic referralCode, 
-      dynamic friendsCode, 
-      dynamic fcmId, 
-      String? latitude, 
-      String? longitude, 
-      String? type, 
-      String? createdAt, 
-      dynamic userType, 
-      String? typeOfSeller, 
-      String? state, 
-      String? country, 
-      String? subscriptionType, 
-      String? otp, 
-      String? broucher, 
-      dynamic media, 
-      String? cityName,}){
+    String? id,
+    dynamic ipAddress,
+    String? username,
+    String? password,
+    dynamic normalPassword,
+    String? email,
+    String? mobile,
+    dynamic image,
+    String? balance,
+    dynamic activationSelector,
+    dynamic activationCode,
+    dynamic forgottenPasswordSelector,
+    dynamic forgottenPasswordCode,
+    dynamic forgottenPasswordTime,
+    dynamic rememberSelector,
+    dynamic rememberCode,
+    String? createdOn,
+    String? lastLogin,
+    dynamic active,
+    dynamic company,
+    String? address,
+    String? bonusType,
+    dynamic bonus,
+    String? cashReceived,
+    dynamic dob,
+    dynamic countryCode,
+    String? city,
+    String? destrict,
+    String? area,
+    dynamic street,
+    String? pincode,
+    dynamic serviceableZipcodes,
+    dynamic apikey,
+    dynamic referralCode,
+    dynamic friendsCode,
+    dynamic fcmId,
+    String? latitude,
+    String? longitude,
+    String? type,
+    String? createdAt,
+    dynamic userType,
+    String? typeOfSeller,
+    String? state,
+    String? country,
+    String? subscriptionType,
+    String? otp,
+    String? broucher,
+    dynamic media,
+    String? cityName,
+  }) {
     _id = id;
     _ipAddress = ipAddress;
     _username = username;
@@ -665,13 +692,14 @@ class SellerInfo {
     _userType = userType;
     _typeOfSeller = typeOfSeller;
     _state = state;
+    _city = city;
     _country = country;
     _subscriptionType = subscriptionType;
     _otp = otp;
     _broucher = broucher;
     _media = media;
     _cityName = cityName;
-}
+  }
 
   SellerInfo.fromJson(dynamic json) {
     _id = json['id'];
@@ -693,6 +721,8 @@ class SellerInfo {
     _createdOn = json['created_on'];
     _lastLogin = json['last_login'];
     _active = json['active'];
+    _city = json['city'];
+
     _company = json['company'];
     _address = json['address'];
     _bonusType = json['bonus_type'];
@@ -746,11 +776,11 @@ class SellerInfo {
   dynamic _company;
   String? _address;
   String? _bonusType;
+  String? _city;
   dynamic _bonus;
   String? _cashReceived;
   dynamic _dob;
   dynamic _countryCode;
-  String? _city;
   String? _destrict;
   String? _area;
   dynamic _street;
@@ -773,105 +803,109 @@ class SellerInfo {
   String? _broucher;
   dynamic _media;
   String? _cityName;
-SellerInfo copyWith({  String? id,
-  dynamic ipAddress,
-  String? username,
-  String? password,
-  dynamic normalPassword,
-  String? email,
-  String? mobile,
-  dynamic image,
-  String? balance,
-  dynamic activationSelector,
-  dynamic activationCode,
-  dynamic forgottenPasswordSelector,
-  dynamic forgottenPasswordCode,
-  dynamic forgottenPasswordTime,
-  dynamic rememberSelector,
-  dynamic rememberCode,
-  String? createdOn,
-  String? lastLogin,
-  dynamic active,
-  dynamic company,
-  String? address,
-  String? bonusType,
-  dynamic bonus,
-  String? cashReceived,
-  dynamic dob,
-  dynamic countryCode,
-  String? city,
-  String? destrict,
-  String? area,
-  dynamic street,
-  String? pincode,
-  dynamic serviceableZipcodes,
-  dynamic apikey,
-  dynamic referralCode,
-  dynamic friendsCode,
-  dynamic fcmId,
-  String? latitude,
-  String? longitude,
-  String? type,
-  String? createdAt,
-  dynamic userType,
-  String? typeOfSeller,
-  String? state,
-  String? country,
-  String? subscriptionType,
-  String? otp,
-  String? broucher,
-  dynamic media,
-  String? cityName,
-}) => SellerInfo(  id: id ?? _id,
-  ipAddress: ipAddress ?? _ipAddress,
-  username: username ?? _username,
-  password: password ?? _password,
-  normalPassword: normalPassword ?? _normalPassword,
-  email: email ?? _email,
-  mobile: mobile ?? _mobile,
-  image: image ?? _image,
-  balance: balance ?? _balance,
-  activationSelector: activationSelector ?? _activationSelector,
-  activationCode: activationCode ?? _activationCode,
-  forgottenPasswordSelector: forgottenPasswordSelector ?? _forgottenPasswordSelector,
-  forgottenPasswordCode: forgottenPasswordCode ?? _forgottenPasswordCode,
-  forgottenPasswordTime: forgottenPasswordTime ?? _forgottenPasswordTime,
-  rememberSelector: rememberSelector ?? _rememberSelector,
-  rememberCode: rememberCode ?? _rememberCode,
-  createdOn: createdOn ?? _createdOn,
-  lastLogin: lastLogin ?? _lastLogin,
-  active: active ?? _active,
-  company: company ?? _company,
-  address: address ?? _address,
-  bonusType: bonusType ?? _bonusType,
-  bonus: bonus ?? _bonus,
-  cashReceived: cashReceived ?? _cashReceived,
-  dob: dob ?? _dob,
-  countryCode: countryCode ?? _countryCode,
-  city: city ?? _city,
-  destrict: destrict ?? _destrict,
-  area: area ?? _area,
-  street: street ?? _street,
-  pincode: pincode ?? _pincode,
-  serviceableZipcodes: serviceableZipcodes ?? _serviceableZipcodes,
-  apikey: apikey ?? _apikey,
-  referralCode: referralCode ?? _referralCode,
-  friendsCode: friendsCode ?? _friendsCode,
-  fcmId: fcmId ?? _fcmId,
-  latitude: latitude ?? _latitude,
-  longitude: longitude ?? _longitude,
-  type: type ?? _type,
-  createdAt: createdAt ?? _createdAt,
-  userType: userType ?? _userType,
-  typeOfSeller: typeOfSeller ?? _typeOfSeller,
-  state: state ?? _state,
-  country: country ?? _country,
-  subscriptionType: subscriptionType ?? _subscriptionType,
-  otp: otp ?? _otp,
-  broucher: broucher ?? _broucher,
-  media: media ?? _media,
-  cityName: cityName ?? _cityName,
-);
+  SellerInfo copyWith({
+    String? id,
+    dynamic ipAddress,
+    String? username,
+    String? password,
+    dynamic normalPassword,
+    String? email,
+    String? mobile,
+    dynamic image,
+    String? balance,
+    dynamic activationSelector,
+    dynamic activationCode,
+    dynamic forgottenPasswordSelector,
+    dynamic forgottenPasswordCode,
+    dynamic forgottenPasswordTime,
+    dynamic rememberSelector,
+    dynamic rememberCode,
+    String? createdOn,
+    String? lastLogin,
+    dynamic active,
+    dynamic company,
+    String? address,
+    String? bonusType,
+    dynamic bonus,
+    String? cashReceived,
+    dynamic dob,
+    dynamic countryCode,
+    String? city,
+    String? destrict,
+    String? area,
+    dynamic street,
+    String? pincode,
+    dynamic serviceableZipcodes,
+    dynamic apikey,
+    dynamic referralCode,
+    dynamic friendsCode,
+    dynamic fcmId,
+    String? latitude,
+    String? longitude,
+    String? type,
+    String? createdAt,
+    dynamic userType,
+    String? typeOfSeller,
+    String? state,
+    String? country,
+    String? subscriptionType,
+    String? otp,
+    String? broucher,
+    dynamic media,
+    String? cityName,
+  }) =>
+      SellerInfo(
+        id: id ?? _id,
+        ipAddress: ipAddress ?? _ipAddress,
+        username: username ?? _username,
+        password: password ?? _password,
+        normalPassword: normalPassword ?? _normalPassword,
+        email: email ?? _email,
+        mobile: mobile ?? _mobile,
+        image: image ?? _image,
+        balance: balance ?? _balance,
+        activationSelector: activationSelector ?? _activationSelector,
+        activationCode: activationCode ?? _activationCode,
+        forgottenPasswordSelector:
+            forgottenPasswordSelector ?? _forgottenPasswordSelector,
+        forgottenPasswordCode: forgottenPasswordCode ?? _forgottenPasswordCode,
+        forgottenPasswordTime: forgottenPasswordTime ?? _forgottenPasswordTime,
+        rememberSelector: rememberSelector ?? _rememberSelector,
+        rememberCode: rememberCode ?? _rememberCode,
+        createdOn: createdOn ?? _createdOn,
+        lastLogin: lastLogin ?? _lastLogin,
+        active: active ?? _active,
+        company: company ?? _company,
+        address: address ?? _address,
+        bonusType: bonusType ?? _bonusType,
+        bonus: bonus ?? _bonus,
+        cashReceived: cashReceived ?? _cashReceived,
+        dob: dob ?? _dob,
+        countryCode: countryCode ?? _countryCode,
+        city: city ?? _city,
+        destrict: destrict ?? _destrict,
+        area: area ?? _area,
+        street: street ?? _street,
+        pincode: pincode ?? _pincode,
+        serviceableZipcodes: serviceableZipcodes ?? _serviceableZipcodes,
+        apikey: apikey ?? _apikey,
+        referralCode: referralCode ?? _referralCode,
+        friendsCode: friendsCode ?? _friendsCode,
+        fcmId: fcmId ?? _fcmId,
+        latitude: latitude ?? _latitude,
+        longitude: longitude ?? _longitude,
+        type: type ?? _type,
+        createdAt: createdAt ?? _createdAt,
+        userType: userType ?? _userType,
+        typeOfSeller: typeOfSeller ?? _typeOfSeller,
+        state: state ?? _state,
+        country: country ?? _country,
+        subscriptionType: subscriptionType ?? _subscriptionType,
+        otp: otp ?? _otp,
+        broucher: broucher ?? _broucher,
+        media: media ?? _media,
+        cityName: cityName ?? _cityName,
+      );
   String? get id => _id;
   dynamic get ipAddress => _ipAddress;
   String? get username => _username;
@@ -975,7 +1009,6 @@ SellerInfo copyWith({  String? id,
     map['city_name'] = _cityName;
     return map;
   }
-
 }
 
 /// id : "1"
@@ -1030,55 +1063,56 @@ SellerInfo copyWith({  String? id,
 
 class ProductInfo {
   ProductInfo({
-      String? id, 
-      dynamic productIdentity, 
-      String? categoryId, 
-      String? sellerId, 
-      String? tax, 
-      String? rowOrder, 
-      String? type, 
-      dynamic stockType, 
-      String? name, 
-      String? shortDescription, 
-      String? slug, 
-      String? indicator, 
-      String? codAllowed, 
-      String? downloadAllowed, 
-      String? downloadType, 
-      String? downloadLink, 
-      String? minimumOrderQuantity, 
-      String? quantityStepSize, 
-      dynamic totalAllowedQuantity, 
-      String? isPricesInclusiveTax, 
-      String? isReturnable, 
-      String? isCancelable, 
-      String? cancelableTill, 
-      String? image, 
-      String? otherImages, 
-      String? broucherImage, 
-      String? videoType, 
-      String? video, 
-      String? tags, 
-      String? warrantyPeriod, 
-      String? guaranteePeriod, 
-      dynamic madeIn, 
-      String? hsnCode, 
-      dynamic brand, 
-      dynamic sku, 
-      dynamic stock, 
-      dynamic availability, 
-      String? rating, 
-      String? noOfRatings, 
-      String? description, 
-      String? extraDescription, 
-      String? deliverableType, 
-      dynamic deliverableZipcodes, 
-      String? pickupLocation, 
-      String? status, 
-      String? dateAdded, 
-      String? subCatId, 
-      String? attributeTitle, 
-      String? attributeValue,}){
+    String? id,
+    dynamic productIdentity,
+    String? categoryId,
+    String? sellerId,
+    String? tax,
+    String? rowOrder,
+    String? type,
+    dynamic stockType,
+    String? name,
+    String? shortDescription,
+    String? slug,
+    String? indicator,
+    String? codAllowed,
+    String? downloadAllowed,
+    String? downloadType,
+    String? downloadLink,
+    String? minimumOrderQuantity,
+    String? quantityStepSize,
+    dynamic totalAllowedQuantity,
+    String? isPricesInclusiveTax,
+    String? isReturnable,
+    String? isCancelable,
+    String? cancelableTill,
+    String? image,
+    String? otherImages,
+    String? broucherImage,
+    String? videoType,
+    String? video,
+    String? tags,
+    String? warrantyPeriod,
+    String? guaranteePeriod,
+    dynamic madeIn,
+    String? hsnCode,
+    dynamic brand,
+    dynamic sku,
+    dynamic stock,
+    dynamic availability,
+    String? rating,
+    String? noOfRatings,
+    String? description,
+    String? extraDescription,
+    String? deliverableType,
+    dynamic deliverableZipcodes,
+    String? pickupLocation,
+    String? status,
+    String? dateAdded,
+    String? subCatId,
+    String? attributeTitle,
+    String? attributeValue,
+  }) {
     _id = id;
     _productIdentity = productIdentity;
     _categoryId = categoryId;
@@ -1128,7 +1162,7 @@ class ProductInfo {
     _subCatId = subCatId;
     _attributeTitle = attributeTitle;
     _attributeValue = attributeValue;
-}
+  }
 
   ProductInfo.fromJson(dynamic json) {
     _id = json['id'];
@@ -1230,105 +1264,108 @@ class ProductInfo {
   String? _subCatId;
   String? _attributeTitle;
   String? _attributeValue;
-ProductInfo copyWith({  String? id,
-  dynamic productIdentity,
-  String? categoryId,
-  String? sellerId,
-  String? tax,
-  String? rowOrder,
-  String? type,
-  dynamic stockType,
-  String? name,
-  String? shortDescription,
-  String? slug,
-  String? indicator,
-  String? codAllowed,
-  String? downloadAllowed,
-  String? downloadType,
-  String? downloadLink,
-  String? minimumOrderQuantity,
-  String? quantityStepSize,
-  dynamic totalAllowedQuantity,
-  String? isPricesInclusiveTax,
-  String? isReturnable,
-  String? isCancelable,
-  String? cancelableTill,
-  String? image,
-  String? otherImages,
-  String? broucherImage,
-  String? videoType,
-  String? video,
-  String? tags,
-  String? warrantyPeriod,
-  String? guaranteePeriod,
-  dynamic madeIn,
-  String? hsnCode,
-  dynamic brand,
-  dynamic sku,
-  dynamic stock,
-  dynamic availability,
-  String? rating,
-  String? noOfRatings,
-  String? description,
-  String? extraDescription,
-  String? deliverableType,
-  dynamic deliverableZipcodes,
-  String? pickupLocation,
-  String? status,
-  String? dateAdded,
-  String? subCatId,
-  String? attributeTitle,
-  String? attributeValue,
-}) => ProductInfo(  id: id ?? _id,
-  productIdentity: productIdentity ?? _productIdentity,
-  categoryId: categoryId ?? _categoryId,
-  sellerId: sellerId ?? _sellerId,
-  tax: tax ?? _tax,
-  rowOrder: rowOrder ?? _rowOrder,
-  type: type ?? _type,
-  stockType: stockType ?? _stockType,
-  name: name ?? _name,
-  shortDescription: shortDescription ?? _shortDescription,
-  slug: slug ?? _slug,
-  indicator: indicator ?? _indicator,
-  codAllowed: codAllowed ?? _codAllowed,
-  downloadAllowed: downloadAllowed ?? _downloadAllowed,
-  downloadType: downloadType ?? _downloadType,
-  downloadLink: downloadLink ?? _downloadLink,
-  minimumOrderQuantity: minimumOrderQuantity ?? _minimumOrderQuantity,
-  quantityStepSize: quantityStepSize ?? _quantityStepSize,
-  totalAllowedQuantity: totalAllowedQuantity ?? _totalAllowedQuantity,
-  isPricesInclusiveTax: isPricesInclusiveTax ?? _isPricesInclusiveTax,
-  isReturnable: isReturnable ?? _isReturnable,
-  isCancelable: isCancelable ?? _isCancelable,
-  cancelableTill: cancelableTill ?? _cancelableTill,
-  image: image ?? _image,
-  otherImages: otherImages ?? _otherImages,
-  broucherImage: broucherImage ?? _broucherImage,
-  videoType: videoType ?? _videoType,
-  video: video ?? _video,
-  tags: tags ?? _tags,
-  warrantyPeriod: warrantyPeriod ?? _warrantyPeriod,
-  guaranteePeriod: guaranteePeriod ?? _guaranteePeriod,
-  madeIn: madeIn ?? _madeIn,
-  hsnCode: hsnCode ?? _hsnCode,
-  brand: brand ?? _brand,
-  sku: sku ?? _sku,
-  stock: stock ?? _stock,
-  availability: availability ?? _availability,
-  rating: rating ?? _rating,
-  noOfRatings: noOfRatings ?? _noOfRatings,
-  description: description ?? _description,
-  extraDescription: extraDescription ?? _extraDescription,
-  deliverableType: deliverableType ?? _deliverableType,
-  deliverableZipcodes: deliverableZipcodes ?? _deliverableZipcodes,
-  pickupLocation: pickupLocation ?? _pickupLocation,
-  status: status ?? _status,
-  dateAdded: dateAdded ?? _dateAdded,
-  subCatId: subCatId ?? _subCatId,
-  attributeTitle: attributeTitle ?? _attributeTitle,
-  attributeValue: attributeValue ?? _attributeValue,
-);
+  ProductInfo copyWith({
+    String? id,
+    dynamic productIdentity,
+    String? categoryId,
+    String? sellerId,
+    String? tax,
+    String? rowOrder,
+    String? type,
+    dynamic stockType,
+    String? name,
+    String? shortDescription,
+    String? slug,
+    String? indicator,
+    String? codAllowed,
+    String? downloadAllowed,
+    String? downloadType,
+    String? downloadLink,
+    String? minimumOrderQuantity,
+    String? quantityStepSize,
+    dynamic totalAllowedQuantity,
+    String? isPricesInclusiveTax,
+    String? isReturnable,
+    String? isCancelable,
+    String? cancelableTill,
+    String? image,
+    String? otherImages,
+    String? broucherImage,
+    String? videoType,
+    String? video,
+    String? tags,
+    String? warrantyPeriod,
+    String? guaranteePeriod,
+    dynamic madeIn,
+    String? hsnCode,
+    dynamic brand,
+    dynamic sku,
+    dynamic stock,
+    dynamic availability,
+    String? rating,
+    String? noOfRatings,
+    String? description,
+    String? extraDescription,
+    String? deliverableType,
+    dynamic deliverableZipcodes,
+    String? pickupLocation,
+    String? status,
+    String? dateAdded,
+    String? subCatId,
+    String? attributeTitle,
+    String? attributeValue,
+  }) =>
+      ProductInfo(
+        id: id ?? _id,
+        productIdentity: productIdentity ?? _productIdentity,
+        categoryId: categoryId ?? _categoryId,
+        sellerId: sellerId ?? _sellerId,
+        tax: tax ?? _tax,
+        rowOrder: rowOrder ?? _rowOrder,
+        type: type ?? _type,
+        stockType: stockType ?? _stockType,
+        name: name ?? _name,
+        shortDescription: shortDescription ?? _shortDescription,
+        slug: slug ?? _slug,
+        indicator: indicator ?? _indicator,
+        codAllowed: codAllowed ?? _codAllowed,
+        downloadAllowed: downloadAllowed ?? _downloadAllowed,
+        downloadType: downloadType ?? _downloadType,
+        downloadLink: downloadLink ?? _downloadLink,
+        minimumOrderQuantity: minimumOrderQuantity ?? _minimumOrderQuantity,
+        quantityStepSize: quantityStepSize ?? _quantityStepSize,
+        totalAllowedQuantity: totalAllowedQuantity ?? _totalAllowedQuantity,
+        isPricesInclusiveTax: isPricesInclusiveTax ?? _isPricesInclusiveTax,
+        isReturnable: isReturnable ?? _isReturnable,
+        isCancelable: isCancelable ?? _isCancelable,
+        cancelableTill: cancelableTill ?? _cancelableTill,
+        image: image ?? _image,
+        otherImages: otherImages ?? _otherImages,
+        broucherImage: broucherImage ?? _broucherImage,
+        videoType: videoType ?? _videoType,
+        video: video ?? _video,
+        tags: tags ?? _tags,
+        warrantyPeriod: warrantyPeriod ?? _warrantyPeriod,
+        guaranteePeriod: guaranteePeriod ?? _guaranteePeriod,
+        madeIn: madeIn ?? _madeIn,
+        hsnCode: hsnCode ?? _hsnCode,
+        brand: brand ?? _brand,
+        sku: sku ?? _sku,
+        stock: stock ?? _stock,
+        availability: availability ?? _availability,
+        rating: rating ?? _rating,
+        noOfRatings: noOfRatings ?? _noOfRatings,
+        description: description ?? _description,
+        extraDescription: extraDescription ?? _extraDescription,
+        deliverableType: deliverableType ?? _deliverableType,
+        deliverableZipcodes: deliverableZipcodes ?? _deliverableZipcodes,
+        pickupLocation: pickupLocation ?? _pickupLocation,
+        status: status ?? _status,
+        dateAdded: dateAdded ?? _dateAdded,
+        subCatId: subCatId ?? _subCatId,
+        attributeTitle: attributeTitle ?? _attributeTitle,
+        attributeValue: attributeValue ?? _attributeValue,
+      );
   String? get id => _id;
   dynamic get productIdentity => _productIdentity;
   String? get categoryId => _categoryId;
@@ -1432,5 +1469,4 @@ ProductInfo copyWith({  String? id,
     map['attribute_value'] = _attributeValue;
     return map;
   }
-
 }

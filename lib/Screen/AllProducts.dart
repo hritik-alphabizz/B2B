@@ -38,12 +38,18 @@ class _AllProductState extends State<AllProduct> {
   @override
   void initState() {
     super.initState();
-    getAdvertisgment();
-    getProfile();
-    getUserId();
-    getAllProducts();
-    businessCategory();
+    print(widget.catId.toString() + "CAT ID");
+    callApis();
     //yourMobileNumber.text =  mobilee;
+  }
+
+  callApis() async {
+    getUserId();
+
+    await getAdvertisgment();
+    await getProfile();
+    await getAllProducts();
+    await businessCategory();
   }
 
   String? selectedBusiness;
@@ -174,7 +180,7 @@ class _AllProductState extends State<AllProduct> {
     });
   }
 
-  Future<void> sendEnqury(String productid) async {
+  Future<void> sendEnqury(String productid, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=ff1e2af38a215d1057b062b8ff903fc27b0c488b'
     };
@@ -185,13 +191,18 @@ class _AllProductState extends State<AllProduct> {
         'mobile': nameCtr.text.toString(),
         'city': cityCtr.text.toString(),
         'name': nameCtr.text.toString(),
-        'product_id': productid.toString()
+        'product_id': productid.toString(),
+        'sup_type': "Category",
+        'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
         'mobile': nameCtr.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
+        'sup_type': "Category",
+        'seller_id': sellerId ?? "",
+        'city': city2
       });
     }
     request.headers.addAll(headers);
@@ -1038,7 +1049,8 @@ class _AllProductState extends State<AllProduct> {
                                           child: Btn(
                                             onPress: () {
                                               showDialogContactSuplier(
-                                                  item.id ?? "");
+                                                  item.id ?? "",
+                                                  item.sellerId ?? "");
                                             },
                                             height: 40,
                                             width: 150,
@@ -1105,7 +1117,7 @@ class _AllProductState extends State<AllProduct> {
   TextEditingController yourMobileNumber = TextEditingController();
   TextEditingController YourcityController = TextEditingController();
   String? controller;
-  sendOtpCotactSuplier(String ProductId) async {
+  sendOtpCotactSuplier(String ProductId, String sellerId) async {
     print('xcvbjkl;k');
 
     var headers = {
@@ -1137,7 +1149,7 @@ class _AllProductState extends State<AllProduct> {
           OTPIS = finalresult['data']['otp'].toString();
         });
         Navigator.pop(context);
-        showDialogverifyContactSuplier(ProductId);
+        showDialogverifyContactSuplier(ProductId, sellerId);
       }
     } else {
       print(response.reasonPhrase);
@@ -1185,7 +1197,7 @@ class _AllProductState extends State<AllProduct> {
           );
   }
 
-  void showDialogContactSuplier(String productId) async {
+  void showDialogContactSuplier(String productId, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1364,7 +1376,7 @@ class _AllProductState extends State<AllProduct> {
                           title: "Send OTP",
                           onPress: () {
                             if (_Cotact.currentState!.validate()) {
-                              sendOtpCotactSuplier(productId);
+                              sendOtpCotactSuplier(productId, sellerId);
                             }
                           },
                         )
@@ -1378,7 +1390,8 @@ class _AllProductState extends State<AllProduct> {
         });
   }
 
-  void showDialogverifyContactSuplier(String productIddd) async {
+  void showDialogverifyContactSuplier(
+      String productIddd, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1457,7 +1470,7 @@ class _AllProductState extends State<AllProduct> {
                         title: "Verify OTP",
                         onPress: () {
                           if (controller == OTPIS) {
-                            sendEnqury(productIddd);
+                            sendEnqury(productIddd, sellerId);
                           } else {
                             Fluttertoast.showToast(msg: 'Enter Correct OTP');
                           }

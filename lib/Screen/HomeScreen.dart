@@ -17,6 +17,7 @@ import 'package:b2b/widgets/categoryCard.dart';
 import 'package:b2b/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -1133,7 +1134,8 @@ class _B2BHomeState extends State<B2BHome> {
         'product_id': productid.toString(),
         'user_id': userId.toString(),
         'sup_type': subType,
-        'seller_id': sellerId ?? ""
+        'seller_id': sellerId ?? "",
+        'city': city2
       });
     }
     print('_____sssdsdsfsdfsdfsd_____${request.fields}_________');
@@ -1825,6 +1827,11 @@ class _B2BHomeState extends State<B2BHome> {
                                           itemBuilder: (context, index) {
                                             return InkWell(
                                               onTap: () {
+                                                print(homeCategory!
+                                                        .data![index].id
+                                                        .toString() +
+                                                    "CAT ID");
+
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
@@ -1889,8 +1896,8 @@ class _B2BHomeState extends State<B2BHome> {
 
   Widget carosalSlider() {
     return Container(
-      height: 200,
-      width: MediaQuery.of(context).size.width / 1.0,
+      height: 120,
+      width: MediaQuery.of(context).size.width / 0.9,
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: CarouselSlider(
         items: adImages?.data
@@ -1899,10 +1906,21 @@ class _B2BHomeState extends State<B2BHome> {
                 padding: const EdgeInsets.all(3.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    '${ApiService.adbaseUrl + item.name}',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+                  child: GestureDetector(
+                    onTap: () {
+                      final imageProvider =
+                          Image.network(ApiService.adbaseUrl + item.name ?? "")
+                              .image;
+                      showImageViewer(context, imageProvider,
+                          onViewerDismissed: () {
+                        print("dismissed");
+                      });
+                    },
+                    child: Image.network(
+                      '${ApiService.adbaseUrl + item.name}',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
               ),
@@ -1956,6 +1974,7 @@ class _B2BHomeState extends State<B2BHome> {
     }
   }
 
+//Subcategories
   getSubcat() {
     return Container(
       padding: const EdgeInsets.only(top: 0, left: 12, right: 5),
@@ -2398,7 +2417,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     6)),
                                                         border: Border.all(
@@ -2416,7 +2435,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2450,7 +2469,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2486,7 +2505,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!

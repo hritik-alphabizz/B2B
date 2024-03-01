@@ -49,7 +49,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
     // TODO: implement initState
     super.initState();
     businessCategory();
-    getSupplier();
+    getSupplier("");
     homeCategories();
     getProfile();
     // selectedBusiness=widget.isManu.toString();
@@ -360,6 +360,11 @@ class _SupplierScreenState extends State<SupplierScreen> {
     );
   }
 
+  String capitalizeFirstLetter(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1);
+  }
+
   _showDialogOTP(BuildContext context) {
     showDialog(
       context: context,
@@ -657,7 +662,9 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                               setState(() {
                                                 // widget.isManu = "";
                                               });
-                                              getSupplier();
+                                              getSupplier(selectedCity == "All"
+                                                  ? ""
+                                                  : selectedCity ?? "");
                                             }
                                           });
                                         });
@@ -736,7 +743,10 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                         setState(() {
                                           selectedCity = value!;
                                         });
-                                        searchProduct(value ?? '');
+                                        getSupplier(selectedCity == "All"
+                                            ? ""
+                                            : selectedCity ?? "");
+                                        //  searchProduct(value ?? '');
                                       },
                                       items: cityList.map((items) {
                                         return DropdownMenuItem(
@@ -745,7 +755,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                             padding:
                                                 const EdgeInsets.only(top: 0),
                                             child: Text(
-                                              items,
+                                              capitalizeFirstLetter(items),
                                               overflow: TextOverflow.ellipsis,
                                               style: const TextStyle(
                                                   color: colors.black),
@@ -1231,7 +1241,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
+                                                              .all(
                                                               Radius.circular(
                                                                   6)),
                                                       border: Border.all(
@@ -1249,8 +1259,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius
+                                                                    .all(Radius
                                                                         .circular(
                                                                             50)),
                                                             color: valueList[i]
@@ -1281,8 +1290,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius
+                                                                    .all(Radius
                                                                         .circular(
                                                                             50)),
                                                             color: valueList[i]
@@ -1314,8 +1322,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 const BorderRadius
-                                                                        .all(
-                                                                    Radius
+                                                                    .all(Radius
                                                                         .circular(
                                                                             50)),
                                                             color: valueList[i]
@@ -1359,6 +1366,10 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                     valueList[i]
                                                             .temp![index]
                                                             .id ??
+                                                        "",
+                                                    valueList[i]
+                                                            .temp![index]
+                                                            .sellerId ??
                                                         "");
                                               },
                                             ),
@@ -1387,7 +1398,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
   List<TempMode2> valueList = [];
   List<String> cityList = [];
 
-  Future<void> getSupplier() async {
+  Future<void> getSupplier(String city) async {
     setState(() {
       isLoading = true;
     });
@@ -1396,8 +1407,8 @@ class _SupplierScreenState extends State<SupplierScreen> {
     var param = {
       "type": '1',
       "seller_id": userId == null ? "" : userId,
+      'city': city.toString()
     };
-    print("parameter is in $param");
     param["buisness_category"] = widget.isManu == null &&
             (businessName == null || businessName == 'Select All')
         ? ""
@@ -1406,9 +1417,13 @@ class _SupplierScreenState extends State<SupplierScreen> {
             : businessName == 'Select All'
                 ? ''
                 : businessName;
+    print("parameter is in $param");
+
     apiBaseHelper.postAPICall(getSupplierOrClientApi, param).then((getData) {
       valueList.clear();
       List<String> list = [];
+      cityList.clear();
+      cityList.add("All");
       bool error = getData['error'];
       String msg = getData['message'];
       if (!error) {
@@ -1430,9 +1445,19 @@ class _SupplierScreenState extends State<SupplierScreen> {
           isLoading = false;
         });
         print("temp model is ${tempList.first.lat} ${tempList.first.lang}");
-        tempList.forEach((element) {
-          cityList.add(element.city ?? '');
-        });
+
+        for (int i = 0; i < valueList.length; i++) {
+          for (int j = 0; j < valueList[i].temp!.length; j++) {
+            if (valueList[i].temp![j].city.toString().trim().isNotEmpty &&
+                !cityList.contains(valueList[i].temp![j].city.toString())) {
+              cityList.add(valueList[i].temp![j].city! ?? '');
+              print("${valueList[i].temp![j].city} City name");
+            }
+          }
+        }
+        // tempList.forEach((element) {
+        //   print(element.address.toString() + "CITY NAME");
+        // });
       } else {
         Fluttertoast.showToast(msg: msg);
         setState(() {
@@ -1474,7 +1499,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
   String? controller;
   String? OTPIS;
 
-  sendOtpCotactSuplier(String ProductId) async {
+  sendOtpCotactSuplier(String ProductId, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=aa35b4867a14620a4c973d897c5ae4ec6c25ee8e'
     };
@@ -1508,14 +1533,14 @@ class _SupplierScreenState extends State<SupplierScreen> {
         });
 
         Navigator.pop(context);
-        showDialogverifyContactSuplier(ProductId);
+        showDialogverifyContactSuplier(ProductId, sellerId);
       }
     } else {
       print(response.reasonPhrase);
     }
   }
 
-  void showDialogContactSuplier(String productId) async {
+  void showDialogContactSuplier(String productId, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1686,7 +1711,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                           onPress: () {
                             if (_Cotact.currentState!.validate()) {
                               print("gggggggggggggggg");
-                              sendOtpCotactSuplier(productId);
+                              sendOtpCotactSuplier(productId, sellerId);
                             }
                           },
                         )
@@ -1700,7 +1725,8 @@ class _SupplierScreenState extends State<SupplierScreen> {
         });
   }
 
-  void showDialogverifyContactSuplier(String productIddd) async {
+  void showDialogverifyContactSuplier(
+      String productIddd, String sellerId) async {
     return await showDialog(
         context: context,
         builder: (context) {
@@ -1776,7 +1802,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                       InkWell(
                         onTap: () {
                           if (controller == OTPIS) {
-                            sendEnqury(productIddd);
+                            sendEnqury(productIddd, sellerId);
                           } else {
                             Fluttertoast.showToast(msg: 'Enter Correct OTP');
                           }
@@ -1804,7 +1830,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
         });
   }
 
-  Future<void> sendEnqury(String productid) async {
+  Future<void> sendEnqury(String productid, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=ff1e2af38a215d1057b062b8ff903fc27b0c488b'
     };
@@ -1816,13 +1842,18 @@ class _SupplierScreenState extends State<SupplierScreen> {
         'name': yournamecontroller.text.toString(),
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
-        'product_id': productid.toString()
+        'product_id': productid.toString(),
+        'sup_type': "Supplier",
+        'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
+        'sup_type': "Supplier",
+        'seller_id': sellerId ?? "",
+        'city': city2
       });
     }
 

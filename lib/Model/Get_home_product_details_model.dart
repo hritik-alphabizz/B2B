@@ -1184,7 +1184,7 @@ class Datum {
   String isCancelable;
   String cancelableTill;
   String indicator;
-  List<dynamic> otherImages;
+  List<String> otherImages;
   String videoType;
   String video;
   List<String> tags;
@@ -1368,7 +1368,7 @@ class Datum {
         isCancelable: json["is_cancelable"],
         cancelableTill: json["cancelable_till"],
         indicator: json["indicator"],
-        otherImages: List<dynamic>.from(json["other_images"].map((x) => x)),
+        otherImages: List<String>.from(json["other_images"].map((x) => x)),
         videoType: json["video_type"],
         video: json["video"],
         tags: List<String>.from(json["tags"].map((x) => x)),

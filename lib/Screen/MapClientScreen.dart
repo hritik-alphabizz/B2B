@@ -40,7 +40,11 @@ class _GoogleMapClientState extends State<GoogleMapClient> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getAddressFromLatLng();
+    try {
+      _getAddressFromLatLng();
+    } catch (err, stacktrace) {
+      print(stacktrace.toString());
+    }
     for (int i = 0; i < widget.model!.length; i++) {
       widget.model![i].vendorData?.forEach((element) {
         print(
@@ -115,6 +119,8 @@ class _GoogleMapClientState extends State<GoogleMapClient> {
 
   @override
   Widget build(BuildContext context) {
+    print("22");
+
     return Scaffold(
       appBar:
           customAppBar(context: context, text: "Near Sellers", isTrue: false),
