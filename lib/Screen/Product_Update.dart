@@ -1401,15 +1401,19 @@ class _UpdateProductState extends State<UpdateProduct> {
       var result = await response.stream.bytesToString();
       var finalResult = jsonDecode(result);
       if (mounted) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return showAlertDialog(context);
-          },
-        );
-        // Navigator.pushReplacement(
-        //     context, MaterialPageRoute(builder: (context) => const B2BHome()));
-        Fluttertoast.showToast(msg: "${finalResult['message']}");
+        // showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return showAlertDialog(context);
+        //   },
+        // );
+        // // Navigator.pushReplacement(
+        // //     context, MaterialPageRoute(builder: (context) => const B2BHome()));
+        Fluttertoast.showToast(
+            msg: "${finalResult['message']}" ". It's in review now.");
+        Navigator.pop(context);
+
+        Navigator.pop(context);
       }
       setState(() {
         isLodding = false;

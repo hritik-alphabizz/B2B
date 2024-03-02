@@ -2417,7 +2417,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             const BorderRadius
-                                                                .all(
+                                                                    .all(
                                                                 Radius.circular(
                                                                     6)),
                                                         border: Border.all(
@@ -2435,7 +2435,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2469,7 +2469,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2505,7 +2505,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -3586,26 +3586,30 @@ class _B2BHomeState extends State<B2BHome> {
                                       height: 25,
                                       width: 25,
                                       decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(50)),
-                                          color: homeSpecificModel!
-                                                      .data!
-                                                      .businsessData![index]
-                                                      .taxNumber ==
-                                                  ""
-                                              ? colors.primary
-                                              : colors.secondary),
-                                      child: const Padding(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(50)),
+                                        // color: homeSpecificModel!
+                                        //             .data!
+                                        //             .businsessData![index]
+                                        //             .taxNumber ==
+                                        //         ""
+                                        //     ? colors.primary
+                                        //     : colors.secondary
+                                      ),
+                                      child: Padding(
                                         padding: EdgeInsets.only(
                                             left: 5,
                                             right: 5,
                                             top: 3,
                                             bottom: 3),
-                                        child: Icon(
-                                          Icons.description,
-                                          size: 15,
-                                          color: Colors.white,
-                                        ),
+                                        child: Image.asset("Images/phone.png",
+                                            color: homeSpecificModel!
+                                                        .data!
+                                                        .businsessData![index]
+                                                        .taxNumber ==
+                                                    ""
+                                                ? colors.primary
+                                                : colors.secondary),
                                       ),
                                     ),
                                     Container(

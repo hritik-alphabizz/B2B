@@ -549,7 +549,7 @@ class _MyProfileState extends State<MyProfile> {
                             child: TextFormField(
                               controller: gstController,
                               cursorColor: Colors.black,
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.text,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
 
