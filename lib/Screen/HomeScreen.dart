@@ -2328,81 +2328,147 @@ class _B2BHomeState extends State<B2BHome> {
                                                           ),
                                                         )
                                                       : SizedBox.shrink(),
-                                                  Container(
-                                                    height: 25,
-                                                    width: 25,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            5)),
-                                                            color: Colors
-                                                                .deepPurple),
-                                                    child: const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 3,
-                                                          bottom: 3),
-                                                      child: Icon(
-                                                        Icons.message,
-                                                        size: 15,
-                                                        color: Colors.white,
-                                                      ),
+                                                  // Container(
+                                                  //   height: 25,
+                                                  //   width: 25,
+                                                  //   decoration:
+                                                  //       const BoxDecoration(
+                                                  //           borderRadius:
+                                                  //               BorderRadius.all(
+                                                  //                   Radius
+                                                  //                       .circular(
+                                                  //                           5)),
+                                                  //           color: Colors
+                                                  //               .deepPurple),
+                                                  //   child: const Padding(
+                                                  //     padding: EdgeInsets.only(
+                                                  //         left: 5,
+                                                  //         right: 5,
+                                                  //         top: 3,
+                                                  //         bottom: 3),
+                                                  //     child: Icon(
+                                                  //       Icons.message,
+                                                  //       size: 15,
+                                                  //       color: Colors.white,
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 0),
+                                                    child: Row(
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            // openMap(
+                                                            //     getHomeProductDetails
+                                                            //             ?.data
+                                                            //             .first
+                                                            //             .latitude! ??
+                                                            //         "",
+                                                            //     getHomeProductDetails
+                                                            //             ?.data
+                                                            //             .first
+                                                            //             .longitude! ??
+                                                            //         "");
+                                                          },
+                                                          child:
+                                                              const CircleAvatar(
+                                                            radius: 15,
+                                                            backgroundColor:
+                                                                colors
+                                                                    .secondary,
+                                                            child: Icon(
+                                                              Icons
+                                                                  .location_pin,
+                                                              size: 15,
+                                                              color:
+                                                                  colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                            width: 7),
+                                                        Image.asset(
+                                                          "Images/phone.png",
+                                                          scale: 2,
+                                                          color: GetSub!
+                                                                      .data![i]
+                                                                      .products![
+                                                                          index]
+                                                                      .taxNumber
+                                                                      .toString() ==
+                                                                  ""
+                                                              ? colors.primary
+                                                              : colors
+                                                                  .secondary,
+                                                        ),
+                                                        const SizedBox(
+                                                            width: 7),
+                                                        Image.asset(
+                                                            "Images/person.png",
+                                                            scale: 2),
+                                                        const SizedBox(
+                                                            width: 7),
+                                                        Image.asset(
+                                                            "Images/register.png",
+                                                            scale: 2),
+                                                      ],
                                                     ),
                                                   ),
-                                                  Container(
-                                                    height: 25,
-                                                    width: 25,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            6)),
-                                                            color: colors
-                                                                .secondary),
-                                                    child: const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 3,
-                                                          bottom: 3),
-                                                      child: Icon(
-                                                        Icons.mail_outline,
-                                                        size: 15,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 25,
-                                                    width: 25,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                            color:
-                                                                colors.primary),
-                                                    child: const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 3,
-                                                          bottom: 3),
-                                                      child: Icon(
-                                                        Icons.location_pin,
-                                                        size: 15,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
+
+                                                  // Container(
+                                                  //   height: 25,
+                                                  //   width: 25,
+                                                  //   decoration:
+                                                  //       const BoxDecoration(
+                                                  //           borderRadius:
+                                                  //               BorderRadius.all(
+                                                  //                   Radius
+                                                  //                       .circular(
+                                                  //                           6)),
+                                                  //           color: colors
+                                                  //               .secondary),
+                                                  //   child: const Padding(
+                                                  //     padding: EdgeInsets.only(
+                                                  //         left: 5,
+                                                  //         right: 5,
+                                                  //         top: 3,
+                                                  //         bottom: 3),
+                                                  //     child: Icon(
+                                                  //       Icons.mail_outline,
+                                                  //       size: 15,
+                                                  //       color: Colors.white,
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+                                                  // Container(
+                                                  //   height: 25,
+                                                  //   width: 25,
+                                                  //   decoration:
+                                                  //       const BoxDecoration(
+                                                  //           borderRadius:
+                                                  //               BorderRadius
+                                                  //                   .all(Radius
+                                                  //                       .circular(
+                                                  //                           50)),
+                                                  //           color:
+                                                  //               colors.primary),
+                                                  //   child: const Padding(
+                                                  //     padding: EdgeInsets.only(
+                                                  //         left: 5,
+                                                  //         right: 5,
+                                                  //         top: 3,
+                                                  //         bottom: 3),
+                                                  //     child: Icon(
+                                                  //       Icons.location_pin,
+                                                  //       size: 15,
+                                                  //       color: Colors.white,
+                                                  //     ),
+                                                  //   ),
+                                                  //  ),
                                                   Container(
                                                     height:
                                                         MediaQuery.of(context)
@@ -2417,7 +2483,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     6)),
                                                         border: Border.all(
@@ -2435,7 +2501,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2469,7 +2535,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2505,7 +2571,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -3502,71 +3568,98 @@ class _B2BHomeState extends State<B2BHome> {
                         ),
                         Container(
                           margin: const EdgeInsets.only(left: 20, right: 20),
-                          child: Row(
+                          child:
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 95),
+                              //   child:
+                              //   Row(
+                              //     children: [
+                              //       GestureDetector(
+                              //         onTap: () {
+                              //           // openMap(
+                              //           //     homeSpecificModel!
+                              //           //             .data!
+                              //           //             .businsessData![index]
+                              //           //             .latitude! ??
+                              //           //         "",
+                              //           //     getHomeProductDetails
+                              //           //             ?.data.first.longitude! ??
+                              //           //         "");
+                              //         },
+                              //         child: const CircleAvatar(
+                              //           radius: 15,
+                              //           backgroundColor: colors.secondary,
+                              //           child: Icon(
+                              //             Icons.location_pin,
+                              //             size: 15,
+                              //             color: colors.white,
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       const SizedBox(width: 7),
+                              //       Image.asset(
+                              //         "Images/phone.png",
+                              //         scale: 2,
+                              //         color: homeSpecificModel!
+                              //                     .data!
+                              //                     .businsessData![index]
+                              //                     .taxNumber ==
+                              //                 ""
+                              //             ? colors.primary
+                              //             : colors.secondary,
+                              //       ),
+                              //       const SizedBox(width: 7),
+                              //       Image.asset("Images/person.png", scale: 2),
+                              //       const SizedBox(width: 7),
+                              //       Image.asset("Images/register.png", scale: 2),
+                              //     ],
+                              //   ),
+                              // ),
+                              Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container(
-                                height: 25,
-                                width: 25,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                    color: Colors.deepPurple),
-                                child: const Icon(
-                                  Icons.add_circle,
-                                  size: 15,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 25,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    color: Colors.deepPurple),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, right: 5, top: 3, bottom: 3),
-                                  child: Icon(
-                                    Icons.message,
-                                    size: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 25,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(6)),
-                                    color: colors.secondary),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, right: 5, top: 3, bottom: 3),
-                                  child: Icon(
-                                    Icons.mail_outline,
-                                    size: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 25,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                    color: colors.primary),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, right: 5, top: 3, bottom: 3),
-                                  child: Icon(
-                                    Icons.location_pin,
-                                    size: 15,
-                                    color: Colors.white,
-                                  ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0),
+                                child: Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        // openMap(
+                                        //     getHomeProductDetails
+                                        //             ?.data.first.latitude! ??
+                                        //         "",
+                                        //     getHomeProductDetails
+                                        //             ?.data.first.longitude! ??
+                                        //         "");
+                                      },
+                                      child: const CircleAvatar(
+                                        radius: 15,
+                                        backgroundColor: colors.secondary,
+                                        child: Icon(
+                                          Icons.location_pin,
+                                          size: 15,
+                                          color: colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 7),
+                                    Image.asset(
+                                      "Images/phone.png",
+                                      scale: 2,
+                                      color: homeSpecificModel!
+                                                  .data!
+                                                  .businsessData![index]
+                                                  .taxNumber ==
+                                              ""
+                                          ? colors.primary
+                                          : colors.secondary,
+                                    ),
+                                    const SizedBox(width: 7),
+                                    Image.asset("Images/person.png", scale: 2),
+                                    const SizedBox(width: 7),
+                                    Image.asset("Images/register.png",
+                                        scale: 2),
+                                  ],
                                 ),
                               ),
                               Container(
