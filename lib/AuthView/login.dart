@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               Stack(
                 children: [
                   Image.asset('Images/bg-4.png'),
@@ -78,7 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   //  Positioned(
                   //   top: 20,
                   //   left: 100,
@@ -104,10 +105,21 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 //Welcome
-                        Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Center(child: Image.asset("Images/loginlogo.png",scale: 4,)),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Center(
+                                  child: Image.asset(
+                                "Images/loginlogo.png",
+                                scale: 4,
+                              )),
+                            ),
+                            const Text(
+                              'B2B DIARY',
+                              style: TextStyle(
+                                  color: Color(0xff4989e3),
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold),
+                            ),
                             const Padding(
                               padding: EdgeInsets.only(top: 30),
                               child: Text(
@@ -159,9 +171,8 @@ class _LoginPageState extends State<LoginPage> {
                                   validator: (val) {
                                     if (val!.isEmpty) {
                                       return "mobile cannot be empty";
-                                    } else if(val.length < 10){
+                                    } else if (val.length < 10) {
                                       return "Please enter 10 digit number";
-
                                     }
                                   },
                                   // inputFormatters: <TextInputFormatter>[
@@ -183,7 +194,6 @@ class _LoginPageState extends State<LoginPage> {
                                   if (_formKey.currentState!.validate()) {
                                     setState(() {
                                       isloading = true;
-
                                     });
                                     print("jjjjjjjjjjjjjjjj");
                                     postData(context);
@@ -291,7 +301,6 @@ postData(BuildContext context) async {
   var data = {
     'mobile': mobileController.text,
   };
-
 
   var post = await http.post(url, body: data);
   try {

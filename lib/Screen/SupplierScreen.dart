@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:b2b/AuthView/otp_verify.dart';
+import 'package:b2b/AuthView/register.dart';
 import 'package:b2b/Model/temp_model.dart';
+import 'package:b2b/Screen/AllProducts.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
 import 'package:b2b/apiServices/apiStrings.dart';
 import 'package:b2b/color.dart';
@@ -83,6 +85,12 @@ class _SupplierScreenState extends State<SupplierScreen> {
         var profileStore = jsonDecode(result2);
         setState(() {
           profileStore2 = profileStore;
+          print(result2.toString());
+          namee = profileStore2['data']['username'].toString();
+          yournamecontroller.text = namee;
+
+          city2 = "${profileStore2['data']['city']}";
+
           // print("${store2}");
         });
       }
@@ -516,7 +524,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -528,7 +536,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -564,7 +572,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                       hint: const Text(
                                         "Relevance",
                                         style: TextStyle(
-                                            color: colors.black, fontSize: 10),
+                                            color: colors.black, fontSize: 12),
                                       ),
                                       items: [
                                         "Relavance",
@@ -580,7 +588,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                               child: Text(
                                                 e,
                                                 style: const TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: 10,
                                                     color: colors.black),
                                               ),
                                             ),
@@ -601,7 +609,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: Column(
                               children: [
                                 Container(
@@ -612,7 +620,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -634,7 +642,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                       hint: const Text(
                                         "Categories",
                                         style: TextStyle(
-                                            color: colors.black, fontSize: 13),
+                                            color: colors.black, fontSize: 10),
                                       ),
                                       // dropdownColor: colors.primary,
                                       value: selectedBusiness,
@@ -694,7 +702,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(6.0),
                             child: Column(
                               children: [
                                 Container(
@@ -704,7 +712,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -726,7 +734,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                       hint: const Text(
                                         "Cities",
                                         style: TextStyle(
-                                            color: colors.black, fontSize: 13),
+                                            color: colors.black, fontSize: 10),
                                       ),
                                       // dropdownColor: colors.primary,
                                       value: selectedCity,
@@ -832,25 +840,38 @@ class _SupplierScreenState extends State<SupplierScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          //  padding:
-                          // / EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 5),
-                                child: Text(
-                                  "${valueList[i].catName}",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AllProduct(
+                                        catId: valueList[i]
+                                            .temp!
+                                            .first
+                                            .categoryId
+                                            .toString())));
+                          },
+                          child: Container(
+                            //  padding:
+                            // / EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    "${valueList[i].catName}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(
@@ -950,9 +971,20 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                       const SizedBox(
                                                         width: 10,
                                                       ),
-                                                      Text(
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.32,
+                                                        child: Text(
                                                           "${valueList[i].temp![index].storeName}" ??
-                                                              ''),
+                                                              '',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                   Row(
@@ -981,7 +1013,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                                               FontWeight.bold),
                                                                     )
                                                                   : Text(
-                                                                      "(${businessName})",
+                                                                      "($businessName)",
                                                                       maxLines:
                                                                           1,
                                                                       overflow:
@@ -1510,7 +1542,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
         'name': yournamecontroller.text.toString(),
-        'sup_type': "Supplier",
+        'sup_type': "Client",
       });
     } else {
       request.fields.addAll({
@@ -1830,6 +1862,10 @@ class _SupplierScreenState extends State<SupplierScreen> {
         });
   }
 
+  var namee;
+
+  var city2;
+
   Future<void> sendEnqury(String productid, String sellerId) async {
     var headers = {
       'Cookie': 'ci_session=ff1e2af38a215d1057b062b8ff903fc27b0c488b'
@@ -1843,21 +1879,23 @@ class _SupplierScreenState extends State<SupplierScreen> {
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
         'product_id': productid.toString(),
-        'sup_type': "Supplier",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
+        'name': namee,
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
-        'sup_type': "Supplier",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
         'city': city2
       });
     }
 
     request.headers.addAll(headers);
+    print('_____sssdsdsfsdfsdfsd_____${request.fields}_________');
 
     http.StreamedResponse response = await request.send();
 

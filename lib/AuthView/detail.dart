@@ -1092,8 +1092,8 @@ class _DetailPageState extends State<DetailPage> {
                                       MaterialPageRoute(
                                         builder: (context) => PlacePicker(
                                           apiKey: Platform.isAndroid
-                                              ? "AIzaSyDPsdTq-a4AHYHSNvQsdAlZgWvRu11T9pM"
-                                              : "AIzaSyDPsdTq-a4AHYHSNvQsdAlZgWvRu11T9pM",
+                                              ? "AIzaSyCBiZkX5n-WccQRkQ_s3yX3gd_QD7yFlrs"
+                                              : "AIzaSyCBiZkX5n-WccQRkQ_s3yX3gd_QD7yFlrs",
                                           onPlacePicked: (result) {
                                             print(result.formattedAddress);
                                             setState(() {
@@ -1491,7 +1491,7 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 Container(
                   height: 30,
-                  width: 70,
+                  //  width: 70,
                   child: ElevatedButton(
                     onPressed: () {
                       getImage(ImageSource.camera, context, 2);
@@ -1507,7 +1507,7 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Container(
                   height: 30,
-                  width: 70,
+                  //   width: 70,
                   child: ElevatedButton(
                     onPressed: () {
                       getImageCmera(ImageSource.gallery, context, 2);
@@ -1538,7 +1538,7 @@ class _DetailPageState extends State<DetailPage> {
                 children: [
                   Container(
                     height: 30,
-                    width: 70,
+                    //   width: 70,
                     child: ElevatedButton(
                       onPressed: () {
                         getImagePdf(ImageSource.camera, context, 1);
@@ -1550,11 +1550,11 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ),
                   const SizedBox(
-                    width: 11,
+                    width: 1,
                   ),
                   Container(
                     height: 30,
-                    width: 70,
+                    //  width: 70,
                     child: ElevatedButton(
                       onPressed: () {
                         getImageCmeraPdf(ImageSource.gallery, context, 1);
@@ -1565,11 +1565,11 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ),
                   const SizedBox(
-                    width: 11,
+                    width: 1,
                   ),
                   Container(
                     height: 30,
-                    width: 70,
+                    // width: 70,
                     child: ElevatedButton(
                       onPressed: () {
                         _pickPDF();
@@ -1577,7 +1577,7 @@ class _DetailPageState extends State<DetailPage> {
                         // getImageCmera(ImageSource.gallery, context, 1);
                       },
                       //return true when click on "Yes"
-                      child: const Text('PDf', style: TextStyle(fontSize: 10)),
+                      child: const Text('PDF', style: TextStyle(fontSize: 10)),
                     ),
                   ),
                 ],

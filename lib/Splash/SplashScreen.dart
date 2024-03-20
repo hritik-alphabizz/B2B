@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:get/get.dart';
@@ -20,7 +19,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -28,8 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
     getValidation();
   }
 
-  Future getValidation()async{
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  Future getValidation() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     String? obtainedOtp = sharedPreferences.getString('id');
     setState(() {
       finalOtp = obtainedOtp;
@@ -39,13 +38,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToHome() {
-    Future.delayed(const Duration(microseconds:  2),() {
-      if (finalOtp == null || finalOtp ==  ''){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
-      }else {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const B2BHome()));
-      }
-    },);
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        if (finalOtp == null || finalOtp == '') {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const LoginPage()));
+        } else {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const B2BHome()));
+        }
+      },
+    );
   }
 
   @override
@@ -53,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return SafeArea(
       child: Scaffold(
         body: Stack(
-          children:[
+          children: [
             // SizedBox(
             //   // width: MediaQuery.of(context).size.width,
             //   // height: MediaQuery.of(context).size.height,
@@ -61,29 +65,34 @@ class _SplashScreenState extends State<SplashScreen> {
             //   Image.asset('Images/Splash.png',fit: BoxFit.cover,
             //   ),
             // ),
-             Container(
-               color: Colors.white,
-               child: Padding(
-                 padding: const EdgeInsets.only(top: 200),
-                 child: Center(
-                  child: Column(
-                    children: [
-                      Image.asset("Images/loginlogo.png", scale: 2.5,),
-                      const Text(
-                          'B2B DIARY',
-                        style: TextStyle(color: Colors.blue,fontSize: 28, fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ],
-                  )
-                  // Text(
-                  //     'B2BDIARY',
-                  //   style: TextStyle(color: Colors.white,fontSize: 28,
-                  //   ),
-                  // ),
-                ),
-               ),
-             ),
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 200),
+                child: Center(
+                    child: Column(
+                  children: [
+                    Image.asset(
+                      "Images/loginlogo.png",
+                      scale: 2.5,
+                    ),
+                    const Text(
+                      'B2B DIARY',
+                      style: TextStyle(
+                          color: Color(0xff4989e3),
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )
+                    // Text(
+                    //     'B2BDIARY',
+                    //   style: TextStyle(color: Colors.white,fontSize: 28,
+                    //   ),
+                    // ),
+                    ),
+              ),
+            ),
           ],
         ),
       ),

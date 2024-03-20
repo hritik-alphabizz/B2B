@@ -1096,7 +1096,8 @@ class _B2BHomeState extends State<B2BHome> {
                         title: "Verify OTP",
                         onPress: () {
                           if (controller == OTPIS) {
-                            sendEnqury(productIddd, sellerId, textValue);
+                            sendEnqury(productIddd, sellerId,
+                                textValue == "General" ? "Client" : "Client");
                           } else {
                             Fluttertoast.showToast(msg: 'Enter Correct OTP');
                           }
@@ -1130,6 +1131,7 @@ class _B2BHomeState extends State<B2BHome> {
       });
     } else {
       request.fields.addAll({
+        'name': yournamecontroller.text.toString(),
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
@@ -1312,11 +1314,20 @@ class _B2BHomeState extends State<B2BHome> {
                                                       fontSize: 15,
                                                       color: Colors.white),
                                                 )
-                                              : Text(
-                                                  "Hii ${namee ?? ''}",
-                                                  style: const TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.white),
+                                              : SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.40,
+                                                  child: Text(
+                                                    "Hii ${namee ?? ''}",
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.white),
+                                                  ),
                                                 ),
                                         ),
                                         const Spacer(),
@@ -1961,6 +1972,8 @@ class _B2BHomeState extends State<B2BHome> {
     };
     var request = http.MultipartRequest(
         'POST', Uri.parse('${baseUrl}get_products_by_category'));
+    print("URL _______${baseUrl}get_products_by_category");
+
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -2136,12 +2149,25 @@ class _B2BHomeState extends State<B2BHome> {
                                                         const SizedBox(
                                                           width: 10,
                                                         ),
-                                                        Text(GetSub!
-                                                                .data![i]
-                                                                .products![
-                                                                    index]
-                                                                .storeName ??
-                                                            'N/A'),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width -
+                                                              250,
+                                                          child: Text(
+                                                            GetSub!
+                                                                    .data![i]
+                                                                    .products![
+                                                                        index]
+                                                                    .storeName ??
+                                                                'N/A',
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            maxLines: 1,
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                     Row(
@@ -3303,13 +3329,16 @@ class _B2BHomeState extends State<B2BHome> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin: const EdgeInsets.only(left: 15),
-                          child: const Text(
-                            "Business Supplier Category",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 15),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            margin: const EdgeInsets.only(left: 15),
+                            child: const Text(
+                              "Business Supplier Category",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 15),
+                            ),
                           ),
                         ),
                         getSpecifyHomeBusiness(),
@@ -3446,9 +3475,16 @@ class _B2BHomeState extends State<B2BHome> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    Text(
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      child: Text(
                                         "${homeSpecificModel!.data!.businsessData![index].storeName}" ??
-                                            ''),
+                                            '',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 Row(
@@ -4753,7 +4789,8 @@ class _B2BHomeState extends State<B2BHome> {
       });
     }
     if (profileStore2['error'] == false) {
-      namee = "${profileStore2['data']['username'].toString()}";
+      namee = profileStore2['data']['username'].toString();
+      yournamecontroller.text = namee;
       emaill = "${profileStore2['data']['email']}";
       mNo = "${profileStore2['data']['mobile']}";
       // companyName2="${profileStore2['data']['mobile']}";
@@ -4790,6 +4827,8 @@ class _B2BHomeState extends State<B2BHome> {
     };
     var request =
         http.Request('POST', Uri.parse('${ApiService.getHomeProducts}'));
+
+    print("URL _______${ApiService.getHomeProducts}");
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -4799,6 +4838,7 @@ class _B2BHomeState extends State<B2BHome> {
 
       setState(() {
         homeProductsModel = jsonResponse;
+        print(homeProductsModel.toString() + "HOME PRODUCTS");
         print('${homeProductsModel?.data?.length}______________');
       });
     } else {

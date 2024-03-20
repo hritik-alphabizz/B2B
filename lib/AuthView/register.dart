@@ -101,6 +101,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                   scale: 4,
                                 )),
                               ),
+                              const Text(
+                                'B2B DIARY',
+                                style: TextStyle(
+                                    color: Color(0xff4989e3),
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold),
+                              ),
                               const Padding(
                                 padding: EdgeInsets.only(top: 10),
                                 child: Text(
@@ -254,7 +261,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     const snackBar = SnackBar(
                                       content: Text('all fields are required'),
                                     );
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
                                   }
                                 },
                               ),

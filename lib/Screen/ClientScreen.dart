@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:b2b/Api.path.dart';
 import 'package:b2b/Constant/Constants.dart';
 import 'package:b2b/Model/suplier_Client_supplier_response.dart';
+import 'package:b2b/Screen/AllProducts.dart';
 import 'package:b2b/Screen/MapHomeScreen.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
 import 'package:b2b/apiServices/apiStrings.dart';
@@ -43,7 +45,43 @@ class _ClientScreenState extends State<ClientScreen> {
     super.initState();
     getClientApi("");
     businessCategory();
+    getProfile();
   }
+
+  var profileStore2;
+  var namee;
+
+  getProfile() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var sessionId = sharedPreferences.getString('id');
+    var headers = {
+      'Cookie': 'ci_session=60e6733f1ca928a67f86820b734e34f4e5e0dd4e'
+    };
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${ApiService.getUserProfile}'));
+    request.fields.addAll({'user_id': '${sessionId}'});
+    print('____sss______${request.fields}_________');
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result2 = await response.stream.bytesToString();
+      var profileStore = jsonDecode(result2);
+      setState(() {
+        profileStore2 = profileStore;
+      });
+    }
+    if (profileStore2['error'] == false) {
+      namee = profileStore2['data']['username'].toString();
+      yournamecontroller.text = namee;
+
+      city2 = "${profileStore2['data']['city']}";
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  var city2;
 
   String currentItem = "Relavance";
   String currentbusiness = "Manufacturers";
@@ -420,13 +458,13 @@ class _ClientScreenState extends State<ClientScreen> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -438,7 +476,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -491,7 +529,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                               child: Text(
                                                 e,
                                                 style: const TextStyle(
-                                                    fontSize: 14),
+                                                    fontSize: 11),
                                               ),
                                             ),
                                           )
@@ -511,7 +549,7 @@ class _ClientScreenState extends State<ClientScreen> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               children: [
                                 Container(
@@ -521,7 +559,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 10,
                                     ),
                                   ),
                                 ),
@@ -541,7 +579,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                       hint: const Text(
                                         "Categories",
                                         style: TextStyle(
-                                            color: colors.black, fontSize: 15),
+                                            color: colors.black, fontSize: 10),
                                       ),
                                       // dropdownColor: colors.primary,
                                       value: selectedBusiness,
@@ -595,11 +633,11 @@ class _ClientScreenState extends State<ClientScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 4,
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               children: [
                                 Container(
@@ -749,7 +787,19 @@ class _ClientScreenState extends State<ClientScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => AllProduct(
+                                                catId: getClientModel!
+                                                    .data![i]
+                                                    .vendorData!
+                                                    .first
+                                                    .productInfo!
+                                                    .categoryId!
+                                                    .toString())));
+                                  },
                                   child: Text(
                                     "${getClientModel!.data![i].categoryName}",
                                     style: const TextStyle(
@@ -881,9 +931,20 @@ class _ClientScreenState extends State<ClientScreen> {
                                                       const SizedBox(
                                                         width: 10,
                                                       ),
-                                                      Text(
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.32,
+                                                        child: Text(
                                                           "${getClientModel!.data![i].vendorData![index].sellerDataInfo?.storeName}" ??
-                                                              ''),
+                                                              '',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                   Row(
@@ -1280,7 +1341,7 @@ class _ClientScreenState extends State<ClientScreen> {
                                                             .data![i]
                                                             .vendorData![index]
                                                             .sellerDataInfo!
-                                                            .id ??
+                                                            .userId ??
                                                         "");
                                               },
                                             ),
@@ -2099,21 +2160,23 @@ class _ClientScreenState extends State<ClientScreen> {
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
         'product_id': productid.toString(),
-        'sup_type': "Client",
+        'sup_type': "Supplier",
         'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
+        'name': namee ?? "",
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
-        'sup_type': "Client",
+        'sup_type': "Supplier",
         'seller_id': sellerId ?? "",
-        'city': city2
+        'city': city2 ?? ""
       });
     }
 
     request.headers.addAll(headers);
+    print('____sssddd______${request.fields}_________');
 
     http.StreamedResponse response = await request.send();
 

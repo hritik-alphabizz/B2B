@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:b2b/Api.path.dart';
 import 'package:b2b/Constant/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -34,6 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    getProfile();
     super.initState();
   }
 
@@ -107,6 +110,52 @@ class _SearchScreenState extends State<SearchScreen> {
         lastStatus = status;
       },
     );
+  }
+
+  var profileStore2;
+
+  getProfile() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var sessionId = sharedPreferences.getString('id');
+
+    var headers = {
+      'Cookie': 'ci_session=60e6733f1ca928a67f86820b734e34f4e5e0dd4e'
+    };
+    if (sessionId == null) {
+      yourMobileNumber.text = "";
+    } else {
+      var request = http.MultipartRequest(
+          'POST', Uri.parse('${ApiService.getUserProfile}'));
+      request.fields.addAll({'user_id': '${sessionId}'});
+      print("get profile parameter ${request.fields}");
+      print(
+          "sign up details para ${request.fields}==========================================================");
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        var result2 = await response.stream.bytesToString();
+        var profileStore = jsonDecode(result2);
+        setState(() {
+          profileStore2 = profileStore;
+          print(result2.toString());
+          namee = profileStore2['data']['username'].toString();
+          yournamecontroller.text = namee;
+
+          city2 = "${profileStore2['data']['city']}";
+
+          // print("${store2}");
+        });
+      }
+      if (profileStore2['error'] == false) {
+        mobilee = "${profileStore2['data']['mobile']}";
+        yourMobileNumber.text = mobilee ?? "";
+        print('______sssss____${mobilee}_________');
+      } else {
+        print(response.reasonPhrase);
+      }
+    }
   }
 
   void startListening() {
@@ -1123,15 +1172,16 @@ class _SearchScreenState extends State<SearchScreen> {
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
         'product_id': productid.toString(),
-        'sup_type': "Search Screen",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
+        'name': namee,
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
-        'sup_type': "Search Screen",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
         'city': city2
       });

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 // import 'package:anoop/Model/GetHomeCategoryModel.dart';
+import 'package:b2b/Api.path.dart';
 import 'package:b2b/widgets/appButton.dart';
 import 'package:b2b/widgets/categoryCard.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,41 @@ class _HomeFullCategoryState extends State<HomeFullCategory> {
     // TODO: implement initState
     super.initState();
   }
+
+  var profileStore2;
+  var namee;
+
+  getProfile() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var sessionId = sharedPreferences.getString('id');
+    var headers = {
+      'Cookie': 'ci_session=60e6733f1ca928a67f86820b734e34f4e5e0dd4e'
+    };
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${ApiService.getUserProfile}'));
+    request.fields.addAll({'user_id': '${sessionId}'});
+    print('____sss______${request.fields}_________');
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result2 = await response.stream.bytesToString();
+      var profileStore = jsonDecode(result2);
+      setState(() {
+        profileStore2 = profileStore;
+      });
+    }
+    if (profileStore2['error'] == false) {
+      namee = profileStore2['data']['username'].toString();
+      yournamecontroller.text = namee;
+
+      city2 = "${profileStore2['data']['city']}";
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  var city2;
 
   String? userId;
   @override
@@ -460,12 +496,13 @@ class _HomeFullCategoryState extends State<HomeFullCategory> {
       });
     } else {
       request.fields.addAll({
+        'name': yournamecontroller.text.toString(),
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
         'sup_type': "Categories",
         'seller_id': sellerId ?? "",
-        // 'city': city2
+        'city': city2
       });
     }
 

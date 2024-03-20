@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -46,10 +47,10 @@ class _AllProductState extends State<AllProduct> {
   callApis() async {
     getUserId();
 
-    await getAdvertisgment();
-    await getProfile();
-    await getAllProducts();
     await businessCategory();
+    await getAdvertisgment();
+    await getAllProducts();
+    await getProfile();
   }
 
   String? selectedBusiness;
@@ -109,10 +110,12 @@ class _AllProductState extends State<AllProduct> {
     var request = http.MultipartRequest(
         'POST', Uri.parse('${baseUrl}fetch_product_by_fillters'));
     request.fields.addAll({
-      'category_id': widget.catId ?? "",
+      'category_id':
+          selectedCategoryId == "" ? widget.catId ?? "" : selectedCategoryId,
       'city': searchController.text ?? "",
       if (businessName != 'Select All')
-        'buisness_category': businessName == null ? "" : "${businessName}"
+        'buisness_category': businessName == null ? "" : "${businessName}",
+      "sub_cat_id": selectedCategoryId
     });
     print('____ddddd______${request.fields}_________');
     request.headers.addAll(headers);
@@ -192,7 +195,7 @@ class _AllProductState extends State<AllProduct> {
         'city': cityCtr.text.toString(),
         'name': nameCtr.text.toString(),
         'product_id': productid.toString(),
-        'sup_type': "Category",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
       });
     } else {
@@ -200,7 +203,7 @@ class _AllProductState extends State<AllProduct> {
         'mobile': nameCtr.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
-        'sup_type': "Category",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
         'city': city2
       });
@@ -341,6 +344,9 @@ class _AllProductState extends State<AllProduct> {
         });
   }
 
+  String selectedCategoryId = "";
+
+  String selectedCategory = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -609,339 +615,346 @@ class _AllProductState extends State<AllProduct> {
                   const SizedBox(
                     height: 10,
                   ),
-                  carosalSlider(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    // alignment: Alignment.center,
-                    child: allProductModel!.data!.isEmpty
-                        ? const Center(child: Text("No Product Found!!"))
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: allProductModel!.data!.length,
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              var item = allProductModel!.data![index];
-                              return Container(
-                                width: MediaQuery.of(context).size.width / 1.2,
-                                margin: const EdgeInsets.all(0),
-                                child: InkWell(
+                  selectedCategory == ""
+                      ? Container()
+                      : Card(
+                          color: const Color.fromARGB(255, 192, 219, 255),
+                          elevation: 5,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(selectedCategory),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 3.0),
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        selectedCategoryId = "";
+                                        selectedCategory = "";
+                                        getAllProducts();
+                                        setState(() {});
+                                      },
+                                      child: const Icon(Icons.cancel)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                  allProductModel == null
+                      ? Container()
+                      : SizedBox(
+                          height: 50,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: allProductModel!.subcategories!.length,
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                var item =
+                                    allProductModel!.subcategories![index];
+                                return InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsHome(
-                                                  pId: allProductModel!
-                                                      .data![index].id,
-                                                  sellerId: allProductModel!
-                                                      .data![index].sellerId,
-                                                  businessName: item
-                                                      .typeOfseller
-                                                      ?.split(',')
-                                                      .first,
-                                                )));
+                                    selectedCategoryId = item.id!;
+                                    selectedCategory = item.name!;
+                                    getAllProducts();
+                                    setState(() {});
                                   },
                                   child: Card(
-                                    elevation: 4,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20),
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              5.2,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          child: ClipRRect(
+                                      color: selectedCategoryId == item.id!
+                                          ? const Color.fromARGB(
+                                              255, 192, 219, 255)
+                                          : null,
+                                      elevation: 5,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                            child: Row(
+                                          children: [
+                                            Text(item.name!),
+                                            selectedCategoryId == item.id!
+                                                ? Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 3.0),
+                                                    child: GestureDetector(
+                                                        onTap: () {
+                                                          selectedCategoryId =
+                                                              "";
+                                                          getAllProducts();
+                                                          setState(() {});
+                                                        },
+                                                        child: const Icon(
+                                                            Icons.cancel)),
+                                                  )
+                                                : Container()
+                                          ],
+                                        )),
+                                      )),
+                                );
+                              }),
+                        ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  carosalSlider(),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  allProductModel == null
+                      ? Container()
+                      : Container(
+                          // alignment: Alignment.center,
+                          child: allProductModel!.data!.isEmpty
+                              ? const Center(child: Text("No Product Found!!"))
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: allProductModel!.data!.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    var item = allProductModel!.data![index];
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.2,
+                                      margin: const EdgeInsets.all(0),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProductDetailsHome(
+                                                        pId: allProductModel!
+                                                            .data![index].id,
+                                                        sellerId:
+                                                            allProductModel!
+                                                                .data![index]
+                                                                .sellerId,
+                                                        businessName: item
+                                                            .typeOfseller
+                                                            ?.split(',')
+                                                            .first,
+                                                      )));
+                                        },
+                                        child: Card(
+                                          elevation: 4,
+                                          shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(20),
-                                            child: Image.network(
-                                              "${item.image}" ?? '',
-                                              fit: BoxFit.fill,
-                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 24, top: 10),
-                                          child: Text(
-                                            "${item.name}" ?? '',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16),
-                                          ),
-                                        ),
-                                        Container(
-                                            margin: const EdgeInsets.only(
-                                                left: 24, top: 10),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                        backgroundColor:
-                                                            colors.primary,
-                                                        radius: 10,
-                                                        child: Icon(
-                                                          Icons.person_rounded,
-                                                          color: colors.white,
-                                                          size: 15,
-                                                        )),
-                                                    SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Text("${item.storeName}" ??
-                                                        ''),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                        width: 120,
-                                                        child: businessName ==
-                                                                    null ||
-                                                                businessName ==
-                                                                    "Select All"
-                                                            ? Text(
-                                                                "(${item.typeOfseller?.split(',').first ?? 'N/A'})" ??
-                                                                    '',
-                                                                maxLines: 1,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style: TextStyle(
-                                                                    color: colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              )
-                                                            : Text(
-                                                                "(${businessName})" ??
-                                                                    '',
-                                                                maxLines: 1,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style: TextStyle(
-                                                                    color: colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ))
-                                                  ],
-                                                )
-                                              ],
-                                            )),
-                                        Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 24, top: 5),
-                                          child: Row(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              const CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: colors.primary,
-                                                child: Icon(
-                                                  Icons.location_pin,
-                                                  size: 15,
-                                                  color: colors.white,
-                                                ),
-                                              ),
                                               const SizedBox(
-                                                width: 10,
+                                                height: 10,
                                               ),
                                               Container(
-                                                  width: 180,
-                                                  child: Text(
-                                                    "${item.sellerAddress}" ??
-                                                        "",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 1,
-                                                  )),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 20, top: 5, right: 20),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InkWell(
-                                                  onTap: () {
-                                                    launch("${item.video}");
-                                                  },
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons
-                                                            .video_camera_back_outlined,
-                                                        color: colors.primary,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      InkWell(
-                                                          child: Text(
-                                                              "Watch Video"))
-                                                    ],
-                                                  )),
-                                              Row(
-                                                children: [
-                                                  CircleAvatar(
-                                                      radius: 15,
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      child: Icon(
-                                                        Icons.image,
-                                                        color: colors.primary,
-                                                      )),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        showDialog<String>(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              AlertDialog(
-                                                            title: Text(
-                                                                'Broucher Image'),
-                                                            content: Image.network(
-                                                                "${item.broucherImage}"),
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Text("Broucher"))
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 20, right: 20),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    color: Colors.deepPurple),
-                                                child: Icon(
-                                                  Icons.add_circle,
-                                                  size: 15,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(5)),
-                                                    color: Colors.deepPurple),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 3,
-                                                      bottom: 3),
-                                                  child: Icon(
-                                                    Icons.message,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(6)),
-                                                    color: colors.secondary),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 3,
-                                                      bottom: 3),
-                                                  child: Icon(
-                                                    Icons.mail_outline,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    color: colors.primary),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 3,
-                                                      bottom: 3),
-                                                  child: Icon(
-                                                    Icons.location_pin,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20),
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    20,
+                                                    5.2,
                                                 width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    3,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(6)),
-                                                    border: Border.all(
-                                                        width: 2,
-                                                        color: Colors.grey),
-                                                    color: colors.white),
+                                                    .size
+                                                    .width,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: Image.network(
+                                                    "${item.image}" ?? '',
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 24, top: 10),
+                                                child: Text(
+                                                  "${item.name}" ?? '',
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                              Container(
+                                                  margin: const EdgeInsets.only(
+                                                      left: 24, top: 10),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              backgroundColor:
+                                                                  colors
+                                                                      .primary,
+                                                              radius: 10,
+                                                              child: Icon(
+                                                                Icons
+                                                                    .person_rounded,
+                                                                color: colors
+                                                                    .white,
+                                                                size: 15,
+                                                              )),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text(
+                                                              "${item.storeName}" ??
+                                                                  ''),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                              width: 120,
+                                                              child: businessName ==
+                                                                          null ||
+                                                                      businessName ==
+                                                                          "Select All"
+                                                                  ? Text(
+                                                                      "(${item.typeOfseller?.split(',').first ?? 'N/A'})" ??
+                                                                          '',
+                                                                      maxLines:
+                                                                          1,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      style: TextStyle(
+                                                                          color: colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    )
+                                                                  : Text(
+                                                                      "(${businessName})" ??
+                                                                          '',
+                                                                      maxLines:
+                                                                          1,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      style: TextStyle(
+                                                                          color: colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ))
+                                                        ],
+                                                      )
+                                                    ],
+                                                  )),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 24, top: 5),
+                                                child: Row(
+                                                  children: [
+                                                    const CircleAvatar(
+                                                      radius: 10,
+                                                      backgroundColor:
+                                                          colors.primary,
+                                                      child: Icon(
+                                                        Icons.location_pin,
+                                                        size: 15,
+                                                        color: colors.white,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Container(
+                                                        width: 180,
+                                                        child: Text(
+                                                          "${item.sellerAddress}" ??
+                                                              "",
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 1,
+                                                        )),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 20,
+                                                    top: 5,
+                                                    right: 20),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                        onTap: () {
+                                                          launch(
+                                                              "${item.video}");
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .video_camera_back_outlined,
+                                                              color: colors
+                                                                  .primary,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            InkWell(
+                                                                child: Text(
+                                                                    "Watch Video"))
+                                                          ],
+                                                        )),
+                                                    Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                            radius: 15,
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            child: Icon(
+                                                              Icons.image,
+                                                              color: colors
+                                                                  .primary,
+                                                            )),
+                                                        InkWell(
+                                                            onTap: () {
+                                                              showDialog<
+                                                                  String>(
+                                                                context:
+                                                                    context,
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    AlertDialog(
+                                                                  title: Text(
+                                                                      'Broucher Image'),
+                                                                  content: Image
+                                                                      .network(
+                                                                          "${item.broucherImage}"),
+                                                                ),
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                                "Broucher"))
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 20, right: 20),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -950,17 +963,31 @@ class _AllProductState extends State<AllProduct> {
                                                     Container(
                                                       height: 25,
                                                       width: 25,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius
                                                                       .circular(
                                                                           50)),
-                                                          color: item.taxNumber ==
-                                                                  ""
-                                                              ? colors.primary
-                                                              : colors
-                                                                  .secondary),
+                                                          color: Colors
+                                                              .deepPurple),
+                                                      child: Icon(
+                                                        Icons.add_circle,
+                                                        size: 15,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 25,
+                                                      width: 25,
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          5)),
+                                                          color: Colors
+                                                              .deepPurple),
                                                       child: const Padding(
                                                         padding:
                                                             EdgeInsets.only(
@@ -969,7 +996,7 @@ class _AllProductState extends State<AllProduct> {
                                                                 top: 3,
                                                                 bottom: 3),
                                                         child: Icon(
-                                                          Icons.description,
+                                                          Icons.message,
                                                           size: 15,
                                                           color: Colors.white,
                                                         ),
@@ -978,19 +1005,14 @@ class _AllProductState extends State<AllProduct> {
                                                     Container(
                                                       height: 25,
                                                       width: 25,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius
                                                                       .circular(
-                                                                          50)),
+                                                                          6)),
                                                           color:
-                                                              item.subscriptionType ==
-                                                                      1
-                                                                  ? colors
-                                                                      .primary
-                                                                  : colors
-                                                                      .secondary),
+                                                              colors.secondary),
                                                       child: const Padding(
                                                         padding:
                                                             EdgeInsets.only(
@@ -999,8 +1021,7 @@ class _AllProductState extends State<AllProduct> {
                                                                 top: 3,
                                                                 bottom: 3),
                                                         child: Icon(
-                                                          Icons
-                                                              .check_circle_outline,
+                                                          Icons.mail_outline,
                                                           size: 15,
                                                           color: Colors.white,
                                                         ),
@@ -1009,19 +1030,14 @@ class _AllProductState extends State<AllProduct> {
                                                     Container(
                                                       height: 25,
                                                       width: 25,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius
                                                                       .circular(
                                                                           50)),
                                                           color:
-                                                              item.subscriptionType ==
-                                                                      1
-                                                                  ? colors
-                                                                      .primary
-                                                                  : colors
-                                                                      .secondary),
+                                                              colors.primary),
                                                       child: const Padding(
                                                         padding:
                                                             EdgeInsets.only(
@@ -1030,65 +1046,188 @@ class _AllProductState extends State<AllProduct> {
                                                                 top: 3,
                                                                 bottom: 3),
                                                         child: Icon(
-                                                          Icons.verified_user,
+                                                          Icons.location_pin,
                                                           size: 15,
                                                           color: Colors.white,
                                                         ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              20,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              3,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          6)),
+                                                          border: Border.all(
+                                                              width: 2,
+                                                              color:
+                                                                  Colors.grey),
+                                                          color: colors.white),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          Container(
+                                                            height: 25,
+                                                            width: 25,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
+                                                                color: item.taxNumber ==
+                                                                        ""
+                                                                    ? colors
+                                                                        .primary
+                                                                    : colors
+                                                                        .secondary),
+                                                            child:
+                                                                const Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 5,
+                                                                      right: 5,
+                                                                      top: 3,
+                                                                      bottom:
+                                                                          3),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .description,
+                                                                size: 15,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            height: 25,
+                                                            width: 25,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
+                                                                color: item.subscriptionType ==
+                                                                        1
+                                                                    ? colors
+                                                                        .primary
+                                                                    : colors
+                                                                        .secondary),
+                                                            child:
+                                                                const Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 5,
+                                                                      right: 5,
+                                                                      top: 3,
+                                                                      bottom:
+                                                                          3),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .check_circle_outline,
+                                                                size: 15,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            height: 25,
+                                                            width: 25,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
+                                                                color: item.subscriptionType ==
+                                                                        1
+                                                                    ? colors
+                                                                        .primary
+                                                                    : colors
+                                                                        .secondary),
+                                                            child:
+                                                                const Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 5,
+                                                                      right: 5,
+                                                                      top: 3,
+                                                                      bottom:
+                                                                          3),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .verified_user,
+                                                                size: 15,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ],
                                                 ),
                                               ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Center(
+                                                child: Btn(
+                                                  onPress: () {
+                                                    showDialogContactSuplier(
+                                                        item.id ?? "",
+                                                        item.sellerId ?? "");
+                                                  },
+                                                  height: 40,
+                                                  width: 150,
+                                                  title: "Contact Supplier",
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Center(
-                                          child: Btn(
-                                            onPress: () {
-                                              showDialogContactSuplier(
-                                                  item.id ?? "",
-                                                  item.sellerId ?? "");
-                                            },
-                                            height: 40,
-                                            width: 150,
-                                            title: "Contact Supplier",
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                              // productsCard(
-                              //     businessName: businesscatorymodel?.data?[0].name,
-                              //     context: context,
-                              //     image: item.image,
-                              //     storeName: item.storeName,
-                              //     sub: item.subscriptionType,
-                              //     textName: item.taxNumber,
-                              //     productName: item.name,
-                              //     address: item.sellerAddress,
-                              //     title: "Contact Supplier",
-                              //     onTap: () async {
-                              //       final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-                              //       String? obtainedOtp = sharedPreferences.getString('id');
-                              //       String?  obtainedMobile = sharedPreferences.getString('mobile');
-                              //       if(obtainedOtp==''|| obtainedOtp==null){
-                              //
-                              //         _showDialog(context);
-                              //       }else{
-                              //         numCtr.text=obtainedMobile!;
-                              //         _showDialog2(context);
-                              //       }
-                              //     });
-                            }),
-                  ),
+                                      ),
+                                    );
+                                    // productsCard(
+                                    //     businessName: businesscatorymodel?.data?[0].name,
+                                    //     context: context,
+                                    //     image: item.image,
+                                    //     storeName: item.storeName,
+                                    //     sub: item.subscriptionType,
+                                    //     textName: item.taxNumber,
+                                    //     productName: item.name,
+                                    //     address: item.sellerAddress,
+                                    //     title: "Contact Supplier",
+                                    //     onTap: () async {
+                                    //       final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                                    //       String? obtainedOtp = sharedPreferences.getString('id');
+                                    //       String?  obtainedMobile = sharedPreferences.getString('mobile');
+                                    //       if(obtainedOtp==''|| obtainedOtp==null){
+                                    //
+                                    //         _showDialog(context);
+                                    //       }else{
+                                    //         numCtr.text=obtainedMobile!;
+                                    //         _showDialog2(context);
+                                    //       }
+                                    //     });
+                                  }),
+                        ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -1162,20 +1301,31 @@ class _AllProductState extends State<AllProduct> {
     return adImages!.data.isEmpty
         ? Container()
         : Container(
-            height: 200,
+            height: 100,
             width: MediaQuery.of(context).size.width / 1.0,
             margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: CarouselSlider(
               items: adImages?.data
                   .map(
-                    (item) => Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          ApiService.adbaseUrl + item.name,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
+                    (item) => GestureDetector(
+                      onTap: () {
+                        final imageProvider = Image.network(
+                                ApiService.adbaseUrl + item.name ?? "")
+                            .image;
+                        showImageViewer(context, imageProvider,
+                            onViewerDismissed: () {
+                          print("dismissed");
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            ApiService.adbaseUrl + item.name,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
                         ),
                       ),
                     ),

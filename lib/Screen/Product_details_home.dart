@@ -86,6 +86,10 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         setState(() {
           profileStore2 = profileStore;
         });
+        namee = profileStore2['data']['username'].toString();
+        yournamecontroller.text = namee;
+
+        city2 = "${profileStore2['data']['city']}";
       }
       if (profileStore2['error'] == false) {
         mNo = "${profileStore2['data']['mobile'] ?? ""}";
@@ -286,13 +290,16 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                   getHomeProductDetails?.data![0].tags == null
                                       ? const SizedBox.shrink()
                                       : Container(
-                                          decoration: BoxDecoration(
-                                              color: colors.primary
-                                                  .withOpacity(0.4),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          height: 25,
-                                          width: 140,
+                                          // decoration: BoxDecoration(
+                                          //     color: colors.primary
+                                          //         .withOpacity(0.4),
+                                          //     borderRadius:
+                                          //         BorderRadius.circular(5)),
+                                          height: 30,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              80,
                                           child: ListView.builder(
                                               scrollDirection: Axis.horizontal,
                                               itemCount: getHomeProductDetails
@@ -300,9 +307,33 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                               itemBuilder: (context, i) {
                                                 return Padding(
                                                   padding:
-                                                      const EdgeInsets.all(5.0),
-                                                  child: Text(
-                                                      "${getHomeProductDetails?.data![0].tags!.join(',')}"),
+                                                      const EdgeInsets.all(2.0),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: colors.primary
+                                                            .withOpacity(0.4),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5)),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              3.0),
+                                                      child: Text(
+                                                          getHomeProductDetails
+                                                                  ?.data![0]
+                                                                  .tags![i]!
+                                                                  .toString()
+                                                                  .replaceAll(
+                                                                      "[", "")
+                                                                  .replaceAll(
+                                                                      "]",
+                                                                      "") ??
+                                                              ""
+                                                          //  "${getHomeProductDetails?.data![0].tags!.join(',')}"
+                                                          ),
+                                                    ),
+                                                  ),
                                                 );
                                               }),
                                         ),
@@ -1127,15 +1158,16 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         'mobile': yourMobileNumber.text.toString(),
         'city': YourcityController.text.toString(),
         'product_id': productid.toString(),
-        'sup_type': "Product Details",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
       });
     } else {
       request.fields.addAll({
+        'name': yournamecontroller.text.toString(),
         'mobile': yourMobileNumber.text.toString(),
         'product_id': productid.toString(),
         'user_id': userId.toString(),
-        'sup_type': "Product Details",
+        'sup_type': "Client",
         'seller_id': sellerId ?? "",
         'city': city2
       });
@@ -1151,8 +1183,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
       var finalResult = jsonDecode(result);
       if (finalResult['status'] == true) {
         Fluttertoast.showToast(msg: finalResult['message']);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const B2BHome()));
+        Navigator.pop(context);
       } else {
         Fluttertoast.showToast(msg: finalResult['message']);
       }
