@@ -1108,8 +1108,13 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                               children: [
                                                 InkWell(
                                                     onTap: () {
-                                                      launch(
-                                                          "${valueList[i].temp![index].video}");
+                                                       launchUrl(
+                                                          Uri.parse(
+                                                              "${valueList[i].temp![index].video}" ??
+                                                                  ""),
+                                                          mode: LaunchMode
+                                                              .externalApplication);
+                                                    
                                                     },
                                                     child: Row(
                                                       children: [

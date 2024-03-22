@@ -493,8 +493,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                         children: [
                                           InkWell(
                                               onTap: () {
-                                                launch(
-                                                    "${searchList[index].video}");
+                                                launchUrl(
+                                                    Uri.parse(
+                                                        "${searchList[index].video}" ??
+                                                            ""),
+                                                    mode: LaunchMode
+                                                        .externalApplication);
+                                                // launch(
+                                                // "${searchList[index].video}");
                                               },
                                               child: Row(
                                                 children: [
@@ -662,7 +668,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                              .all(
+                                                                  .all(
                                                               Radius.circular(
                                                                   50)),
                                                       color: searchList[index]
@@ -689,7 +695,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                              .all(
+                                                                  .all(
                                                               Radius.circular(
                                                                   50)),
                                                       color: searchList[index]
@@ -717,7 +723,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                              .all(
+                                                                  .all(
                                                               Radius.circular(
                                                                   50)),
                                                       color: searchList[index]

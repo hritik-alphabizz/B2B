@@ -1027,8 +1027,12 @@ class _ClientScreenState extends State<ClientScreen> {
                                               children: [
                                                 InkWell(
                                                     onTap: () {
-                                                      launch(
-                                                          "${getClientModel!.data![i].vendorData![index].productInfo!.video}");
+                                                       launchUrl(
+                                                          Uri.parse(
+                                                              "${getClientModel!.data![i].vendorData![index].productInfo!.video}" ?? ""),
+                                                          mode: LaunchMode
+                                                              .externalApplication);
+                                                   
                                                     },
                                                     child: Row(
                                                       children: const [

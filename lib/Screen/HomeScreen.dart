@@ -2244,8 +2244,12 @@ class _B2BHomeState extends State<B2BHome> {
                                                 children: [
                                                   InkWell(
                                                       onTap: () {
-                                                        launch(
-                                                            "${GetSub!.data![i].products![index].video}");
+                                                        launchUrl(
+                                                            Uri.parse(
+                                                                "${GetSub!.data![i].products![index].video}" ??
+                                                                    ""),
+                                                            mode: LaunchMode
+                                                                .externalApplication);
                                                       },
                                                       child: Row(
                                                         children: const [
@@ -2276,34 +2280,50 @@ class _B2BHomeState extends State<B2BHome> {
                                                           )),
                                                       InkWell(
                                                           onTap: () {
-                                                            showDialog<String>(
-                                                              context: context,
-                                                              builder: (BuildContext
-                                                                      context) =>
-                                                                  AlertDialog(
-                                                                title: const Text(
-                                                                    'Broucher Image'),
-                                                                content: GetSub!
-                                                                            .data![
-                                                                                i]
-                                                                            .products![
-                                                                                index]
-                                                                            .broucherImage ==
-                                                                        null
-                                                                    ? Image
-                                                                        .asset(
-                                                                        "Images/no-image-icon.png",
-                                                                        height:
-                                                                            120,
-                                                                        width: double
-                                                                            .infinity,
-                                                                        fit: BoxFit
-                                                                            .fill,
-                                                                      )
-                                                                    : Image.network(
-                                                                        "${GetSub!.data![i].products![index].broucherImage}"),
-                                                              ),
-                                                            );
+                                                            final imageProvider =
+                                                                Image.network(GetSub!
+                                                                            .data![i]
+                                                                            .products![index]
+                                                                            .broucherImage ??
+                                                                        "")
+                                                                    .image;
+                                                            showImageViewer(
+                                                                context,
+                                                                imageProvider,
+                                                                onViewerDismissed:
+                                                                    () {
+                                                              print(
+                                                                  "dismissed");
+                                                            });
+
+                                                            // showDialog<String>(
+                                                            //   context: context,
+                                                            //   builder: (BuildContext
+                                                            //           context) =>
+                                                            //       AlertDialog(
+                                                            //     title: const Text(
+                                                            //         'Broucher Image'),
+                                                            //     content: GetSub!
+                                                            //                 .data![
+                                                            //                     i]
+                                                            //                 .products![
+                                                            //                     index]
+                                                            //                 .broucherImage ==
+                                                            //             null
+                                                            //         ? Image
+                                                            //             .asset(
+                                                            //             "Images/no-image-icon.png",
+                                                            //             height:
+                                                            //                 120,
+                                                            //             width: double
+                                                            //                 .infinity,
+                                                            //             fit: BoxFit
+                                                            //                 .fill,
+                                                            //           )
+                                                            //         : Image.network(
+                                                            //             "${GetSub!.data![i].products![index].broucherImage}"),
+                                                            //   ),
+                                                            // );
                                                           },
                                                           child: const Text(
                                                               "Broucher"))
@@ -2438,9 +2458,22 @@ class _B2BHomeState extends State<B2BHome> {
                                                             scale: 2),
                                                         const SizedBox(
                                                             width: 7),
-                                                        Image.asset(
-                                                            "Images/register.png",
-                                                            scale: 2),
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              launchUrl(
+                                                                  Uri.parse("mailto:" +
+                                                                      (GetSub!.data![i].products![index].email ??
+                                                                          "")),
+                                                                  mode: LaunchMode
+                                                                      .externalApplication);
+                                                            },
+                                                            child: Icon(
+                                                                Icons.mail,
+                                                                color: colors
+                                                                    .primary)),
+                                                        // Image.asset(
+                                                        //     "Images/register.png",
+                                                        //     scale: 2),
                                                       ],
                                                     ),
                                                   ),
@@ -2509,7 +2542,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             const BorderRadius
-                                                                .all(
+                                                                    .all(
                                                                 Radius.circular(
                                                                     6)),
                                                         border: Border.all(
@@ -2527,7 +2560,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2561,7 +2594,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2597,7 +2630,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                      .all(
+                                                                          .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -3565,33 +3598,44 @@ class _B2BHomeState extends State<B2BHome> {
                                       )),
                                   InkWell(
                                       onTap: () {
-                                        showDialog<String>(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              AlertDialog(
-                                            title: const Text('Broucher Image'),
-                                            content: homeSpecificModel!
-                                                            .data!
-                                                            .businsessData![
-                                                                index]
-                                                            .broucherImage ==
-                                                        null ||
-                                                    homeSpecificModel!
-                                                            .data!
-                                                            .businsessData![
-                                                                index]
-                                                            .broucherImage ==
-                                                        ""
-                                                ? Image.asset(
-                                                    "Images/no-image-icon.png",
-                                                    height: 120,
-                                                    width: double.infinity,
-                                                    fit: BoxFit.fill,
-                                                  )
-                                                : Image.network(
-                                                    "${homeSpecificModel!.data!.businsessData![index].broucherImage}"),
-                                          ),
-                                        );
+                                        final imageProvider = Image.network(
+                                                homeSpecificModel!
+                                                        .data!
+                                                        .businsessData![index]
+                                                        .broucherImage ??
+                                                    "")
+                                            .image;
+                                        showImageViewer(context, imageProvider,
+                                            onViewerDismissed: () {
+                                          print("dismissed");
+                                        });
+                                        // showDialog<String>(
+                                        //   context: context,
+                                        //   builder: (BuildContext context) =>
+                                        //       AlertDialog(
+                                        //     title: const Text('Broucher Image'),
+                                        //     content: homeSpecificModel!
+                                        //                     .data!
+                                        //                     .businsessData![
+                                        //                         index]
+                                        //                     .broucherImage ==
+                                        //                 null ||
+                                        //             homeSpecificModel!
+                                        //                     .data!
+                                        //                     .businsessData![
+                                        //                         index]
+                                        //                     .broucherImage ==
+                                        //                 ""
+                                        //         ? Image.asset(
+                                        //             "Images/no-image-icon.png",
+                                        //             height: 120,
+                                        //             width: double.infinity,
+                                        //             fit: BoxFit.fill,
+                                        //           )
+                                        //         : Image.network(
+                                        //             "${homeSpecificModel!.data!.businsessData![index].broucherImage}"),
+                                        //   ),
+                                        // );
                                       },
                                       child: const Text("Broucher"))
                                 ],
@@ -3691,7 +3735,12 @@ class _B2BHomeState extends State<B2BHome> {
                                           : colors.secondary,
                                     ),
                                     const SizedBox(width: 7),
-                                    Image.asset("Images/person.png", scale: 2),
+                                    GestureDetector(
+                                        onTap: () {
+                                          launchUrl(Uri.parse(""));
+                                        },
+                                        child: Icon(Icons.mail,
+                                            color: colors.primary)),
                                     const SizedBox(width: 7),
                                     Image.asset("Images/register.png",
                                         scale: 2),
@@ -3990,15 +4039,26 @@ class _B2BHomeState extends State<B2BHome> {
                                       )),
                                   InkWell(
                                       onTap: () {
-                                        showDialog<String>(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              AlertDialog(
-                                            title: const Text('Broucher Image'),
-                                            content: Image.network(
-                                                "${homeSpecificModel!.data!.clientData![index].broucherImage}"),
-                                          ),
-                                        );
+                                        final imageProvider = Image.network(
+                                                homeSpecificModel!
+                                                        .data!
+                                                        .clientData![index]
+                                                        .broucherImage ??
+                                                    "")
+                                            .image;
+                                        showImageViewer(context, imageProvider,
+                                            onViewerDismissed: () {
+                                          print("dismissed");
+                                        });
+                                        // showDialog<String>(
+                                        //   context: context,
+                                        //   builder: (BuildContext context) =>
+                                        //       AlertDialog(
+                                        //     title: const Text('Broucher Image'),
+                                        //     content: Image.network(
+                                        //         "${homeSpecificModel!.data!.clientData![index].broucherImage}"),
+                                        //   ),
+                                        // );
                                       },
                                       child: const Text("Broucher"))
                                 ],

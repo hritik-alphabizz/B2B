@@ -1153,6 +1153,7 @@ class Datum {
   dynamic stockType;
   String isPricesInclusiveTax;
   String type;
+  String email;
   String attrValueIds;
   String sellerRating;
   dynamic sellerSlug;
@@ -1242,6 +1243,7 @@ class Datum {
     required this.stockType,
     required this.isPricesInclusiveTax,
     required this.type,
+    required this.email,
     required this.attrValueIds,
     required this.sellerRating,
     required this.sellerSlug,
@@ -1327,6 +1329,7 @@ class Datum {
         total: json["total"],
         sales: json["sales"],
         stockType: json["stock_type"],
+        email: json["email"],
         isPricesInclusiveTax: json["is_prices_inclusive_tax"],
         type: json["type"],
         attrValueIds: json["attr_value_ids"],
@@ -1421,6 +1424,7 @@ class Datum {
         "stock_type": stockType,
         "is_prices_inclusive_tax": isPricesInclusiveTax,
         "type": type,
+        "email": email,
         "attr_value_ids": attrValueIds,
         "seller_rating": sellerRating,
         "seller_slug": sellerSlug,

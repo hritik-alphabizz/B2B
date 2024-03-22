@@ -135,8 +135,9 @@ class _DetailPageState extends State<DetailPage> {
     print("LAT$latitude");
 
     List<Placemark> placemark = await placemarkFromCoordinates(
-        double.parse(latitude!), double.parse(longitude!),
-        localeIdentifier: "en");
+      double.parse(latitude!),
+      double.parse(longitude!),
+    );
 
     state = placemark[0].administrativeArea;
     country = placemark[0].country;

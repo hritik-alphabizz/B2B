@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:b2b/Screen/HomeScreen.dart';
 import 'package:b2b/Screen/MapHomeScreen.dart';
@@ -13,12 +14,14 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Api.path.dart';
 import '../Model/Get_home_product_details_model.dart';
+import '../Model/ratingsModel.dart';
 import '../color.dart';
 import '../widgets/Appbar.dart';
 import '../widgets/appButton.dart';
@@ -39,6 +42,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
     super.initState();
     getProfile();
     getProductDetailsApi();
+    getProductReviewApi();
   }
 
   final CarouselController carouselController = CarouselController();
@@ -358,13 +362,41 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                           // Text(
                           //     "${getHomeProductDetails?.data.first.shortDescription}"),
                           const SizedBox(height: 5),
+
+                          getHomeProductDetails?.data.first.videoType ==
+                                  "youtube"
+                              ? GestureDetector(
+                                  onTap: () {
+                                    launchUrl(
+                                        Uri.parse(getHomeProductDetails
+                                                ?.data.first.video ??
+                                            ""),
+                                        mode: LaunchMode.externalApplication);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        "Watch Video: ",
+                                        style: TextStyle(
+                                            color: colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(Icons.videocam, color: Colors.red),
+                                    ],
+                                  ),
+                                )
+                              : Container(),
+                          getHomeProductDetails?.data.first.videoType ==
+                                  "youtube"
+                              ? const SizedBox(height: 5)
+                              : Container(),
                           const Text(
                             "Description: ",
                             style: TextStyle(
                                 color: colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 3),
                           Html(
                               data: getHomeProductDetails
                                   ?.data.first.description),
@@ -418,6 +450,14 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                               "${getHomeProductDetails?.data.first.stateName}"),
                           const Text("India"),
                           const SizedBox(height: 10),
+
+                          userId != null
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    showRatingDialog();
+                                  },
+                                  child: Text("Add Review"))
+                              : Container(),
                           Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -458,8 +498,28 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                               : colors.secondary,
                                         ),
                                         const SizedBox(width: 7),
-                                        Image.asset("Images/person.png",
-                                            scale: 2),
+                                        GestureDetector(
+                                            onTap: () {
+                                              print("EMAIL" +
+                                                  (getHomeProductDetails
+                                                          ?.data.first.email!
+                                                          .toString() ??
+                                                      ""));
+
+                                              launchUrl(
+                                                  Uri.parse("mailto:" +
+                                                      (getHomeProductDetails
+                                                              ?.data
+                                                              .first
+                                                              .email ??
+                                                          "")),
+                                                  mode: LaunchMode
+                                                      .externalApplication);
+                                            },
+                                            child: Icon(Icons.mail,
+                                                color: colors.primary)),
+                                        // Image.asset("Images/person.png",
+                                        //     scale: 2),
                                         const SizedBox(width: 7),
                                         Image.asset("Images/register.png",
                                             scale: 2),
@@ -498,29 +558,59 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                  showDialog<String>(
-                                                    context: context,
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        AlertDialog(
-                                                      title: const Text(
-                                                          'Broucher Image'),
-                                                      content: getHomeProductDetails
+                                                  // showDialog<String>(
+                                                  //   context: context,
+                                                  //   builder: (BuildContext
+                                                  //           context) =>
+                                                  //       AlertDialog(
+                                                  //     title: const Text(
+                                                  //         'Broucher Image'),
+                                                  //     content: getHomeProductDetails
+                                                  //                 ?.data
+                                                  //                 .first
+                                                  //                 .broucherImage ==
+                                                  //             null
+                                                  //         ? Image.asset(
+                                                  //             "Images/no-image-icon.png",
+                                                  //             height: 120,
+                                                  //             width: double
+                                                  //                 .infinity,
+                                                  //             fit: BoxFit.fill,
+                                                  //           )
+                                                  //         : GestureDetector(
+                                                  //             onTap: () {
+                                                  //               final imageProvider =
+                                                  //                   Image.network(
+                                                  //                           getHomeProductDetails?.data.first.broucherImage ??
+                                                  //                               "")
+                                                  //                       .image;
+                                                  //               showImageViewer(
+                                                  //                   context,
+                                                  //                   imageProvider,
+                                                  //                   onViewerDismissed:
+                                                  //                       () {
+                                                  //                 print(
+                                                  //                     "dismissed");
+                                                  //               });
+                                                  //             },
+                                                  //             child: Image.network(
+                                                  //                 "${getHomeProductDetails?.data.first.broucherImage}"),
+                                                  //           ),
+                                                  //   ),
+                                                  // );
+
+                                                  final imageProvider = Image.network(
+                                                          getHomeProductDetails
                                                                   ?.data
                                                                   .first
-                                                                  .broucherImage ==
-                                                              null
-                                                          ? Image.asset(
-                                                              "Images/no-image-icon.png",
-                                                              height: 120,
-                                                              width: double
-                                                                  .infinity,
-                                                              fit: BoxFit.fill,
-                                                            )
-                                                          : Image.network(
-                                                              "${getHomeProductDetails?.data.first.broucherImage}"),
-                                                    ),
-                                                  );
+                                                                  .broucherImage ??
+                                                              "")
+                                                      .image;
+                                                  showImageViewer(
+                                                      context, imageProvider,
+                                                      onViewerDismissed: () {
+                                                    print("dismissed");
+                                                  });
                                                 },
                                                 child: Container(
                                                   height: 25,
@@ -792,6 +882,119 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                               ),
                             ),
                           ),
+                          ratingsModel!.data!.isEmpty
+                              ? Container()
+                              : const Text(
+                                  "Reviews: ",
+                                  style: TextStyle(
+                                      color: colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+
+                          SizedBox(
+                            height: ratingsModel!.data!.length * 150,
+                            child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: ratingsModel!.data!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final review = ratingsModel!.data![index];
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                      border: Border.all(
+                                          color: Color.fromARGB(
+                                              255, 214, 213, 213)),
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child: CircleAvatar(
+                                            radius: 25,
+                                            child: Icon(
+                                                Icons.account_circle_rounded,
+                                                size: 25),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    review.userName! + " (",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Icon(Icons.star,
+                                                      size: 20,
+                                                      color: Colors.yellow),
+                                                  Text(
+                                                    review.rating! + ")",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 4),
+                                              Text(review.comment ?? ""),
+                                              SizedBox(height: 8),
+                                              review.images!.isEmpty
+                                                  ? Container()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        final imageProvider =
+                                                            Image.network(review
+                                                                        .images!
+                                                                        .first ??
+                                                                    "")
+                                                                .image;
+                                                        showImageViewer(context,
+                                                            imageProvider,
+                                                            onViewerDismissed:
+                                                                () {
+                                                          print("dismissed");
+                                                        });
+                                                      },
+                                                      child: Image.network(
+                                                        review.images!.first ??
+                                                            "",
+                                                        height: 45,
+                                                      ),
+                                                    )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+
+                                // ListTile(
+                                //   title: Text(review.comment ?? ""),
+                                //   subtitle: Text('${review.userName}'),
+                                //   leading: CircleAvatar(
+                                //     child: Text(review.rating!),
+                                //     backgroundColor: Colors.blue,
+                                //     foregroundColor: Colors.white,
+                                //   ),
+                                // );
+                              },
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -808,6 +1011,148 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
   bool verifie = false;
   String? controller;
   String? OTPIS;
+  double _rating = 0;
+  File? selectedFile;
+  TextEditingController _commentController = TextEditingController();
+
+  Future<void> showRatingDialog() async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: Text('Write a Review'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RatingBar.builder(
+                    initialRating: _rating,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: false,
+                    itemCount: 5,
+                    itemSize: 30,
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      setState(() {
+                        _rating = rating;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: _commentController,
+                    decoration: InputDecoration(
+                      labelText: 'Comment',
+                      border: OutlineInputBorder(),
+                    ),
+                    maxLines: 3,
+                  ),
+                  SizedBox(height: 2),
+                  selectedFile == null
+                      ? GestureDetector(
+                          onTap: () {
+                            _pickImage(ImageSource.gallery);
+                            setState(() {});
+                          },
+                          child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Container(
+                                  decoration:
+                                      BoxDecoration(border: Border.all()),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text("Select Image"),
+                                  ))),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            _pickImage(ImageSource.gallery);
+                            setState(() {});
+                          },
+                          child: Image.file(
+                            selectedFile!,
+                            height: 100,
+                          ),
+                        )
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Here you can handle the submission of the review
+                    print('Rating: $_rating');
+                    print('Comment: ${_commentController.text}');
+                    //Navigator.of(context).pop();
+                    // Close the dialog
+                    addMediaReview();
+                  },
+                  child: Text('Submit'),
+                ),
+              ],
+            );
+          });
+        });
+  }
+
+  addMediaReview() async {
+    var headers = {
+      'Cookie': 'ci_session=132520c09b577cf52b95da927b9b0491da5d3bda'
+    };
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var sessionId = sharedPreferences.getString('id');
+    print("heree");
+
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}set_product_rating'));
+    request.fields.addAll({
+      'user_id': sessionId!,
+      'product_id': widget.pId.toString(),
+      'rating': _rating.toString(),
+      'comment': _commentController.text
+    });
+    if (selectedFile == null) {
+    } else {
+      request.files.add(
+          await http.MultipartFile.fromPath('images[]', selectedFile!.path));
+    }
+
+    print(request.fields.toString());
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalResult = jsonDecode(result);
+      print(finalResult.toString());
+      Fluttertoast.showToast(msg: finalResult["message"]);
+      Navigator.pop(context, true);
+      getProductReviewApi();
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        selectedFile = File(pickedFile.path);
+      });
+      Navigator.pop(context);
+      showRatingDialog();
+    }
+  }
 
   void showDialogContactSuplier(
       String productId, Mobile, String sellerId) async {
@@ -1193,6 +1538,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
   }
 
   GetHomeProductDetailsModel? getHomeProductDetails;
+  RatingsModel? ratingsModel;
   getProductDetailsApi() async {
     var headers = {
       'Cookie': 'ci_session=7b70d852d78e7fa54dfcb9f70964683c6b672974'
@@ -1215,6 +1561,30 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
         }
       });
       log('____Aaa______${result}_________');
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  getProductReviewApi() async {
+    var headers = {
+      'Cookie': 'ci_session=7b70d852d78e7fa54dfcb9f70964683c6b672974'
+    };
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}get_product_rating'));
+    request.fields.addAll({
+      'product_id': widget.pId ?? "",
+    });
+    print('____this is a parameter_ ratings_____${request.fields}_________');
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalResult = ratingsModelFromJson(result);
+      setState(() {
+        ratingsModel = finalResult;
+      });
+      log('____Aaa_ result review_____${result}_________');
     } else {
       print(response.reasonPhrase);
     }

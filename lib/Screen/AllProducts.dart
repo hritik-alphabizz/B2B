@@ -895,8 +895,12 @@ class _AllProductState extends State<AllProduct> {
                                                   children: [
                                                     InkWell(
                                                         onTap: () {
-                                                          launch(
-                                                              "${item.video}");
+                                                          launchUrl(
+                                                              Uri.parse(
+                                                                  item.video ??
+                                                                      ""),
+                                                              mode: LaunchMode
+                                                                  .externalApplication);
                                                         },
                                                         child: Row(
                                                           children: [
@@ -909,9 +913,7 @@ class _AllProductState extends State<AllProduct> {
                                                             SizedBox(
                                                               width: 5,
                                                             ),
-                                                            InkWell(
-                                                                child: Text(
-                                                                    "Watch Video"))
+                                                            Text("Watch Video")
                                                           ],
                                                         )),
                                                     Row(
@@ -1066,7 +1068,8 @@ class _AllProductState extends State<AllProduct> {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               const BorderRadius
-                                                                  .all(Radius
+                                                                      .all(
+                                                                  Radius
                                                                       .circular(
                                                                           6)),
                                                           border: Border.all(
