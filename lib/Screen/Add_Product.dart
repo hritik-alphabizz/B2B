@@ -25,9 +25,9 @@ class AddProduct extends StatefulWidget {
 }
 
 List<String> otherImageList = [];
+List<String> broncherImageUrl1 = [];
 GetSubData? selectedSubCategory;
 String? productImageUrl1;
-String? broncherImageUrl1;
 GetSubCatModel? getSubCatModel;
 GetSubData? getSubData;
 
@@ -911,42 +911,70 @@ class _AddProductState extends State<AddProduct> {
                         InkWell(
                           onTap: () async {
                             // showExitPopup3();
-                            var result = await Navigator.push(
+                            broncherImageUrl1.clear();
+                            //  showExitPopup2();
+                            List<String> result = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Media(
-                                          from: 'Broncherimage',
+                                          from: 'other',
                                         )));
-
                             if (result != null) {
                               setState(() {
-                                broncherImageUrl1 = result.toString();
+                                broncherImageUrl1 = result;
                               });
                             }
+                            // var result = await Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => Media(
+                            //               from: 'Broncherimage',
+                            //             )));
+
+                            // if (result != null) {
+                            //   setState(() {
+                            //     broncherImageUrl1 = result.toString();
+                            //   });
+                            //  }
                           },
                           child: Container(
-                            width: 100,
-                            color: colors.primary,
-                            height: broncherImageUrl1 == null ? 50 : 100,
-                            child: broncherImageUrl1 == null ||
-                                    broncherImageUrl1 == ""
-                                ? const Center(
-                                    child: Text(
-                                    "Upload ",
-                                    style: TextStyle(color: colors.white),
-                                  ))
-                                : Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(0),
-                                        child: Image.network(
-                                          broncherImageUrl1!,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                    ],
+                            width: broncherImageUrl1.isEmpty
+                                ? 100
+                                : MediaQuery.of(context).size.width * 0.8,
+                            color: broncherImageUrl1.isEmpty
+                                ? colors.primary
+                                : Colors.white,
+                            height: broncherImageUrl1.isEmpty ? 50 : 100,
+                            child: broncherImageUrl1.isEmpty
+                                ? SizedBox(
+                                    child: const Center(
+                                        child: Text(
+                                      "Upload ",
+                                      style: TextStyle(color: colors.white),
+                                    )),
+                                  )
+                                : SizedBox(
+                                    height: 100,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: broncherImageUrl1.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                            child: Image.network(
+                                              '$imageUrl${broncherImageUrl1[index]}',
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
                           ),
                         ),
@@ -1039,6 +1067,7 @@ class _AddProductState extends State<AddProduct> {
                                         child: Row(
                                           children: [
                                             Expanded(
+                                              flex: 4,
                                               child: Container(
                                                 height: 45,
                                                 decoration: BoxDecoration(
@@ -1062,9 +1091,10 @@ class _AddProductState extends State<AddProduct> {
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 5,
+                                              width: 10,
                                             ),
                                             Expanded(
+                                              flex: 4,
                                               child: Container(
                                                 height: 45,
                                                 decoration: BoxDecoration(
@@ -1091,38 +1121,25 @@ class _AddProductState extends State<AddProduct> {
                                               width: 5,
                                             ),
                                             Expanded(
-                                              child: Container(
-                                                  height: 45,
-                                                  child: Btn(
-                                                    title: 'Add',
-                                                    onPress: () {
-                                                      if (!myList.contains(
-                                                          controllersOfController[
-                                                                  index][0]
-                                                              .text)) {
-                                                        myList.add(
-                                                            controllersOfController[
-                                                                    index][0]
-                                                                .text);
-                                                        myList2.add(
-                                                            controllersOfController[
-                                                                    index][1]
-                                                                .text);
-                                                      } else {
-                                                        Fluttertoast.showToast(
-                                                            msg:
-                                                                "Attribute Alreay added");
-                                                      }
+                                                flex: 1,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      controllersOfController
+                                                          .removeAt(index);
+
+                                                      setState(() {});
                                                     },
-                                                  )),
-                                            ),
+                                                    child: Icon(Icons.delete))),
                                           ],
                                         ),
                                       )),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
                             Btn(
                               height: 45,
-                              title: "Add",
+                              title: "Add Attributes",
                               onPress: () {
                                 // addToMyList();
                                 List<TextEditingController> controlle1 = [];
@@ -1286,7 +1303,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),*/
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Custom_Text(
                           text: 'Description',
@@ -1515,8 +1532,11 @@ class _AddProductState extends State<AddProduct> {
       'sub_cat_id': subCatId ?? '1',
       'product_type': 'simple_type',
       'pro_input_image': productImageUrl1?.split('.com/')[1] ?? '',
+      "broucher_image": broncherImageUrl1.join(','),
       'other_images': otherImageList.join(','),
       'attribute_values': '1',
+      "video": _videoLink.text,
+      "video_type": videoType.toLowerCase(),
       'simple_price': '4',
       'simple_special_price': '2',
       'attribute_title': myList.join(','),
@@ -1532,7 +1552,7 @@ class _AddProductState extends State<AddProduct> {
       otherImageList.clear();
       selectedSubCategory = null;
       productImageUrl1 = null;
-      broncherImageUrl1 = null;
+      broncherImageUrl1.clear();
       getSubCatModel = null;
       var result = await response.stream.bytesToString();
       var finalResult = jsonDecode(result);
@@ -1542,9 +1562,15 @@ class _AddProductState extends State<AddProduct> {
       //     return showAlertDialog(context);
       //   },
       // );
-      Fluttertoast.showToast(
-          msg: "${finalResult['message']}" ". It's in review now.");
-      Navigator.pop(context);
+
+      print(finalResult.toString());
+      if (finalResult["error"] == true) {
+        Fluttertoast.showToast(msg: "${finalResult['message']}");
+      } else {
+        Fluttertoast.showToast(
+            msg: "${finalResult['message']}" ". It's in review now.");
+        Navigator.pop(context);
+      }
 
       setState(() {
         isLodding = false;
@@ -1560,13 +1586,13 @@ class _AddProductState extends State<AddProduct> {
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OK"),
       onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const GetProductScreen()),
         );
       },
+      child: Text(""),
     );
 
     // set up the AlertDialog

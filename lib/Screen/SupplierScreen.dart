@@ -1,31 +1,24 @@
 import 'dart:convert';
-import 'dart:developer';
-
-import 'package:b2b/AuthView/otp_verify.dart';
-import 'package:b2b/AuthView/register.dart';
+import 'package:b2b/AuthView/login.dart';
 import 'package:b2b/Model/temp_model.dart';
 import 'package:b2b/Screen/AllProducts.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
 import 'package:b2b/apiServices/apiStrings.dart';
 import 'package:b2b/color.dart';
 import 'package:b2b/utils/GetPreference.dart';
-import 'package:b2b/widgets/categoryCard.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Api.path.dart';
-import '../Model/GetHomeCategoryModel.dart';
 import '../Model/Get_all_cat_model.dart';
 import '../Model/Get_suppplier_or_client_model.dart';
 import '../Model/SupplierCatModel.dart';
-import '../Model/businessCategoruModel.dart';
 import '../Model/suplier_Client_supplier_response.dart';
 import '../widgets/Appbar.dart';
 import '../widgets/appButton.dart';
@@ -1108,13 +1101,12 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                               children: [
                                                 InkWell(
                                                     onTap: () {
-                                                       launchUrl(
+                                                      launchUrl(
                                                           Uri.parse(
                                                               "${valueList[i].temp![index].video}" ??
                                                                   ""),
                                                           mode: LaunchMode
                                                               .externalApplication);
-                                                    
                                                     },
                                                     child: Row(
                                                       children: [
@@ -1131,34 +1123,65 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                                 "Watch Video"))
                                                       ],
                                                     )),
-                                                Row(
-                                                  children: [
-                                                    const CircleAvatar(
-                                                        radius: 15,
-                                                        backgroundColor:
-                                                            Colors.white,
-                                                        child: Icon(
-                                                          Icons.image,
-                                                          color: colors.primary,
-                                                        )),
-                                                    InkWell(
-                                                        onTap: () {
-                                                          showDialog<String>(
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                AlertDialog(
-                                                              title: const Text(
-                                                                  'Broucher Image'),
-                                                              content:
-                                                                  Image.network(
-                                                                      "${valueList[i].temp![index].broucherImage}"),
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: const Text(
-                                                            "Broucher"))
-                                                  ],
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    if (valueList[i]
+                                                        .temp![index]
+                                                        .broucherImage!
+                                                        .isEmpty) {
+                                                      Fluttertoast.showToast(
+                                                          msg:
+                                                              "Broucher image is empty");
+                                                    }
+                                                    List<ImageProvider<Object>>
+                                                        imageProviders = [];
+
+                                                    for (int i = 0;
+                                                        i <
+                                                            valueList[i]
+                                                                .temp![index]
+                                                                .broucherImage!
+                                                                .length;
+                                                        i++) {
+                                                      imageProviders.add(
+                                                          NetworkImage(valueList[
+                                                                  i]
+                                                              .temp![index]
+                                                              .broucherImage![i]
+                                                              .toString()));
+                                                    }
+
+                                                    MultiImageProvider
+                                                        multiImageProvider =
+                                                        MultiImageProvider(
+                                                            imageProviders);
+                                                    showImageViewerPager(
+                                                        context,
+                                                        multiImageProvider,
+                                                        doubleTapZoomable: true,
+                                                        onPageChanged: (page) {
+                                                      print(
+                                                          "page changed to $page");
+                                                    }, onViewerDismissed:
+                                                            (page) {
+                                                      print(
+                                                          "dismissed while on page $page");
+                                                    });
+                                                  },
+                                                  child: Row(
+                                                    children: [
+                                                      const CircleAvatar(
+                                                          radius: 15,
+                                                          backgroundColor:
+                                                              Colors.white,
+                                                          child: Icon(
+                                                            Icons.image,
+                                                            color:
+                                                                colors.primary,
+                                                          )),
+                                                      const Text("Broucher")
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1168,113 +1191,119 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                           ),
                                           Container(
                                             margin: const EdgeInsets.only(
-                                                left: 20, right: 20),
+                                                left: 15, right: 15),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
+                                                userId == null
+                                                    ? InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushReplacement(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const LoginPage(),
+                                                              ));
+                                                        },
+                                                        child: Container(
+                                                          height: 25,
+                                                          width: 25,
+                                                          decoration: const BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           50)),
-                                                          color: Colors
-                                                              .deepPurple),
-                                                  child: const Icon(
-                                                    Icons.add_circle,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5)),
-                                                          color: Colors
-                                                              .deepPurple),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.message,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          6)),
-                                                          color:
-                                                              colors.secondary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.mail_outline,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          50)),
-                                                          color:
-                                                              colors.primary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.location_pin,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
+                                                              color: Colors
+                                                                  .deepPurple),
+                                                          child: const Icon(
+                                                            Icons.add_circle,
+                                                            size: 15,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : SizedBox.shrink(),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 0),
+                                                  child: Row(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // openMap(
+                                                          //     getHomeProductDetails
+                                                          //             ?.data
+                                                          //             .first
+                                                          //             .latitude! ??
+                                                          //         "",
+                                                          //     getHomeProductDetails
+                                                          //             ?.data
+                                                          //             .first
+                                                          //             .longitude! ??
+                                                          //         "");
+                                                        },
+                                                        child:
+                                                            const CircleAvatar(
+                                                          radius: 15,
+                                                          backgroundColor:
+                                                              colors.secondary,
+                                                          child: Icon(
+                                                            Icons.location_pin,
+                                                            size: 15,
+                                                            color: colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                            "Images/Group 81121.png",
+                                                            height: 25,
+                                                          )),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                            "Images/Group 81119.png",
+                                                            height: 25,
+                                                          )),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {
+                                                            launchUrl(
+                                                                Uri.parse("mailto:" +
+                                                                    (valueList[i]
+                                                                            .temp![
+                                                                                index]
+                                                                            .email ??
+                                                                        "")),
+                                                                mode: LaunchMode
+                                                                    .externalApplication);
+                                                          },
+                                                          child: Image.asset(
+                                                            "Images/Group 81117.png",
+                                                            height: 25,
+                                                          ))
+                                                      //  Icon(
+                                                      //     Icons.mail,
+                                                      //     color: colors
+                                                      //         .primary)),
+                                                    ],
                                                   ),
                                                 ),
                                                 Container(
                                                   height: MediaQuery.of(context)
                                                           .size
                                                           .height /
-                                                      20,
+                                                      23,
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
-                                                      3,
+                                                      3.2,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
@@ -1299,6 +1328,26 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                                     .all(Radius
                                                                         .circular(
                                                                             50)),
+                                                            color: colors
+                                                                .secondary),
+                                                        child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    0),
+                                                            child: Icon(
+                                                                Icons.person,
+                                                                color: Colors
+                                                                    .white)),
+                                                      ),
+                                                      Container(
+                                                        height: 25,
+                                                        width: 25,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
                                                             color: valueList[i]
                                                                         .temp![
                                                                             index]
@@ -1307,16 +1356,13 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                                 ? colors.primary
                                                                 : colors
                                                                     .secondary),
-                                                        child: const Padding(
+                                                        child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
-                                                                  left: 5,
-                                                                  right: 5,
-                                                                  top: 3,
-                                                                  bottom: 3),
-                                                          child: Icon(
-                                                            Icons.description,
-                                                            size: 15,
+                                                              const EdgeInsets
+                                                                  .all(3.0),
+                                                          child: Image.asset(
+                                                            "Images/phone.png",
+                                                            scale: 2,
                                                             color: Colors.white,
                                                           ),
                                                         ),
@@ -1333,55 +1379,23 @@ class _SupplierScreenState extends State<SupplierScreen> {
                                                             color: valueList[i]
                                                                         .temp![
                                                                             index]
-                                                                        .subscriptionType ==
-                                                                    1
-                                                                ? colors.primary
+                                                                        .subscriptionType !=
+                                                                    "1"
+                                                                ? Colors.red
                                                                 : colors
                                                                     .secondary),
-                                                        child: const Padding(
+                                                        child: Padding(
                                                           padding:
                                                               EdgeInsets.only(
                                                                   left: 5,
                                                                   right: 5,
                                                                   top: 3,
                                                                   bottom: 3),
-                                                          child: Icon(
-                                                            Icons
-                                                                .check_circle_outline,
-                                                            size: 15,
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 25,
-                                                        width: 25,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                            color: valueList[i]
-                                                                        .temp![
-                                                                            index]
-                                                                        .subscriptionType ==
-                                                                    1
-                                                                ? colors.primary
-                                                                : colors
-                                                                    .secondary),
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 5,
-                                                                  right: 5,
-                                                                  top: 3,
-                                                                  bottom: 3),
-                                                          child: Icon(
-                                                            Icons.verified_user,
-                                                            size: 15,
-                                                            color: Colors.white,
-                                                          ),
+                                                          child: Image.asset(
+                                                              "Images/person.png",
+                                                              color:
+                                                                  Colors.white,
+                                                              scale: 2),
                                                         ),
                                                       ),
                                                     ],
@@ -1481,7 +1495,8 @@ class _SupplierScreenState extends State<SupplierScreen> {
         setState(() {
           isLoading = false;
         });
-        print("temp model is ${tempList.first.lat} ${tempList.first.lang}");
+        print(
+            "temp model is ${tempList.first.latitude} ${tempList.first.longitude}");
 
         for (int i = 0; i < valueList.length; i++) {
           for (int j = 0; j < valueList[i].temp!.length; j++) {

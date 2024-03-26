@@ -1200,16 +1200,17 @@
 //
 // }
 
-
 // To parse this JSON data, do
 //
 //     final productUpdateModel = productUpdateModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ProductUpdateModel productUpdateModelFromJson(String str) => ProductUpdateModel.fromJson(json.decode(str));
+ProductUpdateModel productUpdateModelFromJson(String str) =>
+    ProductUpdateModel.fromJson(json.decode(str));
 
-String productUpdateModelToJson(ProductUpdateModel data) => json.encode(data.toJson());
+String productUpdateModelToJson(ProductUpdateModel data) =>
+    json.encode(data.toJson());
 
 class ProductUpdateModel {
   bool error;
@@ -1238,33 +1239,35 @@ class ProductUpdateModel {
     required this.data,
   });
 
-  factory ProductUpdateModel.fromJson(Map<String, dynamic> json) => ProductUpdateModel(
-    error: json["error"],
-    message: json["message"],
-    minPrice: json["min_price"],
-    maxPrice: json["max_price"],
-    search: json["search"],
-    filters: List<Filter>.from(json["filters"].map((x) => Filter.fromJson(x))),
-    tags: List<String>.from(json["tags"].map((x) => x)),
-    total: json["total"],
-    offset: json["offset"],
-    subcategories: List<dynamic>.from(json["subcategories"].map((x) => x)),
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-  );
+  factory ProductUpdateModel.fromJson(Map<String, dynamic> json) =>
+      ProductUpdateModel(
+        error: json["error"],
+        message: json["message"],
+        minPrice: json["min_price"],
+        maxPrice: json["max_price"],
+        search: json["search"],
+        filters:
+            List<Filter>.from(json["filters"].map((x) => Filter.fromJson(x))),
+        tags: List<String>.from(json["tags"].map((x) => x)),
+        total: json["total"],
+        offset: json["offset"],
+        subcategories: List<dynamic>.from(json["subcategories"].map((x) => x)),
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "error": error,
-    "message": message,
-    "min_price": minPrice,
-    "max_price": maxPrice,
-    "search": search,
-    "filters": List<dynamic>.from(filters.map((x) => x.toJson())),
-    "tags": List<dynamic>.from(tags.map((x) => x)),
-    "total": total,
-    "offset": offset,
-    "subcategories": List<dynamic>.from(subcategories.map((x) => x)),
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "error": error,
+        "message": message,
+        "min_price": minPrice,
+        "max_price": maxPrice,
+        "search": search,
+        "filters": List<dynamic>.from(filters.map((x) => x.toJson())),
+        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "total": total,
+        "offset": offset,
+        "subcategories": List<dynamic>.from(subcategories.map((x) => x)),
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class Datum {
@@ -1305,6 +1308,7 @@ class Datum {
   String cancelableTill;
   String indicator;
   List<String> otherImages;
+  List<String> broucherImage;
   String videoType;
   String video;
   List<String> tags;
@@ -1324,7 +1328,6 @@ class Datum {
   dynamic street;
   String country;
   String guaranteePeriod;
-  String broucherImage;
   String madeIn;
   dynamic availability;
   String categoryName;
@@ -1425,162 +1428,167 @@ class Datum {
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    total: json["total"],
-    sales: json["sales"],
-    stockType: json["stock_type"],
-    isPricesInclusiveTax: json["is_prices_inclusive_tax"],
-    type: json["type"],
-    attrValueIds: json["attr_value_ids"],
-    sellerRating: json["seller_rating"],
-    sellerSlug: json["seller_slug"],
-    sellerNoOfRatings: json["seller_no_of_ratings"],
-    sellerProfile: json["seller_profile"],
-    storeName: json["store_name"],
-    storeDescription: json["store_description"],
-    sellerId: json["seller_id"],
-    sellerName: json["seller_name"],
-    id: json["id"],
-    stock: json["stock"],
-    name: json["name"],
-    categoryId: json["category_id"],
-    shortDescription: json["short_description"],
-    extraDescription: json["extra_description"],
-    slug: json["slug"],
-    description: json["description"],
-    totalAllowedQuantity: json["total_allowed_quantity"]??"",
-    deliverableType: json["deliverable_type"],
-    deliverableZipcodes: json["deliverable_zipcodes"],
-    minimumOrderQuantity: json["minimum_order_quantity"],
-    quantityStepSize: json["quantity_step_size"],
-    codAllowed: json["cod_allowed"],
-    rowOrder: json["row_order"],
-    rating: json["rating"],
-    noOfRatings: json["no_of_ratings"],
-    image: json["image"],
-    isReturnable: json["is_returnable"],
-    isCancelable: json["is_cancelable"],
-    cancelableTill: json["cancelable_till"],
-    indicator: json["indicator"],
-    otherImages: List<String>.from(json["other_images"].map((x) => x)),
-    videoType: json["video_type"],
-    video: json["video"],
-    tags: List<String>.from(json["tags"].map((x) => x)),
-    warrantyPeriod: json["warranty_period"],
-    attributeTitle: json["attribute_title"],
-    attributeValue: json["attribute_value"],
-    brand: json["brand"]??"",
-    subCatId: json["sub_cat_id"],
-    address: json["address"],
-    typeOfSeller: json["type_of_seller"],
-    stateName: json["state_name"],
-    countryName: json["country_name"],
-    pincode: json["pincode"],
-    destrict: json["destrict"],
-    city: json["city"],
-    area: json["area"],
-    street: json["street"],
-    country: json["country"],
-    guaranteePeriod: json["guarantee_period"],
-    broucherImage: json["broucher_image"],
-    madeIn: json["made_in"]??"",
-    availability: json["availability"],
-    categoryName: json["category_name"],
-    subCatName: json["sub_cat_name"]??"",
-    taxPercentage: json["tax_percentage"],
-    reviewImages: List<dynamic>.from(json["review_images"].map((x) => x)),
-    attributes: List<Attribute>.from(json["attributes"].map((x) => Attribute.fromJson(x))),
-    variants: List<Variant>.from(json["variants"].map((x) => Variant.fromJson(x))),
-    minMaxPrice: MinMaxPrice.fromJson(json["min_max_price"]),
-    deliverableZipcodesIds: json["deliverable_zipcodes_ids"],
-    productData: List<ProductDatum>.from(json["product_data"].map((x) => ProductDatum.fromJson(x))),
-    isDeliverable: json["is_deliverable"],
-    isPurchased: json["is_purchased"],
-    isFavorite: json["is_favorite"],
-    imageMd: json["image_md"],
-    imageSm: json["image_sm"],
-    otherImagesMd: List<String>.from(json["other_images_md"].map((x) => x)),
-    otherImagesSm: List<String>.from(json["other_images_sm"].map((x) => x)),
-    variantAttributes: List<dynamic>.from(json["variant_attributes"].map((x) => x)),
-  );
+        total: json["total"],
+        sales: json["sales"],
+        stockType: json["stock_type"],
+        isPricesInclusiveTax: json["is_prices_inclusive_tax"],
+        type: json["type"],
+        attrValueIds: json["attr_value_ids"],
+        sellerRating: json["seller_rating"],
+        sellerSlug: json["seller_slug"],
+        sellerNoOfRatings: json["seller_no_of_ratings"],
+        sellerProfile: json["seller_profile"],
+        storeName: json["store_name"],
+        storeDescription: json["store_description"],
+        sellerId: json["seller_id"],
+        sellerName: json["seller_name"],
+        id: json["id"],
+        stock: json["stock"],
+        name: json["name"],
+        categoryId: json["category_id"],
+        shortDescription: json["short_description"],
+        extraDescription: json["extra_description"],
+        slug: json["slug"],
+        description: json["description"],
+        totalAllowedQuantity: json["total_allowed_quantity"] ?? "",
+        deliverableType: json["deliverable_type"],
+        deliverableZipcodes: json["deliverable_zipcodes"],
+        minimumOrderQuantity: json["minimum_order_quantity"],
+        quantityStepSize: json["quantity_step_size"],
+        codAllowed: json["cod_allowed"],
+        rowOrder: json["row_order"],
+        rating: json["rating"],
+        noOfRatings: json["no_of_ratings"],
+        image: json["image"],
+        isReturnable: json["is_returnable"],
+        isCancelable: json["is_cancelable"],
+        cancelableTill: json["cancelable_till"],
+        indicator: json["indicator"],
+        otherImages: List<String>.from(json["other_images"].map((x) => x)),
+        videoType: json["video_type"],
+        video: json["video"],
+        tags: List<String>.from(json["tags"].map((x) => x)),
+        warrantyPeriod: json["warranty_period"],
+        attributeTitle: json["attribute_title"],
+        attributeValue: json["attribute_value"],
+        brand: json["brand"] ?? "",
+        subCatId: json["sub_cat_id"],
+        address: json["address"],
+        typeOfSeller: json["type_of_seller"],
+        stateName: json["state_name"],
+        countryName: json["country_name"],
+        pincode: json["pincode"],
+        destrict: json["destrict"],
+        city: json["city"],
+        area: json["area"],
+        street: json["street"],
+        country: json["country"],
+        guaranteePeriod: json["guarantee_period"],
+        broucherImage: List<String>.from(json["broucher_image"].map((x) => x)),
+        madeIn: json["made_in"] ?? "",
+        availability: json["availability"],
+        categoryName: json["category_name"],
+        subCatName: json["sub_cat_name"] ?? "",
+        taxPercentage: json["tax_percentage"],
+        reviewImages: List<dynamic>.from(json["review_images"].map((x) => x)),
+        attributes: List<Attribute>.from(
+            json["attributes"].map((x) => Attribute.fromJson(x))),
+        variants: List<Variant>.from(
+            json["variants"].map((x) => Variant.fromJson(x))),
+        minMaxPrice: MinMaxPrice.fromJson(json["min_max_price"]),
+        deliverableZipcodesIds: json["deliverable_zipcodes_ids"],
+        productData: List<ProductDatum>.from(
+            json["product_data"].map((x) => ProductDatum.fromJson(x))),
+        isDeliverable: json["is_deliverable"],
+        isPurchased: json["is_purchased"],
+        isFavorite: json["is_favorite"],
+        imageMd: json["image_md"],
+        imageSm: json["image_sm"],
+        otherImagesMd: List<String>.from(json["other_images_md"].map((x) => x)),
+        otherImagesSm: List<String>.from(json["other_images_sm"].map((x) => x)),
+        variantAttributes:
+            List<dynamic>.from(json["variant_attributes"].map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "total": total,
-    "sales": sales,
-    "stock_type": stockType,
-    "is_prices_inclusive_tax": isPricesInclusiveTax,
-    "type": type,
-    "attr_value_ids": attrValueIds,
-    "seller_rating": sellerRating,
-    "seller_slug": sellerSlug,
-    "seller_no_of_ratings": sellerNoOfRatings,
-    "seller_profile": sellerProfile,
-    "store_name": storeName,
-    "store_description": storeDescription,
-    "seller_id": sellerId,
-    "seller_name": sellerName,
-    "id": id,
-    "stock": stock,
-    "name": name,
-    "category_id": categoryId,
-    "short_description": shortDescription,
-    "extra_description": extraDescription,
-    "slug": slug,
-    "description": description,
-    "total_allowed_quantity": totalAllowedQuantity,
-    "deliverable_type": deliverableType,
-    "deliverable_zipcodes": deliverableZipcodes,
-    "minimum_order_quantity": minimumOrderQuantity,
-    "quantity_step_size": quantityStepSize,
-    "cod_allowed": codAllowed,
-    "row_order": rowOrder,
-    "rating": rating,
-    "no_of_ratings": noOfRatings,
-    "image": image,
-    "is_returnable": isReturnable,
-    "is_cancelable": isCancelable,
-    "cancelable_till": cancelableTill,
-    "indicator": indicator,
-    "other_images": List<dynamic>.from(otherImages.map((x) => x)),
-    "video_type": videoType,
-    "video": video,
-    "tags": List<dynamic>.from(tags.map((x) => x)),
-    "warranty_period": warrantyPeriod,
-    "attribute_title": attributeTitle,
-    "attribute_value": attributeValue,
-    "brand": brand,
-    "sub_cat_id": subCatId,
-    "address": address,
-    "type_of_seller": typeOfSeller,
-    "state_name": stateName,
-    "country_name": countryName,
-    "pincode": pincode,
-    "destrict": destrict,
-    "city": city,
-    "area": area,
-    "street": street,
-    "country": country,
-    "guarantee_period": guaranteePeriod,
-    "broucher_image": broucherImage,
-    "made_in": madeIn,
-    "availability": availability,
-    "category_name": categoryName,
-    "sub_cat_name": subCatName,
-    "tax_percentage": taxPercentage,
-    "review_images": List<dynamic>.from(reviewImages.map((x) => x)),
-    "attributes": List<dynamic>.from(attributes.map((x) => x.toJson())),
-    "variants": List<dynamic>.from(variants.map((x) => x.toJson())),
-    "min_max_price": minMaxPrice.toJson(),
-    "deliverable_zipcodes_ids": deliverableZipcodesIds,
-    "product_data": List<dynamic>.from(productData.map((x) => x.toJson())),
-    "is_deliverable": isDeliverable,
-    "is_purchased": isPurchased,
-    "is_favorite": isFavorite,
-    "image_md": imageMd,
-    "image_sm": imageSm,
-    "other_images_md": List<dynamic>.from(otherImagesMd.map((x) => x)),
-    "other_images_sm": List<dynamic>.from(otherImagesSm.map((x) => x)),
-    "variant_attributes": List<dynamic>.from(variantAttributes.map((x) => x)),
-  };
+        "total": total,
+        "sales": sales,
+        "stock_type": stockType,
+        "is_prices_inclusive_tax": isPricesInclusiveTax,
+        "type": type,
+        "attr_value_ids": attrValueIds,
+        "seller_rating": sellerRating,
+        "seller_slug": sellerSlug,
+        "seller_no_of_ratings": sellerNoOfRatings,
+        "seller_profile": sellerProfile,
+        "store_name": storeName,
+        "store_description": storeDescription,
+        "seller_id": sellerId,
+        "seller_name": sellerName,
+        "id": id,
+        "stock": stock,
+        "name": name,
+        "category_id": categoryId,
+        "short_description": shortDescription,
+        "extra_description": extraDescription,
+        "slug": slug,
+        "description": description,
+        "total_allowed_quantity": totalAllowedQuantity,
+        "deliverable_type": deliverableType,
+        "deliverable_zipcodes": deliverableZipcodes,
+        "minimum_order_quantity": minimumOrderQuantity,
+        "quantity_step_size": quantityStepSize,
+        "cod_allowed": codAllowed,
+        "row_order": rowOrder,
+        "rating": rating,
+        "no_of_ratings": noOfRatings,
+        "image": image,
+        "is_returnable": isReturnable,
+        "is_cancelable": isCancelable,
+        "cancelable_till": cancelableTill,
+        "indicator": indicator,
+        "other_images": List<dynamic>.from(otherImages.map((x) => x)),
+        "video_type": videoType,
+        "video": video,
+        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "warranty_period": warrantyPeriod,
+        "attribute_title": attributeTitle,
+        "attribute_value": attributeValue,
+        "brand": brand,
+        "sub_cat_id": subCatId,
+        "address": address,
+        "type_of_seller": typeOfSeller,
+        "state_name": stateName,
+        "country_name": countryName,
+        "pincode": pincode,
+        "destrict": destrict,
+        "city": city,
+        "area": area,
+        "street": street,
+        "country": country,
+        "guarantee_period": guaranteePeriod,
+        "broucher_image": List<dynamic>.from(broucherImage.map((x) => x)),
+        "made_in": madeIn,
+        "availability": availability,
+        "category_name": categoryName,
+        "sub_cat_name": subCatName,
+        "tax_percentage": taxPercentage,
+        "review_images": List<dynamic>.from(reviewImages.map((x) => x)),
+        "attributes": List<dynamic>.from(attributes.map((x) => x.toJson())),
+        "variants": List<dynamic>.from(variants.map((x) => x.toJson())),
+        "min_max_price": minMaxPrice.toJson(),
+        "deliverable_zipcodes_ids": deliverableZipcodesIds,
+        "product_data": List<dynamic>.from(productData.map((x) => x.toJson())),
+        "is_deliverable": isDeliverable,
+        "is_purchased": isPurchased,
+        "is_favorite": isFavorite,
+        "image_md": imageMd,
+        "image_sm": imageSm,
+        "other_images_md": List<dynamic>.from(otherImagesMd.map((x) => x)),
+        "other_images_sm": List<dynamic>.from(otherImagesSm.map((x) => x)),
+        "variant_attributes":
+            List<dynamic>.from(variantAttributes.map((x) => x)),
+      };
 }
 
 class Attribute {
@@ -1601,22 +1609,22 @@ class Attribute {
   });
 
   factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
-    ids: json["ids"],
-    value: json["value"],
-    attrName: json["attr_name"],
-    name: json["name"],
-    swatcheType: json["swatche_type"],
-    swatcheValue: json["swatche_value"],
-  );
+        ids: json["ids"],
+        value: json["value"],
+        attrName: json["attr_name"],
+        name: json["name"],
+        swatcheType: json["swatche_type"],
+        swatcheValue: json["swatche_value"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "ids": ids,
-    "value": value,
-    "attr_name": attrName,
-    "name": name,
-    "swatche_type": swatcheType,
-    "swatche_value": swatcheValue,
-  };
+        "ids": ids,
+        "value": value,
+        "attr_name": attrName,
+        "name": name,
+        "swatche_type": swatcheType,
+        "swatche_value": swatcheValue,
+      };
 }
 
 class MinMaxPrice {
@@ -1635,20 +1643,20 @@ class MinMaxPrice {
   });
 
   factory MinMaxPrice.fromJson(Map<String, dynamic> json) => MinMaxPrice(
-    minPrice: json["min_price"],
-    maxPrice: json["max_price"],
-    specialPrice: json["special_price"],
-    maxSpecialPrice: json["max_special_price"],
-    discountInPercentage: json["discount_in_percentage"],
-  );
+        minPrice: json["min_price"],
+        maxPrice: json["max_price"],
+        specialPrice: json["special_price"],
+        maxSpecialPrice: json["max_special_price"],
+        discountInPercentage: json["discount_in_percentage"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "min_price": minPrice,
-    "max_price": maxPrice,
-    "special_price": specialPrice,
-    "max_special_price": maxSpecialPrice,
-    "discount_in_percentage": discountInPercentage,
-  };
+        "min_price": minPrice,
+        "max_price": maxPrice,
+        "special_price": specialPrice,
+        "max_special_price": maxSpecialPrice,
+        "discount_in_percentage": discountInPercentage,
+      };
 }
 
 class ProductDatum {
@@ -1661,14 +1669,14 @@ class ProductDatum {
   });
 
   factory ProductDatum.fromJson(Map<String, dynamic> json) => ProductDatum(
-    title: json["title"],
-    value: json["value"],
-  );
+        title: json["title"],
+        value: json["value"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "value": value,
-  };
+        "title": title,
+        "value": value,
+      };
 }
 
 class Variant {
@@ -1729,62 +1737,62 @@ class Variant {
   });
 
   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
-    id: json["id"],
-    productId: json["product_id"],
-    attributeValueIds: json["attribute_value_ids"],
-    attributeSet: json["attribute_set"],
-    price: json["price"],
-    specialPrice: json["special_price"],
-    sku: json["sku"],
-    stock: json["stock"],
-    weight: json["weight"],
-    height: json["height"],
-    breadth: json["breadth"],
-    length: json["length"],
-    images: List<dynamic>.from(json["images"].map((x) => x)),
-    availability: json["availability"],
-    status: json["status"],
-    dateAdded: DateTime.parse(json["date_added"]),
-    color: json["color"],
-    packete: json["packete"],
-    variantIds: json["variant_ids"],
-    attrName: json["attr_name"],
-    variantValues: json["variant_values"],
-    swatcheType: json["swatche_type"],
-    swatcheValue: json["swatche_value"],
-    imagesMd: List<dynamic>.from(json["images_md"].map((x) => x)),
-    imagesSm: List<dynamic>.from(json["images_sm"].map((x) => x)),
-    cartCount: json["cart_count"],
-  );
+        id: json["id"],
+        productId: json["product_id"],
+        attributeValueIds: json["attribute_value_ids"],
+        attributeSet: json["attribute_set"],
+        price: json["price"],
+        specialPrice: json["special_price"],
+        sku: json["sku"],
+        stock: json["stock"],
+        weight: json["weight"],
+        height: json["height"],
+        breadth: json["breadth"],
+        length: json["length"],
+        images: List<dynamic>.from(json["images"].map((x) => x)),
+        availability: json["availability"],
+        status: json["status"],
+        dateAdded: DateTime.parse(json["date_added"]),
+        color: json["color"],
+        packete: json["packete"],
+        variantIds: json["variant_ids"],
+        attrName: json["attr_name"],
+        variantValues: json["variant_values"],
+        swatcheType: json["swatche_type"],
+        swatcheValue: json["swatche_value"],
+        imagesMd: List<dynamic>.from(json["images_md"].map((x) => x)),
+        imagesSm: List<dynamic>.from(json["images_sm"].map((x) => x)),
+        cartCount: json["cart_count"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "product_id": productId,
-    "attribute_value_ids": attributeValueIds,
-    "attribute_set": attributeSet,
-    "price": price,
-    "special_price": specialPrice,
-    "sku": sku,
-    "stock": stock,
-    "weight": weight,
-    "height": height,
-    "breadth": breadth,
-    "length": length,
-    "images": List<dynamic>.from(images.map((x) => x)),
-    "availability": availability,
-    "status": status,
-    "date_added": dateAdded.toIso8601String(),
-    "color": color,
-    "packete": packete,
-    "variant_ids": variantIds,
-    "attr_name": attrName,
-    "variant_values": variantValues,
-    "swatche_type": swatcheType,
-    "swatche_value": swatcheValue,
-    "images_md": List<dynamic>.from(imagesMd.map((x) => x)),
-    "images_sm": List<dynamic>.from(imagesSm.map((x) => x)),
-    "cart_count": cartCount,
-  };
+        "id": id,
+        "product_id": productId,
+        "attribute_value_ids": attributeValueIds,
+        "attribute_set": attributeSet,
+        "price": price,
+        "special_price": specialPrice,
+        "sku": sku,
+        "stock": stock,
+        "weight": weight,
+        "height": height,
+        "breadth": breadth,
+        "length": length,
+        "images": List<dynamic>.from(images.map((x) => x)),
+        "availability": availability,
+        "status": status,
+        "date_added": dateAdded.toIso8601String(),
+        "color": color,
+        "packete": packete,
+        "variant_ids": variantIds,
+        "attr_name": attrName,
+        "variant_values": variantValues,
+        "swatche_type": swatcheType,
+        "swatche_value": swatcheValue,
+        "images_md": List<dynamic>.from(imagesMd.map((x) => x)),
+        "images_sm": List<dynamic>.from(imagesSm.map((x) => x)),
+        "cart_count": cartCount,
+      };
 }
 
 class Filter {
@@ -1803,18 +1811,18 @@ class Filter {
   });
 
   factory Filter.fromJson(Map<String, dynamic> json) => Filter(
-    attributeValues: json["attribute_values"],
-    attributeValuesId: json["attribute_values_id"],
-    name: json["name"],
-    swatcheType: json["swatche_type"],
-    swatcheValue: json["swatche_value"],
-  );
+        attributeValues: json["attribute_values"],
+        attributeValuesId: json["attribute_values_id"],
+        name: json["name"],
+        swatcheType: json["swatche_type"],
+        swatcheValue: json["swatche_value"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "attribute_values": attributeValues,
-    "attribute_values_id": attributeValuesId,
-    "name": name,
-    "swatche_type": swatcheType,
-    "swatche_value": swatcheValue,
-  };
+        "attribute_values": attributeValues,
+        "attribute_values_id": attributeValuesId,
+        "name": name,
+        "swatche_type": swatcheType,
+        "swatche_value": swatcheValue,
+      };
 }

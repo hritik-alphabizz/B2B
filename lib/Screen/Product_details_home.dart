@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:b2b/AuthView/login.dart';
 import 'package:b2b/Screen/HomeScreen.dart';
-import 'package:b2b/Screen/MapHomeScreen.dart';
 import 'package:b2b/apiServices/apiConstants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -66,7 +64,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
   }
 
   List<String> images = [];
-
+  var userId = "";
   String? mNo;
   getProfile() async {
     final SharedPreferences sharedPreferences =
@@ -75,6 +73,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
     var headers = {
       'Cookie': 'ci_session=60e6733f1ca928a67f86820b734e34f4e5e0dd4e'
     };
+    userId = sessionId ?? "";
     if (sessionId == null) {
       yourMobileNumber.text = "";
     } else {
@@ -358,18 +357,18 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                           const SizedBox(height: 5),
                           Html(
                               data: getHomeProductDetails
-                                  ?.data.first.shortDescription),
+                                  ?.data!.first.shortDescription),
                           // Text(
-                          //     "${getHomeProductDetails?.data.first.shortDescription}"),
+                          //     "${getHomeProductDetails?.data!.first.shortDescription}"),
                           const SizedBox(height: 5),
 
-                          getHomeProductDetails?.data.first.videoType ==
+                          getHomeProductDetails?.data!.first.videoType ==
                                   "youtube"
                               ? GestureDetector(
                                   onTap: () {
                                     launchUrl(
                                         Uri.parse(getHomeProductDetails
-                                                ?.data.first.video ??
+                                                ?.data!.first.video ??
                                             ""),
                                         mode: LaunchMode.externalApplication);
                                   },
@@ -386,10 +385,167 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                   ),
                                 )
                               : Container(),
-                          getHomeProductDetails?.data.first.videoType ==
+                          getHomeProductDetails?.data!.first.videoType ==
                                   "youtube"
                               ? const SizedBox(height: 5)
                               : Container(),
+
+                          Container(
+                            margin: const EdgeInsets.only(left: 0, right: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 35,
+                                  width:
+                                      MediaQuery.of(context).size.width - 200,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(6)),
+                                      border: Border.all(
+                                          width: 2, color: Colors.grey),
+                                      color: colors.white),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () async {
+                                          final Uri url = Uri.parse(
+                                              getHomeProductDetails
+                                                      ?.data!.first.webLink ??
+                                                  "");
+                                          if (!await launchUrl(url)) {
+                                            throw Exception(
+                                                'Could not launch $url');
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(50)),
+                                              color: colors.primary),
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 5,
+                                                right: 5,
+                                                top: 3,
+                                                bottom: 3),
+                                            child: Icon(
+                                              Icons.link,
+                                              size: 15,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          final Uri url = Uri.parse(
+                                              getHomeProductDetails
+                                                      ?.data!.first.facebook ??
+                                                  "");
+                                          if (!await launchUrl(url)) {
+                                            throw Exception(
+                                                'Could not launch $url');
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(50)),
+                                              color: colors.primary),
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 5,
+                                                right: 5,
+                                                top: 3,
+                                                bottom: 3),
+                                            child: Icon(
+                                              Icons.facebook,
+                                              size: 15,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          final Uri url = Uri.parse(
+                                              getHomeProductDetails
+                                                      ?.data!.first.instagram ??
+                                                  "");
+                                          if (!await launchUrl(url)) {
+                                            throw Exception(
+                                                'Could not launch $url');
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(50)),
+                                              color: colors.primary),
+                                          child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 5,
+                                                  right: 5,
+                                                  top: 3,
+                                                  bottom: 3),
+                                              child: Image.asset(
+                                                "Images/instagram.png",
+                                                color: Colors.white,
+                                              )
+                                              // Icon(
+                                              //   Icons.verified_user,size: 15,
+                                              //   color: Colors.white,
+                                              // ),
+                                              ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          final Uri url = Uri.parse(
+                                              getHomeProductDetails
+                                                      ?.data!.first.linkedin ??
+                                                  "");
+                                          if (!await launchUrl(url)) {
+                                            throw Exception(
+                                                'Could not launch $url');
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(50)),
+                                              color: colors.primary),
+                                          child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 5,
+                                                  right: 5,
+                                                  top: 3,
+                                                  bottom: 3),
+                                              child: Image.asset(
+                                                "Images/linkedin.png",
+                                              )),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           const Text(
                             "Description: ",
                             style: TextStyle(
@@ -399,7 +555,7 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                           const SizedBox(height: 3),
                           Html(
                               data: getHomeProductDetails
-                                  ?.data.first.description),
+                                  ?.data!.first.description),
 
                           const SizedBox(height: 5),
                           const Text(
@@ -411,475 +567,305 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                           const SizedBox(height: 5),
                           Html(
                               data: getHomeProductDetails
-                                  ?.data.first.extraDescription),
+                                  ?.data!.first.extraDescription),
 
                           const SizedBox(height: 5),
-                          getHomeProductDetails?.data.first.attributeTitle == ""
+                          getHomeProductDetails?.data!.first.attributeTitle ==
+                                  ""
                               ? Container()
                               : Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TableWidget(
                                     dataList: getHomeProductDetails
-                                            ?.data.first.attributeTitle ??
+                                            ?.data!.first.attributeTitle ??
                                         "",
                                     dataListValue: getHomeProductDetails
-                                            ?.data.first.attributeValue ??
+                                            ?.data!.first.attributeValue ??
                                         "",
                                   ),
                                 ),
-                          const SizedBox(
-                            height: 8,
-                          ),
+                          // const SizedBox(
+                          //   height: 8,
+                          // ),
+
                           const Text(
                             "Address: ",
                             style: TextStyle(
                                 color: colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text("${getHomeProductDetails?.data.first.address}"),
+                          Text("${getHomeProductDetails?.data!.first.address}"),
                           const SizedBox(
                             height: 5,
                           ),
                           Text(
-                            "${getHomeProductDetails?.data.first.city},",
+                            "${getHomeProductDetails?.data!.first.city},",
                           ),
-                          Text("${getHomeProductDetails?.data.first.pincode},"),
                           Text(
-                              "${getHomeProductDetails?.data.first.destrict},"),
+                              "${getHomeProductDetails?.data!.first.pincode},"),
                           Text(
-                              "${getHomeProductDetails?.data.first.stateName}"),
+                              "${getHomeProductDetails?.data!.first.destrict},"),
+                          Text(
+                              "${getHomeProductDetails?.data!.first.stateName}"),
                           const Text("India"),
                           const SizedBox(height: 10),
 
                           userId != null
                               ? ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Colors.blueAccent)),
                                   onPressed: () {
                                     showRatingDialog();
                                   },
-                                  child: Text("Add Review"))
+                                  child: Text(
+                                    "Add Review",
+                                    style: TextStyle(color: Colors.white),
+                                  ))
                               : Container(),
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 95),
-                                    child: Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            openMap(
-                                                getHomeProductDetails?.data
-                                                        .first.latitude! ??
-                                                    "",
-                                                getHomeProductDetails?.data
-                                                        .first.longitude! ??
-                                                    "");
-                                          },
-                                          child: const CircleAvatar(
-                                            radius: 15,
-                                            backgroundColor: colors.secondary,
-                                            child: Icon(
-                                              Icons.location_pin,
-                                              size: 15,
-                                              color: colors.white,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      userId == null
+                                          ? InkWell(
+                                              onTap: () {
+                                                Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const LoginPage(),
+                                                    ));
+                                              },
+                                              child: Container(
+                                                height: 25,
+                                                width: 25,
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                50)),
+                                                    color: Colors.deepPurple),
+                                                child: const Icon(
+                                                  Icons.add_circle,
+                                                  size: 15,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            )
+                                          : SizedBox.shrink(),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 0),
+                                        child: Row(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                openMap(
+                                                    getHomeProductDetails?.data!
+                                                            .first.latitude! ??
+                                                        "",
+                                                    getHomeProductDetails?.data!
+                                                            .first.longitude! ??
+                                                        "");
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 15,
+                                                backgroundColor:
+                                                    colors.secondary,
+                                                child: Icon(
+                                                  Icons.location_pin,
+                                                  size: 15,
+                                                  color: colors.white,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 7),
-                                        Image.asset(
-                                          "Images/phone.png",
-                                          scale: 2,
-                                          color: getHomeProductDetails
-                                                      ?.data.first.tax_number ==
-                                                  ""
-                                              ? colors.primary
-                                              : colors.secondary,
-                                        ),
-                                        const SizedBox(width: 7),
-                                        GestureDetector(
-                                            onTap: () {
-                                              print("EMAIL" +
-                                                  (getHomeProductDetails
-                                                          ?.data.first.email!
-                                                          .toString() ??
-                                                      ""));
-
-                                              launchUrl(
-                                                  Uri.parse("mailto:" +
-                                                      (getHomeProductDetails
-                                                              ?.data
-                                                              .first
-                                                              .email ??
-                                                          "")),
-                                                  mode: LaunchMode
-                                                      .externalApplication);
-                                            },
-                                            child: Icon(Icons.mail,
-                                                color: colors.primary)),
-                                        // Image.asset("Images/person.png",
-                                        //     scale: 2),
-                                        const SizedBox(width: 7),
-                                        Image.asset("Images/register.png",
-                                            scale: 2),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 0, right: 20),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              20,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              100,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(6)),
-                                              border: Border.all(
-                                                  width: 2, color: Colors.grey),
-                                              color: colors.white),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              GestureDetector(
+                                            const SizedBox(width: 5),
+                                            GestureDetector(
                                                 onTap: () {
-                                                  // showDialog<String>(
-                                                  //   context: context,
-                                                  //   builder: (BuildContext
-                                                  //           context) =>
-                                                  //       AlertDialog(
-                                                  //     title: const Text(
-                                                  //         'Broucher Image'),
-                                                  //     content: getHomeProductDetails
-                                                  //                 ?.data
+                                                  // launchUrl(
+                                                  //     Uri.parse("tel:" +
+                                                  //         (getHomeProductDetails
+                                                  //                 ?.data!
                                                   //                 .first
-                                                  //                 .broucherImage ==
-                                                  //             null
-                                                  //         ? Image.asset(
-                                                  //             "Images/no-image-icon.png",
-                                                  //             height: 120,
-                                                  //             width: double
-                                                  //                 .infinity,
-                                                  //             fit: BoxFit.fill,
-                                                  //           )
-                                                  //         : GestureDetector(
-                                                  //             onTap: () {
-                                                  //               final imageProvider =
-                                                  //                   Image.network(
-                                                  //                           getHomeProductDetails?.data.first.broucherImage ??
-                                                  //                               "")
-                                                  //                       .image;
-                                                  //               showImageViewer(
-                                                  //                   context,
-                                                  //                   imageProvider,
-                                                  //                   onViewerDismissed:
-                                                  //                       () {
-                                                  //                 print(
-                                                  //                     "dismissed");
-                                                  //               });
-                                                  //             },
-                                                  //             child: Image.network(
-                                                  //                 "${getHomeProductDetails?.data.first.broucherImage}"),
-                                                  //           ),
-                                                  //   ),
-                                                  // );
-
-                                                  final imageProvider = Image.network(
-                                                          getHomeProductDetails
-                                                                  ?.data
+                                                  //                 .mobile ??
+                                                  //             "")),
+                                                  //     mode: LaunchMode
+                                                  //         .externalApplication);
+                                                },
+                                                child: Image.asset(
+                                                  "Images/Group 81121.png",
+                                                  height: 25,
+                                                )),
+                                            const SizedBox(width: 5),
+                                            GestureDetector(
+                                                onTap: () {
+                                                  // launchUrl(
+                                                  //     Uri.parse("sms:" +
+                                                  //         (getHomeProductDetails
+                                                  //                 ?.data!
+                                                  //                 .first
+                                                  //                 .mobile ??
+                                                  //             "")),
+                                                  //     mode: LaunchMode
+                                                  //         .externalApplication);
+                                                },
+                                                child: Image.asset(
+                                                  "Images/Group 81119.png",
+                                                  height: 25,
+                                                )),
+                                            const SizedBox(width: 5),
+                                            GestureDetector(
+                                                onTap: () {
+                                                  launchUrl(
+                                                      Uri.parse("mailto:" +
+                                                          (getHomeProductDetails
+                                                                  ?.data!
                                                                   .first
-                                                                  .broucherImage ??
-                                                              "")
-                                                      .image;
-                                                  showImageViewer(
-                                                      context, imageProvider,
-                                                      onViewerDismissed: () {
-                                                    print("dismissed");
-                                                  });
+                                                                  .email ??
+                                                              "")),
+                                                      mode: LaunchMode
+                                                          .externalApplication);
                                                 },
-                                                child: Container(
+                                                child: Image.asset(
+                                                  "Images/Group 81117.png",
                                                   height: 25,
-                                                  width: 25,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      color: getHomeProductDetails
-                                                                  ?.data
-                                                                  .first
-                                                                  .tax_number ==
-                                                              ""
-                                                          ? colors.primary
-                                                          : colors.secondary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.description,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    color: getHomeProductDetails
-                                                                ?.data
-                                                                .first
-                                                                .subscription_type ==
-                                                            1
-                                                        ? colors.primary
-                                                        : colors.secondary),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 3,
-                                                      bottom: 3),
-                                                  child: Icon(
-                                                    Icons.check_circle_outline,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    color: getHomeProductDetails
-                                                                ?.data
-                                                                .first
-                                                                .subscription_type ==
-                                                            1
-                                                        ? colors.primary
-                                                        : colors.secondary),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 3,
-                                                      bottom: 3),
-                                                  child: Icon(
-                                                    Icons.verified_user,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  final Uri url = Uri.parse(
-                                                      getHomeProductDetails
-                                                              ?.data
-                                                              .first
-                                                              .web_link ??
-                                                          "");
-                                                  if (!await launchUrl(url)) {
-                                                    throw Exception(
-                                                        'Could not launch $url');
-                                                  }
-                                                },
-                                                child: Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      color: colors.primary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.link,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  final Uri url = Uri.parse(
-                                                      getHomeProductDetails
-                                                              ?.data
-                                                              .first
-                                                              .facebook ??
-                                                          "");
-                                                  if (!await launchUrl(url)) {
-                                                    throw Exception(
-                                                        'Could not launch $url');
-                                                  }
-                                                },
-                                                child: Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      color: colors.primary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.facebook,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  final Uri url = Uri.parse(
-                                                      getHomeProductDetails
-                                                              ?.data
-                                                              .first
-                                                              .instagram ??
-                                                          "");
-                                                  if (!await launchUrl(url)) {
-                                                    throw Exception(
-                                                        'Could not launch $url');
-                                                  }
-                                                },
-                                                child: Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      color: colors.primary),
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 3,
-                                                          bottom: 3),
-                                                      child: Image.asset(
-                                                        "Images/instagram.png",
-                                                        color: Colors.white,
-                                                      )
-                                                      // Icon(
-                                                      //   Icons.verified_user,size: 15,
-                                                      //   color: Colors.white,
-                                                      // ),
-                                                      ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  final Uri url = Uri.parse(
-                                                      getHomeProductDetails
-                                                              ?.data
-                                                              .first
-                                                              .linkedin ??
-                                                          "");
-                                                  if (!await launchUrl(url)) {
-                                                    throw Exception(
-                                                        'Could not launch $url');
-                                                  }
-                                                },
-                                                child: Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          50)),
-                                                          color:
-                                                              colors.primary),
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 3,
-                                                          bottom: 3),
-                                                      child: Image.asset(
-                                                        "Images/linkedin.png",
-                                                      )),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                                ))
+                                            //  Icon(
+                                            //     Icons.mail,
+                                            //     color: colors
+                                            //         .primary)),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 30.0),
-                                    child: Container(
-                                      color: Colors.transparent,
-                                      child: Btn(
-                                        height: 40,
-                                        width: 150,
-                                        title: "Contact Supplier",
-                                        onPress: () {
-                                          showDialogContactSuplier(
-                                              getHomeProductDetails
-                                                      ?.data.first.id ??
-                                                  "",
-                                              mobilee,
-                                              getHomeProductDetails
-                                                      ?.data.first.sellerId ??
-                                                  "");
-                                        },
                                       ),
+                                      Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                23,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2.5,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(6)),
+                                            border: Border.all(
+                                                width: 2, color: Colors.grey),
+                                            color: colors.white),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(50)),
+                                                  color:
+                                                      // getHomeProductDetails
+                                                      //             ?.data!
+                                                      //             .first
+                                                      //             .active ==
+                                                      //         ""
+                                                      //     ? Colors.red
+                                                      //     :
+                                                      colors.secondary),
+                                              child: Padding(
+                                                  padding: EdgeInsets.all(0),
+                                                  child: Icon(Icons.person,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(50)),
+                                                  color: getHomeProductDetails
+                                                              ?.data!
+                                                              .first
+                                                              .taxNumber ==
+                                                          ""
+                                                      ? colors.primary
+                                                      : colors.secondary),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(3.0),
+                                                child: Image.asset(
+                                                  "Images/phone.png",
+                                                  scale: 2,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(50)),
+                                                  color: getHomeProductDetails
+                                                              ?.data!
+                                                              .first
+                                                              .subscriptionType !=
+                                                          "1"
+                                                      ? Colors.red
+                                                      : colors.secondary),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                    top: 3,
+                                                    bottom: 3),
+                                                child: Image.asset(
+                                                    "Images/person.png",
+                                                    color: Colors.white,
+                                                    scale: 2),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 30.0),
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: Btn(
+                                      height: 40,
+                                      width: 150,
+                                      title: "Contact Supplier",
+                                      onPress: () {
+                                        showDialogContactSuplier(
+                                            getHomeProductDetails
+                                                    ?.data!.first.id ??
+                                                "",
+                                            mobilee,
+                                            getHomeProductDetails
+                                                    ?.data!.first.sellerId ??
+                                                "");
+                                      },
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 50,
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                              ],
                             ),
                           ),
                           ratingsModel!.data!.isEmpty
@@ -900,86 +886,118 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                                 final review = ratingsModel!.data![index];
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                      border: Border.all(
-                                          color: Color.fromARGB(
-                                              255, 214, 213, 213)),
-                                    ),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 8.0),
-                                          child: CircleAvatar(
-                                            radius: 25,
-                                            child: Icon(
-                                                Icons.account_circle_rounded,
-                                                size: 25),
-                                          ),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8)),
+                                          border: Border.all(
+                                              color: Color.fromARGB(
+                                                  255, 214, 213, 213)),
                                         ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 8.0),
+                                              child: CircleAvatar(
+                                                radius: 25,
+                                                child: Icon(
+                                                    Icons
+                                                        .account_circle_rounded,
+                                                    size: 25),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    review.userName! + " (",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        review.userName! + " (",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Icon(Icons.star,
+                                                          size: 20,
+                                                          color: Colors.yellow),
+                                                      Text(
+                                                        review.rating! + ")",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Icon(Icons.star,
-                                                      size: 20,
-                                                      color: Colors.yellow),
-                                                  Text(
-                                                    review.rating! + ")",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
+                                                  SizedBox(height: 4),
+                                                  Text(review.comment ?? ""),
+                                                  SizedBox(height: 8),
+                                                  review.images!.isEmpty
+                                                      ? Container()
+                                                      : GestureDetector(
+                                                          onTap: () {
+                                                            final imageProvider =
+                                                                Image.network(review
+                                                                            .images!
+                                                                            .first ??
+                                                                        "")
+                                                                    .image;
+                                                            showImageViewer(
+                                                                context,
+                                                                imageProvider,
+                                                                onViewerDismissed:
+                                                                    () {
+                                                              print(
+                                                                  "dismissed");
+                                                            });
+                                                          },
+                                                          child: Image.network(
+                                                            review.images!
+                                                                    .first ??
+                                                                "",
+                                                            height: 45,
+                                                          ),
+                                                        )
                                                 ],
                                               ),
-                                              SizedBox(height: 4),
-                                              Text(review.comment ?? ""),
-                                              SizedBox(height: 8),
-                                              review.images!.isEmpty
-                                                  ? Container()
-                                                  : GestureDetector(
-                                                      onTap: () {
-                                                        final imageProvider =
-                                                            Image.network(review
-                                                                        .images!
-                                                                        .first ??
-                                                                    "")
-                                                                .image;
-                                                        showImageViewer(context,
-                                                            imageProvider,
-                                                            onViewerDismissed:
-                                                                () {
-                                                          print("dismissed");
-                                                        });
-                                                      },
-                                                      child: Image.network(
-                                                        review.images!.first ??
-                                                            "",
-                                                        height: 45,
-                                                      ),
-                                                    )
-                                            ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Visibility(
+                                        visible: userId ==
+                                            ratingsModel!.data![index].userId
+                                                .toString(),
+                                        child: InkWell(
+                                          onTap: () {
+                                            // Fluttertoast.showToast(
+                                            //     msg: ratingsModel!
+                                            //         .data![index].id!
+                                            //         .toString());
+                                            _showDeleteReviewDialog(
+                                                context,
+                                                ratingsModel!.data![index].id!
+                                                    .toString());
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: Icon(Icons.delete)),
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      )
+                                    ],
                                   ),
                                 );
 
@@ -1000,6 +1018,53 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
                     ),
                   ),
                 ),
+    );
+  }
+
+  void _showDeleteReviewDialog(BuildContext context, String id) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Review'),
+          content: Text('Are you sure you want to delete your review?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                var headers = {
+                  'Cookie': 'PHPSESSID=f5kvmvsbf3f8fe8dltfd34h2nk'
+                };
+                // Add code to delete the review here
+                var request = http.MultipartRequest(
+                    'POST',
+                    Uri.parse(
+                        'https://b2bdiary.com/seller/app/v1/api/delete_product_rating'));
+                request.fields.addAll({'rating_id': id});
+
+                request.headers.addAll(headers);
+
+                http.StreamedResponse response = await request.send();
+
+                if (response.statusCode == 200) {
+                  print(await response.stream.bytesToString());
+                  Fluttertoast.showToast(msg: "Rating Deleted Successfully");
+                } else {
+                  print(response.reasonPhrase);
+                }
+                getProductReviewApi();
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -1555,9 +1620,9 @@ class _ProductDetailsHomeState extends State<ProductDetailsHome> {
       var finalResult = GetHomeProductDetailsModel.fromJson(jsonDecode(result));
       setState(() {
         getHomeProductDetails = finalResult;
-        if (getHomeProductDetails!.data[0].image.isNotEmpty) {
-          images.add(getHomeProductDetails!.data[0].image);
-          images.addAll(getHomeProductDetails!.data[0].otherImages);
+        if (getHomeProductDetails!.data![0].image!.isNotEmpty) {
+          images.add(getHomeProductDetails!.data![0].image!);
+          images.addAll(getHomeProductDetails!.data![0].otherImages!);
         }
       });
       log('____Aaa______${result}_________');

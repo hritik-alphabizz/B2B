@@ -3,7 +3,6 @@
 /// filters : []
 /// total : ""
 /// offset : "0"
-/// data : [{"category_name":"Plastic","vendor_data":[{"seller_id":"515","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"515","ip_address":null,"username":"Harish","password":"","normal_password":null,"email":"harish@gmail.com","mobile":"7855777747","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1697031824","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7533","longitude":"75.8937","type":"phone","created_at":"2023-09-14 10:45:17","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":"672596","broucher":"650297216012f_5af4ed7d-0664-4ddb-8e38-74412fce39f3.jpg","media":null,"city_name":""},"seller_data_info":{"id":"5","user_id":"515","slug":null,"category_ids":null,"store_name":"Harish Shop","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-14 10:46:17","udyog_num":"","partner":"","other_number":"7855888588","partner_number":"","company_address":"vijay nagar","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"698","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"698","ip_address":null,"username":"manu","password":"","normal_password":null,"email":"manu@gmail.com","mobile":"8874747474","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"indore","destrict":"indore","area":"viajaynagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468326","longitude":"75.8979924","type":"phone","created_at":"2023-10-09 11:33:14","user_type":null,"type_of_seller":"Vegetable Business","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"178","user_id":"698","slug":null,"category_ids":null,"store_name":"koyla","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-09 11:33:14","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"indore","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"704","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"704","ip_address":null,"username":"tam","password":"","normal_password":null,"email":"tam@gmail.com","mobile":"8813131313","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"indore","destrict":"indore","area":"vijaynagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468487","longitude":"75.8979986","type":"phone","created_at":"2023-10-09 13:52:34","user_type":null,"type_of_seller":"Vegetable Business,Retailers","state":"205","country":"9","subscription_type":"1","otp":"404210","broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"185","user_id":"704","slug":null,"category_ids":null,"store_name":"koyla","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-09 13:52:34","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"indore","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"719","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"719","ip_address":null,"username":"yddytd","password":"","normal_password":null,"email":"fufufu@gmail.com","mobile":"6806868686","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"fjfhhfjfuf","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"ugguuf","destrict":"guvh","area":"hchchc","street":null,"pincode":"686868","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468902","longitude":"75.8979805","type":"phone","created_at":"2023-10-11 11:20:03","user_type":null,"type_of_seller":"Manufacturers,Service Provider","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"6526378b41ab1_54fc10d8-a17a-41ea-953e-fec55ef9d0fd3056204099663403766.jpg","media":null,"city_name":""},"seller_data_info":{"id":"196","user_id":"719","slug":null,"category_ids":null,"store_name":"ycgcxg","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-11 11:20:03","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"hcfyfy","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"734","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"734","ip_address":null,"username":"surendra ","password":"","normal_password":null,"email":"te@gmail.com","mobile":"9874563220","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"tttt","destrict":"ttt","area":"ffff","street":null,"pincode":"452070","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7195687","longitude":"75.8577258","type":"phone","created_at":"2023-10-11 16:04:18","user_type":null,"type_of_seller":"Service Provider,Stainless Steel Business","state":"216","country":"10","subscription_type":"1","otp":null,"broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"209","user_id":"734","slug":null,"category_ids":null,"store_name":"ggg","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-11 16:04:18","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"jjjj","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}}]},{"category_name":"Rabar","vendor_data":[{"seller_id":"512","product_info":{"id":"2","product_identity":null,"category_id":"6","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Raber Stemp","short_description":"test description","slug":"raber-stemp","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T150114_718.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-13T145902_163.jpg","video_type":"","video":"","tags":"test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>test</p>","extra_description":"<p>test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 15:01:21","sub_cat_id":"7","attribute_title":null,"attribute_value":null},"seller_info":{"id":"512","ip_address":null,"username":"bhurmit ","password":"","normal_password":null,"email":"bhurmit@gmail.com","mobile":"8956231000","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1694613125","active":null,"company":null,"address":"Surat, Gujarat, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Surat","destrict":"surat","area":"surat","street":null,"pincode":"565656","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"72.83106070000001","longitude":null,"type":"phone","created_at":"2023-09-13 15:58:35","user_type":null,"type_of_seller":"Wholesaler,Retailers","state":"12","country":"101","subscription_type":"1","otp":null,"broucher":"65018f59314a7_download - 2023-09-13T150114.718.jpg","media":null,"city_name":""},"seller_data_info":{"id":"2","user_id":"512","slug":null,"category_ids":null,"store_name":"bhumi enterprises","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-13 16:00:49","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"surat","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"515","product_info":{"id":"2","product_identity":null,"category_id":"6","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Raber Stemp","short_description":"test description","slug":"raber-stemp","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T150114_718.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-13T145902_163.jpg","video_type":"","video":"","tags":"test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>test</p>","extra_description":"<p>test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 15:01:21","sub_cat_id":"7","attribute_title":null,"attribute_value":null},"seller_info":{"id":"515","ip_address":null,"username":"Harish","password":"","normal_password":null,"email":"harish@gmail.com","mobile":"7855777747","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1697031824","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7533","longitude":"75.8937","type":"phone","created_at":"2023-09-14 10:45:17","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":"672596","broucher":"650297216012f_5af4ed7d-0664-4ddb-8e38-74412fce39f3.jpg","media":null,"city_name":""},"seller_data_info":{"id":"5","user_id":"515","slug":null,"category_ids":null,"store_name":"Harish Shop","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-14 10:46:17","udyog_num":"","partner":"","other_number":"7855888588","partner_number":"","company_address":"vijay nagar","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"516","product_info":{"id":"2","product_identity":null,"category_id":"6","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Raber Stemp","short_description":"test description","slug":"raber-stemp","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T150114_718.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-13T145902_163.jpg","video_type":"","video":"","tags":"test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>test</p>","extra_description":"<p>test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 15:01:21","sub_cat_id":"7","attribute_title":null,"attribute_value":null},"seller_info":{"id":"516","ip_address":null,"username":"Piyush","password":"","normal_password":null,"email":"piyush.Alpha@gmail.com","mobile":"7844777747","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1694675413","active":null,"company":null,"address":"Bicholi Mardana, Indore, Madhya Pradesh 452016, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"Bangali","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.719568","longitude":"75.857727","type":"phone","created_at":"2023-09-14 10:54:55","user_type":null,"type_of_seller":"Manufacturers","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65029960ea232_61-o6tGXBmL._SX522_.jpg","media":null,"city_name":""},"seller_data_info":{"id":"6","user_id":"516","slug":null,"category_ids":null,"store_name":"piyush shop","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-14 10:55:52","udyog_num":"","partner":"","other_number":"9999999999","partner_number":"","company_address":"Bangali ,indore","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"707","product_info":{"id":"2","product_identity":null,"category_id":"6","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Raber Stemp","short_description":"test description","slug":"raber-stemp","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T150114_718.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-13T145902_163.jpg","video_type":"","video":"","tags":"test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>test</p>","extra_description":"<p>test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 15:01:21","sub_cat_id":"7","attribute_title":null,"attribute_value":null},"seller_info":{"id":"707","ip_address":null,"username":"kar","password":"","normal_password":null,"email":"kar@gmail.com","mobile":"8787878787","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"indore","destrict":"indore","area":"vijaynagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468527","longitude":"75.8980009","type":"phone","created_at":"2023-10-09 14:49:57","user_type":null,"type_of_seller":"Stationary Business,Vegetable Business","state":"204","country":"9","subscription_type":"1","otp":null,"broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"188","user_id":"707","slug":null,"category_ids":null,"store_name":"koyla","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-09 14:49:57","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"indore","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}}]},{"category_name":"Metal","vendor_data":[{"seller_id":"537","product_info":null,"seller_info":{"id":"537","ip_address":null,"username":"Abhinav","password":"","normal_password":null,"email":"abhinav@gmail.com","mobile":"7855888885","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1694781711","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"75.8936962","longitude":null,"type":"phone","created_at":"2023-09-15 17:55:28","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65044d6a67582_360_F_566234629_KhWxmzVVGHg8iHnbiuMR0kNgFhbSE7g8.jpg","media":null,"city_name":""},"seller_data_info":{"id":"24","user_id":"537","slug":null,"category_ids":null,"store_name":"Abhinav Store","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-15 17:56:18","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"indore","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"541","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"541","ip_address":null,"username":"Deepak","password":"","normal_password":null,"email":"Deepak@gmail.com","mobile":"333333333333","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1696932704","active":null,"company":"MD manufacture","address":"indore","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"","destrict":"Indore","area":"Indore","street":null,"pincode":"452060","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-16 12:13:48","user_type":null,"type_of_seller":"Manufacturers","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65054f057dd1d_download.png","media":null,"city_name":""},"seller_data_info":{"id":"28","user_id":"541","slug":null,"category_ids":null,"store_name":"MD manufacture","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-16 12:15:25","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"sanwer road","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"554","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"554","ip_address":null,"username":"Raka","password":"","normal_password":null,"email":"rak@gamil.com","mobile":"2525262626","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1695229436","active":null,"company":"","address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"indore","street":null,"pincode":"452015","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-20 19:55:04","user_type":null,"type_of_seller":"Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"650b00f71da48_logo (1).png","media":null,"city_name":""},"seller_data_info":{"id":"41","user_id":"554","slug":"raka-group-1","category_ids":null,"store_name":"Raka Group","store_description":"","logo":"","store_url":"","no_of_ratings":"0","rating":"0.00","bank_name":"","bank_code":"","account_name":"","account_number":"","national_identity_card":"","address_proof":"","authorized_signature":"","pan_number":"","tax_name":"","tax_number":"","permissions":"{\"require_products_approval\":\"0\",\"customer_privacy\":\"0\",\"view_order_otp\":\"0\",\"assign_delivery_boy\":\"0\"}","commission":"0.00","status":"1","date_added":"2023-09-20 19:55:59","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"ganesh Dham","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"537","product_info":null,"seller_info":{"id":"537","ip_address":null,"username":"Abhinav","password":"","normal_password":null,"email":"abhinav@gmail.com","mobile":"7855888885","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1694781711","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"75.8936962","longitude":null,"type":"phone","created_at":"2023-09-15 17:55:28","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65044d6a67582_360_F_566234629_KhWxmzVVGHg8iHnbiuMR0kNgFhbSE7g8.jpg","media":null,"city_name":""},"seller_data_info":{"id":"24","user_id":"537","slug":null,"category_ids":null,"store_name":"Abhinav Store","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-15 17:56:18","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"indore","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"541","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"541","ip_address":null,"username":"Deepak","password":"","normal_password":null,"email":"Deepak@gmail.com","mobile":"333333333333","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1696932704","active":null,"company":"MD manufacture","address":"indore","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"","destrict":"Indore","area":"Indore","street":null,"pincode":"452060","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-16 12:13:48","user_type":null,"type_of_seller":"Manufacturers","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65054f057dd1d_download.png","media":null,"city_name":""},"seller_data_info":{"id":"28","user_id":"541","slug":null,"category_ids":null,"store_name":"MD manufacture","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-16 12:15:25","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"sanwer road","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"554","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"554","ip_address":null,"username":"Raka","password":"","normal_password":null,"email":"rak@gamil.com","mobile":"2525262626","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1695229436","active":null,"company":"","address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"indore","street":null,"pincode":"452015","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-20 19:55:04","user_type":null,"type_of_seller":"Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"650b00f71da48_logo (1).png","media":null,"city_name":""},"seller_data_info":{"id":"41","user_id":"554","slug":"raka-group-1","category_ids":null,"store_name":"Raka Group","store_description":"","logo":"","store_url":"","no_of_ratings":"0","rating":"0.00","bank_name":"","bank_code":"","account_name":"","account_number":"","national_identity_card":"","address_proof":"","authorized_signature":"","pan_number":"","tax_name":"","tax_number":"","permissions":"{\"require_products_approval\":\"0\",\"customer_privacy\":\"0\",\"view_order_otp\":\"0\",\"assign_delivery_boy\":\"0\"}","commission":"0.00","status":"1","date_added":"2023-09-20 19:55:59","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"ganesh Dham","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"537","product_info":null,"seller_info":{"id":"537","ip_address":null,"username":"Abhinav","password":"","normal_password":null,"email":"abhinav@gmail.com","mobile":"7855888885","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1694781711","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"75.8936962","longitude":null,"type":"phone","created_at":"2023-09-15 17:55:28","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65044d6a67582_360_F_566234629_KhWxmzVVGHg8iHnbiuMR0kNgFhbSE7g8.jpg","media":null,"city_name":""},"seller_data_info":{"id":"24","user_id":"537","slug":null,"category_ids":null,"store_name":"Abhinav Store","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-15 17:56:18","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"indore","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"541","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"541","ip_address":null,"username":"Deepak","password":"","normal_password":null,"email":"Deepak@gmail.com","mobile":"333333333333","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1696932704","active":null,"company":"MD manufacture","address":"indore","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"","destrict":"Indore","area":"Indore","street":null,"pincode":"452060","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-16 12:13:48","user_type":null,"type_of_seller":"Manufacturers","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"65054f057dd1d_download.png","media":null,"city_name":""},"seller_data_info":{"id":"28","user_id":"541","slug":null,"category_ids":null,"store_name":"MD manufacture","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-16 12:15:25","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"sanwer road","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"554","product_info":{"id":"29","product_identity":null,"category_id":"1","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"test product test","short_description":"Test Product Test","slug":"test-product-test","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","other_images":"[]","broucher_image":"uploads/media/2023/download_-_2023-09-20T175229_996.jpg","video_type":"","video":"","tags":"Test Product Test","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"0","no_of_ratings":"0","description":"<p>Test Product Test</p>","extra_description":"<p>Test Product Test</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"0","date_added":"2023-09-20 20:18:53","sub_cat_id":"49","attribute_title":"Color","attribute_value":"Black"},"seller_info":{"id":"554","ip_address":null,"username":"Raka","password":"","normal_password":null,"email":"rak@gamil.com","mobile":"2525262626","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1695229436","active":null,"company":"","address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"indore","street":null,"pincode":"452015","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"","longitude":"","type":"phone","created_at":"2023-09-20 19:55:04","user_type":null,"type_of_seller":"Wholesaler","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"650b00f71da48_logo (1).png","media":null,"city_name":""},"seller_data_info":{"id":"41","user_id":"554","slug":"raka-group-1","category_ids":null,"store_name":"Raka Group","store_description":"","logo":"","store_url":"","no_of_ratings":"0","rating":"0.00","bank_name":"","bank_code":"","account_name":"","account_number":"","national_identity_card":"","address_proof":"","authorized_signature":"","pan_number":"","tax_name":"","tax_number":"","permissions":"{\"require_products_approval\":\"0\",\"customer_privacy\":\"0\",\"view_order_otp\":\"0\",\"assign_delivery_boy\":\"0\"}","commission":"0.00","status":"1","date_added":"2023-09-20 19:55:59","udyog_num":"","partner":"","other_number":"","partner_number":"","company_address":"ganesh Dham","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}}]}]
 
 class GetClientModel {
   GetClientModel({
@@ -86,7 +85,6 @@ class GetClientModel {
 }
 
 /// category_name : "Plastic"
-/// vendor_dataListClient : [{"seller_id":"515","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"515","ip_address":null,"username":"Harish","password":"","normal_password":null,"email":"harish@gmail.com","mobile":"7855777747","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1697031824","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7533","longitude":"75.8937","type":"phone","created_at":"2023-09-14 10:45:17","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":"672596","broucher":"650297216012f_5af4ed7d-0664-4ddb-8e38-74412fce39f3.jpg","media":null,"city_name":""},"seller_dataListClient_info":{"id":"5","user_id":"515","slug":null,"category_ids":null,"store_name":"Harish Shop","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-14 10:46:17","udyog_num":"","partner":"","other_number":"7855888588","partner_number":"","company_address":"vijay nagar","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}},{"seller_id":"698","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"698","ip_address":null,"username":"manu","password":"","normal_password":null,"email":"manu@gmail.com","mobile":"8874747474","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"indore","destrict":"indore","area":"viajaynagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468326","longitude":"75.8979924","type":"phone","created_at":"2023-10-09 11:33:14","user_type":null,"type_of_seller":"Vegetable Business","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"178","user_id":"698","slug":null,"category_ids":null,"store_name":"koyla","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-09 11:33:14","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"indore","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"704","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"704","ip_address":null,"username":"tam","password":"","normal_password":null,"email":"tam@gmail.com","mobile":"8813131313","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"indore","destrict":"indore","area":"vijaynagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468487","longitude":"75.8979986","type":"phone","created_at":"2023-10-09 13:52:34","user_type":null,"type_of_seller":"Vegetable Business,Retailers","state":"205","country":"9","subscription_type":"1","otp":"404210","broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"185","user_id":"704","slug":null,"category_ids":null,"store_name":"koyla","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-09 13:52:34","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"indore","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"719","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"719","ip_address":null,"username":"yddytd","password":"","normal_password":null,"email":"fufufu@gmail.com","mobile":"6806868686","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"fjfhhfjfuf","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"ugguuf","destrict":"guvh","area":"hchchc","street":null,"pincode":"686868","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7468902","longitude":"75.8979805","type":"phone","created_at":"2023-10-11 11:20:03","user_type":null,"type_of_seller":"Manufacturers,Service Provider","state":"21","country":"101","subscription_type":"1","otp":null,"broucher":"6526378b41ab1_54fc10d8-a17a-41ea-953e-fec55ef9d0fd3056204099663403766.jpg","media":null,"city_name":""},"seller_data_info":{"id":"196","user_id":"719","slug":null,"category_ids":null,"store_name":"ycgcxg","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-11 11:20:03","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"hcfyfy","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}},{"seller_id":"734","product_info":{"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"},"seller_info":{"id":"734","ip_address":null,"username":"surendra ","password":"","normal_password":null,"email":"te@gmail.com","mobile":"9874563220","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":null,"active":null,"company":null,"address":"Indore, Madhya Pradesh, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"tttt","destrict":"ttt","area":"ffff","street":null,"pincode":"452070","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7195687","longitude":"75.8577258","type":"phone","created_at":"2023-10-11 16:04:18","user_type":null,"type_of_seller":"Service Provider,Stainless Steel Business","state":"216","country":"10","subscription_type":"1","otp":null,"broucher":null,"media":null,"city_name":""},"seller_data_info":{"id":"209","user_id":"734","slug":null,"category_ids":null,"store_name":"ggg","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":null,"permissions":null,"commission":"0.00","status":"1","date_added":"2023-10-11 16:04:18","udyog_num":null,"partner":null,"other_number":null,"partner_number":null,"company_address":"jjjj","facebook":null,"instagram":null,"web_link":null,"linkedin":null,"purchase_id":"","seller_category_id":"","partner_address":null}}]
 
 class dataListClient {
   dataListClient({
@@ -130,7 +128,6 @@ class dataListClient {
 }
 
 /// seller_id : "515"
-/// product_info : {"id":"1","product_identity":null,"category_id":"4","seller_id":"511","tax":"0","row_order":"0","type":"simple_product","stock_type":null,"name":"Plastic Cap","short_description":"Plastic dana","slug":"plastic-cap-1","indicator":"0","cod_allowed":"0","download_allowed":"0","download_type":"","download_link":"","minimum_order_quantity":"1","quantity_step_size":"1","total_allowed_quantity":null,"is_prices_inclusive_tax":"0","is_returnable":"0","is_cancelable":"0","cancelable_till":"","image":"uploads/media/2023/download_-_2023-09-13T122345_629.jpg","other_images":"[]","broucher_image":"uploads/media/2023/WhatsApp_Image_2023-08-01_at_16_07_104.jpeg","video_type":"","video":"","tags":"plastic","warranty_period":"","guarantee_period":"","made_in":null,"hsn_code":"","brand":null,"sku":null,"stock":null,"availability":null,"rating":"4","no_of_ratings":"1","description":"<p>plastic dana</p>","extra_description":"<p>plastic dana</p>","deliverable_type":"1","deliverable_zipcodes":null,"pickup_location":" ","status":"1","date_added":"2023-09-13 12:41:20","sub_cat_id":"5","attribute_title":"Material Type, Colour, Weight","attribute_value":"Plastic, Multipul, 100 KG"}
 /// seller_info : {"id":"515","ip_address":null,"username":"Harish","password":"","normal_password":null,"email":"harish@gmail.com","mobile":"7855777747","image":null,"balance":"0","activation_selector":null,"activation_code":null,"forgotten_password_selector":null,"forgotten_password_code":null,"forgotten_password_time":null,"remember_selector":null,"remember_code":null,"created_on":"0","last_login":"1697031824","active":null,"company":null,"address":"Vijay Nagar, Indore, Madhya Pradesh 452010, India","bonus_type":"percentage_per_order","bonus":null,"cash_received":"0.00","dob":null,"country_code":null,"city":"Indore","destrict":"indore","area":"vijay nagar","street":null,"pincode":"452010","serviceable_zipcodes":null,"apikey":null,"referral_code":null,"friends_code":null,"fcm_id":null,"latitude":"22.7533","longitude":"75.8937","type":"phone","created_at":"2023-09-14 10:45:17","user_type":null,"type_of_seller":"Manufacturers,Wholesaler","state":"21","country":"101","subscription_type":"1","otp":"672596","broucher":"650297216012f_5af4ed7d-0664-4ddb-8e38-74412fce39f3.jpg","media":null,"city_name":""}
 /// seller_data_info : {"id":"5","user_id":"515","slug":null,"category_ids":null,"store_name":"Harish Shop","store_description":null,"logo":null,"store_url":null,"no_of_ratings":"0","rating":"0.00","bank_name":null,"bank_code":null,"account_name":null,"account_number":null,"national_identity_card":null,"address_proof":null,"authorized_signature":"","pan_number":null,"tax_name":null,"tax_number":"","permissions":null,"commission":"0.00","status":"1","date_added":"2023-09-14 10:46:17","udyog_num":"","partner":"","other_number":"7855888588","partner_number":"","company_address":"vijay nagar","facebook":"","instagram":"","web_link":"","linkedin":"","purchase_id":"","seller_category_id":"","partner_address":""}
 
@@ -1060,413 +1057,218 @@ class SellerInfo {
 /// sub_cat_id : "5"
 /// attribute_title : "Material Type, Colour, Weight"
 /// attribute_value : "Plastic, Multipul, 100 KG"
-
 class ProductInfo {
+  String? id;
+  dynamic productIdentity;
+  String? categoryId;
+  String? sellerId;
+  String? tax;
+  String? rowOrder;
+  String? type;
+  dynamic stockType;
+  String? name;
+  String? shortDescription;
+  String? slug;
+  String? indicator;
+  String? codAllowed;
+  String? downloadAllowed;
+  String? downloadType;
+  String? downloadLink;
+  String? minimumOrderQuantity;
+  String? quantityStepSize;
+  String? totalAllowedQuantity;
+  String? isPricesInclusiveTax;
+  String? isReturnable;
+  String? isCancelable;
+  String? cancelableTill;
+  String? image;
+  List<String>? otherImages;
+  List<String>? broucherImage;
+  String? videoType;
+  String? video;
+  String? tags;
+  String? warrantyPeriod;
+  String? guaranteePeriod;
+  String? madeIn;
+  String? hsnCode;
+  String? brand;
+  dynamic sku;
+  dynamic stock;
+  dynamic availability;
+  String? rating;
+  String? noOfRatings;
+  String? description;
+  String? extraDescription;
+  String? deliverableType;
+  dynamic deliverableZipcodes;
+  String? pickupLocation;
+  String? status;
+  String? dateAdded;
+  String? subCatId;
+  String? attributeTitle;
+  String? attributeValue;
+
   ProductInfo({
-    String? id,
-    dynamic productIdentity,
-    String? categoryId,
-    String? sellerId,
-    String? tax,
-    String? rowOrder,
-    String? type,
-    dynamic stockType,
-    String? name,
-    String? shortDescription,
-    String? slug,
-    String? indicator,
-    String? codAllowed,
-    String? downloadAllowed,
-    String? downloadType,
-    String? downloadLink,
-    String? minimumOrderQuantity,
-    String? quantityStepSize,
-    dynamic totalAllowedQuantity,
-    String? isPricesInclusiveTax,
-    String? isReturnable,
-    String? isCancelable,
-    String? cancelableTill,
-    String? image,
-    String? otherImages,
-    String? broucherImage,
-    String? videoType,
-    String? video,
-    String? tags,
-    String? warrantyPeriod,
-    String? guaranteePeriod,
-    dynamic madeIn,
-    String? hsnCode,
-    dynamic brand,
-    dynamic sku,
-    dynamic stock,
-    dynamic availability,
-    String? rating,
-    String? noOfRatings,
-    String? description,
-    String? extraDescription,
-    String? deliverableType,
-    dynamic deliverableZipcodes,
-    String? pickupLocation,
-    String? status,
-    String? dateAdded,
-    String? subCatId,
-    String? attributeTitle,
-    String? attributeValue,
-  }) {
-    _id = id;
-    _productIdentity = productIdentity;
-    _categoryId = categoryId;
-    _sellerId = sellerId;
-    _tax = tax;
-    _rowOrder = rowOrder;
-    _type = type;
-    _stockType = stockType;
-    _name = name;
-    _shortDescription = shortDescription;
-    _slug = slug;
-    _indicator = indicator;
-    _codAllowed = codAllowed;
-    _downloadAllowed = downloadAllowed;
-    _downloadType = downloadType;
-    _downloadLink = downloadLink;
-    _minimumOrderQuantity = minimumOrderQuantity;
-    _quantityStepSize = quantityStepSize;
-    _totalAllowedQuantity = totalAllowedQuantity;
-    _isPricesInclusiveTax = isPricesInclusiveTax;
-    _isReturnable = isReturnable;
-    _isCancelable = isCancelable;
-    _cancelableTill = cancelableTill;
-    _image = image;
-    _otherImages = otherImages;
-    _broucherImage = broucherImage;
-    _videoType = videoType;
-    _video = video;
-    _tags = tags;
-    _warrantyPeriod = warrantyPeriod;
-    _guaranteePeriod = guaranteePeriod;
-    _madeIn = madeIn;
-    _hsnCode = hsnCode;
-    _brand = brand;
-    _sku = sku;
-    _stock = stock;
-    _availability = availability;
-    _rating = rating;
-    _noOfRatings = noOfRatings;
-    _description = description;
-    _extraDescription = extraDescription;
-    _deliverableType = deliverableType;
-    _deliverableZipcodes = deliverableZipcodes;
-    _pickupLocation = pickupLocation;
-    _status = status;
-    _dateAdded = dateAdded;
-    _subCatId = subCatId;
-    _attributeTitle = attributeTitle;
-    _attributeValue = attributeValue;
-  }
+    this.id,
+    this.productIdentity,
+    this.categoryId,
+    this.sellerId,
+    this.tax,
+    this.rowOrder,
+    this.type,
+    this.stockType,
+    this.name,
+    this.shortDescription,
+    this.slug,
+    this.indicator,
+    this.codAllowed,
+    this.downloadAllowed,
+    this.downloadType,
+    this.downloadLink,
+    this.minimumOrderQuantity,
+    this.quantityStepSize,
+    this.totalAllowedQuantity,
+    this.isPricesInclusiveTax,
+    this.isReturnable,
+    this.isCancelable,
+    this.cancelableTill,
+    this.image,
+    this.otherImages,
+    this.broucherImage,
+    this.videoType,
+    this.video,
+    this.tags,
+    this.warrantyPeriod,
+    this.guaranteePeriod,
+    this.madeIn,
+    this.hsnCode,
+    this.brand,
+    this.sku,
+    this.stock,
+    this.availability,
+    this.rating,
+    this.noOfRatings,
+    this.description,
+    this.extraDescription,
+    this.deliverableType,
+    this.deliverableZipcodes,
+    this.pickupLocation,
+    this.status,
+    this.dateAdded,
+    this.subCatId,
+    this.attributeTitle,
+    this.attributeValue,
+  });
 
-  ProductInfo.fromJson(dynamic json) {
-    _id = json['id'];
-    _productIdentity = json['product_identity'];
-    _categoryId = json['category_id'];
-    _sellerId = json['seller_id'];
-    _tax = json['tax'];
-    _rowOrder = json['row_order'];
-    _type = json['type'];
-    _stockType = json['stock_type'];
-    _name = json['name'];
-    _shortDescription = json['short_description'];
-    _slug = json['slug'];
-    _indicator = json['indicator'];
-    _codAllowed = json['cod_allowed'];
-    _downloadAllowed = json['download_allowed'];
-    _downloadType = json['download_type'];
-    _downloadLink = json['download_link'];
-    _minimumOrderQuantity = json['minimum_order_quantity'];
-    _quantityStepSize = json['quantity_step_size'];
-    _totalAllowedQuantity = json['total_allowed_quantity'];
-    _isPricesInclusiveTax = json['is_prices_inclusive_tax'];
-    _isReturnable = json['is_returnable'];
-    _isCancelable = json['is_cancelable'];
-    _cancelableTill = json['cancelable_till'];
-    _image = json['image'];
-    _otherImages = json['other_images'];
-    _broucherImage = json['broucher_image'];
-    _videoType = json['video_type'];
-    _video = json['video'];
-    _tags = json['tags'];
-    _warrantyPeriod = json['warranty_period'];
-    _guaranteePeriod = json['guarantee_period'];
-    _madeIn = json['made_in'];
-    _hsnCode = json['hsn_code'];
-    _brand = json['brand'];
-    _sku = json['sku'];
-    _stock = json['stock'];
-    _availability = json['availability'];
-    _rating = json['rating'];
-    _noOfRatings = json['no_of_ratings'];
-    _description = json['description'];
-    _extraDescription = json['extra_description'];
-    _deliverableType = json['deliverable_type'];
-    _deliverableZipcodes = json['deliverable_zipcodes'];
-    _pickupLocation = json['pickup_location'];
-    _status = json['status'];
-    _dateAdded = json['date_added'];
-    _subCatId = json['sub_cat_id'];
-    _attributeTitle = json['attribute_title'];
-    _attributeValue = json['attribute_value'];
-  }
-  String? _id;
-  dynamic _productIdentity;
-  String? _categoryId;
-  String? _sellerId;
-  String? _tax;
-  String? _rowOrder;
-  String? _type;
-  dynamic _stockType;
-  String? _name;
-  String? _shortDescription;
-  String? _slug;
-  String? _indicator;
-  String? _codAllowed;
-  String? _downloadAllowed;
-  String? _downloadType;
-  String? _downloadLink;
-  String? _minimumOrderQuantity;
-  String? _quantityStepSize;
-  dynamic _totalAllowedQuantity;
-  String? _isPricesInclusiveTax;
-  String? _isReturnable;
-  String? _isCancelable;
-  String? _cancelableTill;
-  String? _image;
-  String? _otherImages;
-  String? _broucherImage;
-  String? _videoType;
-  String? _video;
-  String? _tags;
-  String? _warrantyPeriod;
-  String? _guaranteePeriod;
-  dynamic _madeIn;
-  String? _hsnCode;
-  dynamic _brand;
-  dynamic _sku;
-  dynamic _stock;
-  dynamic _availability;
-  String? _rating;
-  String? _noOfRatings;
-  String? _description;
-  String? _extraDescription;
-  String? _deliverableType;
-  dynamic _deliverableZipcodes;
-  String? _pickupLocation;
-  String? _status;
-  String? _dateAdded;
-  String? _subCatId;
-  String? _attributeTitle;
-  String? _attributeValue;
-  ProductInfo copyWith({
-    String? id,
-    dynamic productIdentity,
-    String? categoryId,
-    String? sellerId,
-    String? tax,
-    String? rowOrder,
-    String? type,
-    dynamic stockType,
-    String? name,
-    String? shortDescription,
-    String? slug,
-    String? indicator,
-    String? codAllowed,
-    String? downloadAllowed,
-    String? downloadType,
-    String? downloadLink,
-    String? minimumOrderQuantity,
-    String? quantityStepSize,
-    dynamic totalAllowedQuantity,
-    String? isPricesInclusiveTax,
-    String? isReturnable,
-    String? isCancelable,
-    String? cancelableTill,
-    String? image,
-    String? otherImages,
-    String? broucherImage,
-    String? videoType,
-    String? video,
-    String? tags,
-    String? warrantyPeriod,
-    String? guaranteePeriod,
-    dynamic madeIn,
-    String? hsnCode,
-    dynamic brand,
-    dynamic sku,
-    dynamic stock,
-    dynamic availability,
-    String? rating,
-    String? noOfRatings,
-    String? description,
-    String? extraDescription,
-    String? deliverableType,
-    dynamic deliverableZipcodes,
-    String? pickupLocation,
-    String? status,
-    String? dateAdded,
-    String? subCatId,
-    String? attributeTitle,
-    String? attributeValue,
-  }) =>
-      ProductInfo(
-        id: id ?? _id,
-        productIdentity: productIdentity ?? _productIdentity,
-        categoryId: categoryId ?? _categoryId,
-        sellerId: sellerId ?? _sellerId,
-        tax: tax ?? _tax,
-        rowOrder: rowOrder ?? _rowOrder,
-        type: type ?? _type,
-        stockType: stockType ?? _stockType,
-        name: name ?? _name,
-        shortDescription: shortDescription ?? _shortDescription,
-        slug: slug ?? _slug,
-        indicator: indicator ?? _indicator,
-        codAllowed: codAllowed ?? _codAllowed,
-        downloadAllowed: downloadAllowed ?? _downloadAllowed,
-        downloadType: downloadType ?? _downloadType,
-        downloadLink: downloadLink ?? _downloadLink,
-        minimumOrderQuantity: minimumOrderQuantity ?? _minimumOrderQuantity,
-        quantityStepSize: quantityStepSize ?? _quantityStepSize,
-        totalAllowedQuantity: totalAllowedQuantity ?? _totalAllowedQuantity,
-        isPricesInclusiveTax: isPricesInclusiveTax ?? _isPricesInclusiveTax,
-        isReturnable: isReturnable ?? _isReturnable,
-        isCancelable: isCancelable ?? _isCancelable,
-        cancelableTill: cancelableTill ?? _cancelableTill,
-        image: image ?? _image,
-        otherImages: otherImages ?? _otherImages,
-        broucherImage: broucherImage ?? _broucherImage,
-        videoType: videoType ?? _videoType,
-        video: video ?? _video,
-        tags: tags ?? _tags,
-        warrantyPeriod: warrantyPeriod ?? _warrantyPeriod,
-        guaranteePeriod: guaranteePeriod ?? _guaranteePeriod,
-        madeIn: madeIn ?? _madeIn,
-        hsnCode: hsnCode ?? _hsnCode,
-        brand: brand ?? _brand,
-        sku: sku ?? _sku,
-        stock: stock ?? _stock,
-        availability: availability ?? _availability,
-        rating: rating ?? _rating,
-        noOfRatings: noOfRatings ?? _noOfRatings,
-        description: description ?? _description,
-        extraDescription: extraDescription ?? _extraDescription,
-        deliverableType: deliverableType ?? _deliverableType,
-        deliverableZipcodes: deliverableZipcodes ?? _deliverableZipcodes,
-        pickupLocation: pickupLocation ?? _pickupLocation,
-        status: status ?? _status,
-        dateAdded: dateAdded ?? _dateAdded,
-        subCatId: subCatId ?? _subCatId,
-        attributeTitle: attributeTitle ?? _attributeTitle,
-        attributeValue: attributeValue ?? _attributeValue,
+  factory ProductInfo.fromJson(Map<String, dynamic> json) => ProductInfo(
+        id: json["id"],
+        productIdentity: json["product_identity"],
+        categoryId: json["category_id"],
+        sellerId: json["seller_id"],
+        tax: json["tax"],
+        rowOrder: json["row_order"],
+        type: json["type"],
+        stockType: json["stock_type"],
+        name: json["name"],
+        shortDescription: json["short_description"],
+        slug: json["slug"],
+        indicator: json["indicator"],
+        codAllowed: json["cod_allowed"],
+        downloadAllowed: json["download_allowed"],
+        downloadType: json["download_type"],
+        downloadLink: json["download_link"],
+        minimumOrderQuantity: json["minimum_order_quantity"],
+        quantityStepSize: json["quantity_step_size"],
+        totalAllowedQuantity: json["total_allowed_quantity"],
+        isPricesInclusiveTax: json["is_prices_inclusive_tax"],
+        isReturnable: json["is_returnable"],
+        isCancelable: json["is_cancelable"],
+        cancelableTill: json["cancelable_till"],
+        image: json["image"],
+        otherImages: json["other_images"] == null
+            ? []
+            : List<String>.from(json["other_images"]!.map((x) => x)),
+        broucherImage: json["broucher_image"] == null
+            ? []
+            : List<String>.from(json["broucher_image"]!.map((x) => x)),
+        videoType: json["video_type"],
+        video: json["video"],
+        tags: json["tags"],
+        warrantyPeriod: json["warranty_period"],
+        guaranteePeriod: json["guarantee_period"],
+        madeIn: json["made_in"],
+        hsnCode: json["hsn_code"],
+        brand: json["brand"],
+        sku: json["sku"],
+        stock: json["stock"],
+        availability: json["availability"],
+        rating: json["rating"],
+        noOfRatings: json["no_of_ratings"],
+        description: json["description"],
+        extraDescription: json["extra_description"],
+        deliverableType: json["deliverable_type"],
+        deliverableZipcodes: json["deliverable_zipcodes"],
+        pickupLocation: json["pickup_location"],
+        status: json["status"],
+        dateAdded: json["date_added"],
+        subCatId: json["sub_cat_id"],
+        attributeTitle: json["attribute_title"],
+        attributeValue: json["attribute_value"],
       );
-  String? get id => _id;
-  dynamic get productIdentity => _productIdentity;
-  String? get categoryId => _categoryId;
-  String? get sellerId => _sellerId;
-  String? get tax => _tax;
-  String? get rowOrder => _rowOrder;
-  String? get type => _type;
-  dynamic get stockType => _stockType;
-  String? get name => _name;
-  String? get shortDescription => _shortDescription;
-  String? get slug => _slug;
-  String? get indicator => _indicator;
-  String? get codAllowed => _codAllowed;
-  String? get downloadAllowed => _downloadAllowed;
-  String? get downloadType => _downloadType;
-  String? get downloadLink => _downloadLink;
-  String? get minimumOrderQuantity => _minimumOrderQuantity;
-  String? get quantityStepSize => _quantityStepSize;
-  dynamic get totalAllowedQuantity => _totalAllowedQuantity;
-  String? get isPricesInclusiveTax => _isPricesInclusiveTax;
-  String? get isReturnable => _isReturnable;
-  String? get isCancelable => _isCancelable;
-  String? get cancelableTill => _cancelableTill;
-  String? get image => _image;
-  String? get otherImages => _otherImages;
-  String? get broucherImage => _broucherImage;
-  String? get videoType => _videoType;
-  String? get video => _video;
-  String? get tags => _tags;
-  String? get warrantyPeriod => _warrantyPeriod;
-  String? get guaranteePeriod => _guaranteePeriod;
-  dynamic get madeIn => _madeIn;
-  String? get hsnCode => _hsnCode;
-  dynamic get brand => _brand;
-  dynamic get sku => _sku;
-  dynamic get stock => _stock;
-  dynamic get availability => _availability;
-  String? get rating => _rating;
-  String? get noOfRatings => _noOfRatings;
-  String? get description => _description;
-  String? get extraDescription => _extraDescription;
-  String? get deliverableType => _deliverableType;
-  dynamic get deliverableZipcodes => _deliverableZipcodes;
-  String? get pickupLocation => _pickupLocation;
-  String? get status => _status;
-  String? get dateAdded => _dateAdded;
-  String? get subCatId => _subCatId;
-  String? get attributeTitle => _attributeTitle;
-  String? get attributeValue => _attributeValue;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['product_identity'] = _productIdentity;
-    map['category_id'] = _categoryId;
-    map['seller_id'] = _sellerId;
-    map['tax'] = _tax;
-    map['row_order'] = _rowOrder;
-    map['type'] = _type;
-    map['stock_type'] = _stockType;
-    map['name'] = _name;
-    map['short_description'] = _shortDescription;
-    map['slug'] = _slug;
-    map['indicator'] = _indicator;
-    map['cod_allowed'] = _codAllowed;
-    map['download_allowed'] = _downloadAllowed;
-    map['download_type'] = _downloadType;
-    map['download_link'] = _downloadLink;
-    map['minimum_order_quantity'] = _minimumOrderQuantity;
-    map['quantity_step_size'] = _quantityStepSize;
-    map['total_allowed_quantity'] = _totalAllowedQuantity;
-    map['is_prices_inclusive_tax'] = _isPricesInclusiveTax;
-    map['is_returnable'] = _isReturnable;
-    map['is_cancelable'] = _isCancelable;
-    map['cancelable_till'] = _cancelableTill;
-    map['image'] = _image;
-    map['other_images'] = _otherImages;
-    map['broucher_image'] = _broucherImage;
-    map['video_type'] = _videoType;
-    map['video'] = _video;
-    map['tags'] = _tags;
-    map['warranty_period'] = _warrantyPeriod;
-    map['guarantee_period'] = _guaranteePeriod;
-    map['made_in'] = _madeIn;
-    map['hsn_code'] = _hsnCode;
-    map['brand'] = _brand;
-    map['sku'] = _sku;
-    map['stock'] = _stock;
-    map['availability'] = _availability;
-    map['rating'] = _rating;
-    map['no_of_ratings'] = _noOfRatings;
-    map['description'] = _description;
-    map['extra_description'] = _extraDescription;
-    map['deliverable_type'] = _deliverableType;
-    map['deliverable_zipcodes'] = _deliverableZipcodes;
-    map['pickup_location'] = _pickupLocation;
-    map['status'] = _status;
-    map['date_added'] = _dateAdded;
-    map['sub_cat_id'] = _subCatId;
-    map['attribute_title'] = _attributeTitle;
-    map['attribute_value'] = _attributeValue;
-    return map;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "product_identity": productIdentity,
+        "category_id": categoryId,
+        "seller_id": sellerId,
+        "tax": tax,
+        "row_order": rowOrder,
+        "type": type,
+        "stock_type": stockType,
+        "name": name,
+        "short_description": shortDescription,
+        "slug": slug,
+        "indicator": indicator,
+        "cod_allowed": codAllowed,
+        "download_allowed": downloadAllowed,
+        "download_type": downloadType,
+        "download_link": downloadLink,
+        "minimum_order_quantity": minimumOrderQuantity,
+        "quantity_step_size": quantityStepSize,
+        "total_allowed_quantity": totalAllowedQuantity,
+        "is_prices_inclusive_tax": isPricesInclusiveTax,
+        "is_returnable": isReturnable,
+        "is_cancelable": isCancelable,
+        "cancelable_till": cancelableTill,
+        "image": image,
+        "other_images": otherImages == null
+            ? []
+            : List<dynamic>.from(otherImages!.map((x) => x)),
+        "broucher_image": broucherImage == null
+            ? []
+            : List<dynamic>.from(broucherImage!.map((x) => x)),
+        "video_type": videoType,
+        "video": video,
+        "tags": tags,
+        "warranty_period": warrantyPeriod,
+        "guarantee_period": guaranteePeriod,
+        "made_in": madeIn,
+        "hsn_code": hsnCode,
+        "brand": brand,
+        "sku": sku,
+        "stock": stock,
+        "availability": availability,
+        "rating": rating,
+        "no_of_ratings": noOfRatings,
+        "description": description,
+        "extra_description": extraDescription,
+        "deliverable_type": deliverableType,
+        "deliverable_zipcodes": deliverableZipcodes,
+        "pickup_location": pickupLocation,
+        "status": status,
+        "date_added": dateAdded,
+        "sub_cat_id": subCatId,
+        "attribute_title": attributeTitle,
+        "attribute_value": attributeValue,
+      };
 }

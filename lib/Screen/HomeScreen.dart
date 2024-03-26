@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 // import 'package:anoop/Model/GetHomeCategoryModel.dart';
@@ -1919,9 +1920,10 @@ class _B2BHomeState extends State<B2BHome> {
                   borderRadius: BorderRadius.circular(10),
                   child: GestureDetector(
                     onTap: () {
-                      final imageProvider =
+                      final ImageProvider imageProvider =
                           Image.network(ApiService.adbaseUrl + item.name ?? "")
                               .image;
+
                       showImageViewer(context, imageProvider,
                           onViewerDismissed: () {
                         print("dismissed");
@@ -1964,7 +1966,6 @@ class _B2BHomeState extends State<B2BHome> {
     // Add more markers as needed
   };
   GetCatByProductModel? GetSub;
-  List<dataListHome> productList = [];
   getCatByProductApi() async {
     print('=================sab cat1');
     var headers = {
@@ -2104,7 +2105,7 @@ class _B2BHomeState extends State<B2BHome> {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 child: Image.network(
-                                                  "${GetSub!.data![i].products![index].productImage}" ??
+                                                  "https://b2bdiary.com/${GetSub!.data![i].products![index].productImage}" ??
                                                       '',
                                                   fit: BoxFit.fill,
                                                 ),
@@ -2267,67 +2268,74 @@ class _B2BHomeState extends State<B2BHome> {
                                                                   "Watch Video"))
                                                         ],
                                                       )),
-                                                  Row(
-                                                    children: [
-                                                      const CircleAvatar(
-                                                          radius: 15,
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          child: Icon(
-                                                            Icons.image,
-                                                            color:
-                                                                colors.primary,
-                                                          )),
-                                                      InkWell(
-                                                          onTap: () {
-                                                            final imageProvider =
-                                                                Image.network(GetSub!
-                                                                            .data![i]
-                                                                            .products![index]
-                                                                            .broucherImage ??
-                                                                        "")
-                                                                    .image;
-                                                            showImageViewer(
-                                                                context,
-                                                                imageProvider,
-                                                                onViewerDismissed:
-                                                                    () {
-                                                              print(
-                                                                  "dismissed");
-                                                            });
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      if (GetSub!
+                                                          .data![i]
+                                                          .products![index]
+                                                          .broucherImage!
+                                                          .isEmpty) {
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Broucher image is empty");
+                                                      }
+                                                      List<
+                                                              ImageProvider<
+                                                                  Object>>
+                                                          imageProviders = [];
 
-                                                            // showDialog<String>(
-                                                            //   context: context,
-                                                            //   builder: (BuildContext
-                                                            //           context) =>
-                                                            //       AlertDialog(
-                                                            //     title: const Text(
-                                                            //         'Broucher Image'),
-                                                            //     content: GetSub!
-                                                            //                 .data![
-                                                            //                     i]
-                                                            //                 .products![
-                                                            //                     index]
-                                                            //                 .broucherImage ==
-                                                            //             null
-                                                            //         ? Image
-                                                            //             .asset(
-                                                            //             "Images/no-image-icon.png",
-                                                            //             height:
-                                                            //                 120,
-                                                            //             width: double
-                                                            //                 .infinity,
-                                                            //             fit: BoxFit
-                                                            //                 .fill,
-                                                            //           )
-                                                            //         : Image.network(
-                                                            //             "${GetSub!.data![i].products![index].broucherImage}"),
-                                                            //   ),
-                                                            // );
-                                                          },
-                                                          child: const Text(
-                                                              "Broucher"))
-                                                    ],
+                                                      for (int i = 0;
+                                                          i <
+                                                              GetSub!
+                                                                  .data![i]
+                                                                  .products![
+                                                                      index]
+                                                                  .broucherImage!
+                                                                  .length;
+                                                          i++) {
+                                                        imageProviders.add(
+                                                            NetworkImage(GetSub!
+                                                                .data![i]
+                                                                .products![
+                                                                    index]
+                                                                .broucherImage![
+                                                                    i]
+                                                                .toString()));
+                                                      }
+
+                                                      MultiImageProvider
+                                                          multiImageProvider =
+                                                          MultiImageProvider(
+                                                              imageProviders);
+                                                      showImageViewerPager(
+                                                          context,
+                                                          multiImageProvider,
+                                                          doubleTapZoomable:
+                                                              true,
+                                                          onPageChanged:
+                                                              (page) {
+                                                        print(
+                                                            "page changed to $page");
+                                                      }, onViewerDismissed:
+                                                              (page) {
+                                                        print(
+                                                            "dismissed while on page $page");
+                                                      });
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const CircleAvatar(
+                                                            radius: 15,
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            child: Icon(
+                                                              Icons.image,
+                                                              color: colors
+                                                                  .primary,
+                                                            )),
+                                                        const Text("Broucher")
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -2335,9 +2343,10 @@ class _B2BHomeState extends State<B2BHome> {
                                             const SizedBox(
                                               height: 10,
                                             ),
+                                            //General mode options
                                             Container(
                                               margin: const EdgeInsets.only(
-                                                  left: 20, right: 20),
+                                                  left: 15, right: 15),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2374,32 +2383,6 @@ class _B2BHomeState extends State<B2BHome> {
                                                           ),
                                                         )
                                                       : SizedBox.shrink(),
-                                                  // Container(
-                                                  //   height: 25,
-                                                  //   width: 25,
-                                                  //   decoration:
-                                                  //       const BoxDecoration(
-                                                  //           borderRadius:
-                                                  //               BorderRadius.all(
-                                                  //                   Radius
-                                                  //                       .circular(
-                                                  //                           5)),
-                                                  //           color: Colors
-                                                  //               .deepPurple),
-                                                  //   child: const Padding(
-                                                  //     padding: EdgeInsets.only(
-                                                  //         left: 5,
-                                                  //         right: 5,
-                                                  //         top: 3,
-                                                  //         bottom: 3),
-                                                  //     child: Icon(
-                                                  //       Icons.message,
-                                                  //       size: 15,
-                                                  //       color: Colors.white,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
@@ -2436,28 +2419,37 @@ class _B2BHomeState extends State<B2BHome> {
                                                           ),
                                                         ),
                                                         const SizedBox(
-                                                            width: 7),
-                                                        Image.asset(
-                                                          "Images/phone.png",
-                                                          scale: 2,
-                                                          color: GetSub!
-                                                                      .data![i]
-                                                                      .products![
-                                                                          index]
-                                                                      .taxNumber
-                                                                      .toString() ==
-                                                                  ""
-                                                              ? colors.primary
-                                                              : colors
-                                                                  .secondary,
-                                                        ),
+                                                            width: 4),
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              launchUrl(
+                                                                  Uri.parse("tel:" +
+                                                                      (GetSub!.data![i].products![index].mobile ??
+                                                                          "")),
+                                                                  mode: LaunchMode
+                                                                      .externalApplication);
+                                                            },
+                                                            child: Image.asset(
+                                                              "Images/Group 81121.png",
+                                                              height: 25,
+                                                            )),
                                                         const SizedBox(
-                                                            width: 7),
-                                                        Image.asset(
-                                                            "Images/person.png",
-                                                            scale: 2),
+                                                            width: 4),
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              launchUrl(
+                                                                  Uri.parse("sms:" +
+                                                                      (GetSub!.data![i].products![index].mobile ??
+                                                                          "")),
+                                                                  mode: LaunchMode
+                                                                      .externalApplication);
+                                                            },
+                                                            child: Image.asset(
+                                                              "Images/Group 81119.png",
+                                                              height: 25,
+                                                            )),
                                                         const SizedBox(
-                                                            width: 7),
+                                                            width: 4),
                                                         GestureDetector(
                                                             onTap: () {
                                                               launchUrl(
@@ -2467,82 +2459,32 @@ class _B2BHomeState extends State<B2BHome> {
                                                                   mode: LaunchMode
                                                                       .externalApplication);
                                                             },
-                                                            child: Icon(
-                                                                Icons.mail,
-                                                                color: colors
-                                                                    .primary)),
-                                                        // Image.asset(
-                                                        //     "Images/register.png",
-                                                        //     scale: 2),
+                                                            child: Image.asset(
+                                                              "Images/Group 81117.png",
+                                                              height: 25,
+                                                            ))
+                                                        //  Icon(
+                                                        //     Icons.mail,
+                                                        //     color: colors
+                                                        //         .primary)),
                                                       ],
                                                     ),
                                                   ),
-
-                                                  // Container(
-                                                  //   height: 25,
-                                                  //   width: 25,
-                                                  //   decoration:
-                                                  //       const BoxDecoration(
-                                                  //           borderRadius:
-                                                  //               BorderRadius.all(
-                                                  //                   Radius
-                                                  //                       .circular(
-                                                  //                           6)),
-                                                  //           color: colors
-                                                  //               .secondary),
-                                                  //   child: const Padding(
-                                                  //     padding: EdgeInsets.only(
-                                                  //         left: 5,
-                                                  //         right: 5,
-                                                  //         top: 3,
-                                                  //         bottom: 3),
-                                                  //     child: Icon(
-                                                  //       Icons.mail_outline,
-                                                  //       size: 15,
-                                                  //       color: Colors.white,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Container(
-                                                  //   height: 25,
-                                                  //   width: 25,
-                                                  //   decoration:
-                                                  //       const BoxDecoration(
-                                                  //           borderRadius:
-                                                  //               BorderRadius
-                                                  //                   .all(Radius
-                                                  //                       .circular(
-                                                  //                           50)),
-                                                  //           color:
-                                                  //               colors.primary),
-                                                  //   child: const Padding(
-                                                  //     padding: EdgeInsets.only(
-                                                  //         left: 5,
-                                                  //         right: 5,
-                                                  //         top: 3,
-                                                  //         bottom: 3),
-                                                  //     child: Icon(
-                                                  //       Icons.location_pin,
-                                                  //       size: 15,
-                                                  //       color: Colors.white,
-                                                  //     ),
-                                                  //   ),
-                                                  //  ),
                                                   Container(
                                                     height:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .height /
-                                                            20,
+                                                            23,
                                                     width:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .width /
-                                                            3,
+                                                            3.2,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     6)),
                                                         border: Border.all(
@@ -2560,7 +2502,35 @@ class _B2BHomeState extends State<B2BHome> {
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   const BorderRadius
-                                                                          .all(
+                                                                      .all(
+                                                                      Radius.circular(
+                                                                          50)),
+                                                              color: GetSub!
+                                                                          .data![
+                                                                              i]
+                                                                          .products![
+                                                                              index]
+                                                                          .active ==
+                                                                      ""
+                                                                  ? Colors.red
+                                                                  : colors
+                                                                      .secondary),
+                                                          child: Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(0),
+                                                              child: Icon(
+                                                                  Icons.person,
+                                                                  color: Colors
+                                                                      .white)),
+                                                        ),
+                                                        Container(
+                                                          height: 25,
+                                                          width: 25,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .all(
                                                                       Radius.circular(
                                                                           50)),
                                                               color: GetSub!
@@ -2570,94 +2540,53 @@ class _B2BHomeState extends State<B2BHome> {
                                                                               index]
                                                                           .taxNumber ==
                                                                       ""
+                                                                  ? colors
+                                                                      .primary
+                                                                  : colors
+                                                                      .secondary),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(3.0),
+                                                            child: Image.asset(
+                                                              "Images/phone.png",
+                                                              scale: 2,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          height: 25,
+                                                          width: 25,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .all(
+                                                                      Radius.circular(
+                                                                          50)),
+                                                              color: GetSub!
+                                                                          .data![
+                                                                              i]
+                                                                          .products![
+                                                                              index]
+                                                                          .subscriptionType !=
+                                                                      "1"
                                                                   ? Colors.red
                                                                   : colors
                                                                       .secondary),
-                                                          child: const Padding(
+                                                          child: Padding(
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     left: 5,
                                                                     right: 5,
                                                                     top: 3,
                                                                     bottom: 3),
-                                                            child: Icon(
-                                                              Icons.description,
-                                                              size: 15,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          height: 25,
-                                                          width: 25,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                          .all(
-                                                                      Radius.circular(
-                                                                          50)),
-                                                              color: GetSub!
-                                                                          .data![
-                                                                              i]
-                                                                          .products![
-                                                                              index]
-                                                                          .subscriptionType ==
-                                                                      1
-                                                                  ? colors
-                                                                      .primary
-                                                                  : colors
-                                                                      .secondary),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 5,
-                                                                    right: 5,
-                                                                    top: 3,
-                                                                    bottom: 3),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .check_circle_outline,
-                                                              size: 15,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          height: 25,
-                                                          width: 25,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                          .all(
-                                                                      Radius.circular(
-                                                                          50)),
-                                                              color: GetSub!
-                                                                          .data![
-                                                                              i]
-                                                                          .products![
-                                                                              index]
-                                                                          .subscriptionType ==
-                                                                      1
-                                                                  ? colors
-                                                                      .primary
-                                                                  : colors
-                                                                      .secondary),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 5,
-                                                                    right: 5,
-                                                                    top: 3,
-                                                                    bottom: 3),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .verified_user,
-                                                              size: 15,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
+                                                            child: Image.asset(
+                                                                "Images/person.png",
+                                                                color: Colors
+                                                                    .white,
+                                                                scale: 2),
                                                           ),
                                                         ),
                                                       ],
@@ -2669,6 +2598,7 @@ class _B2BHomeState extends State<B2BHome> {
                                             const SizedBox(
                                               height: 30,
                                             ),
+                                            //for general mode
                                             Center(
                                               child: Btn(
                                                 height: 40,
@@ -3598,44 +3528,45 @@ class _B2BHomeState extends State<B2BHome> {
                                       )),
                                   InkWell(
                                       onTap: () {
-                                        final imageProvider = Image.network(
+                                        print("broucher 3");
+                                        if (homeSpecificModel!
+                                            .data!
+                                            .businsessData![index]
+                                            .broucherImage!
+                                            .isEmpty) {
+                                          Fluttertoast.showToast(
+                                              msg: "Broucher image is empty");
+                                        }
+                                        List<ImageProvider<Object>>
+                                            imageProviders = [];
+
+                                        for (int i = 0;
+                                            i <
                                                 homeSpecificModel!
-                                                        .data!
-                                                        .businsessData![index]
-                                                        .broucherImage ??
-                                                    "")
-                                            .image;
-                                        showImageViewer(context, imageProvider,
-                                            onViewerDismissed: () {
-                                          print("dismissed");
+                                                    .data!
+                                                    .businsessData![index]
+                                                    .broucherImage!
+                                                    .length;
+                                            i++) {
+                                          imageProviders.add(NetworkImage(
+                                              homeSpecificModel!
+                                                  .data!
+                                                  .businsessData![index]
+                                                  .broucherImage!
+                                                  .toString()));
+                                        }
+
+                                        MultiImageProvider multiImageProvider =
+                                            MultiImageProvider(imageProviders);
+                                        showImageViewerPager(
+                                            context, multiImageProvider,
+                                            doubleTapZoomable: true,
+                                            onPageChanged: (page) {
+                                          print("page changed to $page");
+                                        }, onViewerDismissed: (page) {
+                                          print(
+                                              "dismissed while on page $page");
                                         });
-                                        // showDialog<String>(
-                                        //   context: context,
-                                        //   builder: (BuildContext context) =>
-                                        //       AlertDialog(
-                                        //     title: const Text('Broucher Image'),
-                                        //     content: homeSpecificModel!
-                                        //                     .data!
-                                        //                     .businsessData![
-                                        //                         index]
-                                        //                     .broucherImage ==
-                                        //                 null ||
-                                        //             homeSpecificModel!
-                                        //                     .data!
-                                        //                     .businsessData![
-                                        //                         index]
-                                        //                     .broucherImage ==
-                                        //                 ""
-                                        //         ? Image.asset(
-                                        //             "Images/no-image-icon.png",
-                                        //             height: 120,
-                                        //             width: double.infinity,
-                                        //             fit: BoxFit.fill,
-                                        //           )
-                                        //         : Image.network(
-                                        //             "${homeSpecificModel!.data!.businsessData![index].broucherImage}"),
-                                        //   ),
-                                        // );
                                       },
                                       child: const Text("Broucher"))
                                 ],
@@ -3646,58 +3577,38 @@ class _B2BHomeState extends State<B2BHome> {
                         const SizedBox(
                           height: 10,
                         ),
+                        //supplier mode
+
                         Container(
-                          margin: const EdgeInsets.only(left: 20, right: 20),
-                          child:
-                              // Padding(
-                              //   padding: const EdgeInsets.only(left: 95),
-                              //   child:
-                              //   Row(
-                              //     children: [
-                              //       GestureDetector(
-                              //         onTap: () {
-                              //           // openMap(
-                              //           //     homeSpecificModel!
-                              //           //             .data!
-                              //           //             .businsessData![index]
-                              //           //             .latitude! ??
-                              //           //         "",
-                              //           //     getHomeProductDetails
-                              //           //             ?.data.first.longitude! ??
-                              //           //         "");
-                              //         },
-                              //         child: const CircleAvatar(
-                              //           radius: 15,
-                              //           backgroundColor: colors.secondary,
-                              //           child: Icon(
-                              //             Icons.location_pin,
-                              //             size: 15,
-                              //             color: colors.white,
-                              //           ),
-                              //         ),
-                              //       ),
-                              //       const SizedBox(width: 7),
-                              //       Image.asset(
-                              //         "Images/phone.png",
-                              //         scale: 2,
-                              //         color: homeSpecificModel!
-                              //                     .data!
-                              //                     .businsessData![index]
-                              //                     .taxNumber ==
-                              //                 ""
-                              //             ? colors.primary
-                              //             : colors.secondary,
-                              //       ),
-                              //       const SizedBox(width: 7),
-                              //       Image.asset("Images/person.png", scale: 2),
-                              //       const SizedBox(width: 7),
-                              //       Image.asset("Images/register.png", scale: 2),
-                              //     ],
-                              //   ),
-                              // ),
-                              Row(
+                          margin: const EdgeInsets.only(left: 15, right: 15),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              userId == null
+                                  ? InkWell(
+                                      onTap: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage(),
+                                            ));
+                                      },
+                                      child: Container(
+                                        height: 25,
+                                        width: 25,
+                                        decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(50)),
+                                            color: Colors.deepPurple),
+                                        child: const Icon(
+                                          Icons.add_circle,
+                                          size: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox.shrink(),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0),
                                 child: Row(
@@ -3706,10 +3617,14 @@ class _B2BHomeState extends State<B2BHome> {
                                       onTap: () {
                                         // openMap(
                                         //     getHomeProductDetails
-                                        //             ?.data.first.latitude! ??
+                                        //             ?.data
+                                        //             .first
+                                        //             .latitude! ??
                                         //         "",
                                         //     getHomeProductDetails
-                                        //             ?.data.first.longitude! ??
+                                        //             ?.data
+                                        //             .first
+                                        //             .longitude! ??
                                         //         "");
                                       },
                                       child: const CircleAvatar(
@@ -3722,34 +3637,47 @@ class _B2BHomeState extends State<B2BHome> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 7),
-                                    Image.asset(
-                                      "Images/phone.png",
-                                      scale: 2,
-                                      color: homeSpecificModel!
-                                                  .data!
-                                                  .businsessData![index]
-                                                  .taxNumber ==
-                                              ""
-                                          ? colors.primary
-                                          : colors.secondary,
-                                    ),
-                                    const SizedBox(width: 7),
+                                    const SizedBox(width: 4),
+                                    GestureDetector(
+                                        onTap: () {},
+                                        child: Image.asset(
+                                          "Images/Group 81121.png",
+                                          height: 25,
+                                        )),
+                                    const SizedBox(width: 4),
+                                    GestureDetector(
+                                        onTap: () {},
+                                        child: Image.asset(
+                                          "Images/Group 81119.png",
+                                          height: 25,
+                                        )),
+                                    const SizedBox(width: 4),
                                     GestureDetector(
                                         onTap: () {
-                                          launchUrl(Uri.parse(""));
+                                          launchUrl(
+                                              Uri.parse("mailto:" +
+                                                  (homeSpecificModel!
+                                                          .data!
+                                                          .businsessData![index]
+                                                          .email ??
+                                                      "")),
+                                              mode: LaunchMode
+                                                  .externalApplication);
                                         },
-                                        child: Icon(Icons.mail,
-                                            color: colors.primary)),
-                                    const SizedBox(width: 7),
-                                    Image.asset("Images/register.png",
-                                        scale: 2),
+                                        child: Image.asset(
+                                          "Images/Group 81117.png",
+                                          height: 25,
+                                        ))
+                                    //  Icon(
+                                    //     Icons.mail,
+                                    //     color: colors
+                                    //         .primary)),
                                   ],
                                 ),
                               ),
                               Container(
-                                height: MediaQuery.of(context).size.height / 20,
-                                width: MediaQuery.of(context).size.width / 3,
+                                height: MediaQuery.of(context).size.height / 23,
+                                width: MediaQuery.of(context).size.width / 3.2,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(6)),
@@ -3764,82 +3692,57 @@ class _B2BHomeState extends State<B2BHome> {
                                       height: 25,
                                       width: 25,
                                       decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(50)),
-                                        // color: homeSpecificModel!
-                                        //             .data!
-                                        //             .businsessData![index]
-                                        //             .taxNumber ==
-                                        //         ""
-                                        //     ? colors.primary
-                                        //     : colors.secondary
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50)),
+                                          color: colors.secondary),
+                                      child: Padding(
+                                          padding: EdgeInsets.all(0),
+                                          child: Icon(Icons.person,
+                                              color: Colors.white)),
+                                    ),
+                                    Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50)),
+                                          color: homeSpecificModel!
+                                                      .data!
+                                                      .businsessData![index]
+                                                      .taxNumber ==
+                                                  ""
+                                              ? colors.primary
+                                              : colors.secondary),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Image.asset(
+                                          "Images/phone.png",
+                                          scale: 2,
+                                          color: Colors.white,
+                                        ),
                                       ),
+                                    ),
+                                    Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50)),
+                                          color: homeSpecificModel!
+                                                      .data!
+                                                      .businsessData![index]
+                                                      .subscriptionType !=
+                                                  "1"
+                                              ? Colors.red
+                                              : colors.secondary),
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             left: 5,
                                             right: 5,
                                             top: 3,
                                             bottom: 3),
-                                        child: Image.asset("Images/phone.png",
-                                            color: homeSpecificModel!
-                                                        .data!
-                                                        .businsessData![index]
-                                                        .taxNumber ==
-                                                    ""
-                                                ? colors.primary
-                                                : colors.secondary),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 25,
-                                      width: 25,
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(50)),
-                                          color: homeSpecificModel!
-                                                      .data!
-                                                      .businsessData![index]
-                                                      .subscriptionType ==
-                                                  1
-                                              ? colors.primary
-                                              : colors.secondary),
-                                      child: const Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 5,
-                                            right: 5,
-                                            top: 3,
-                                            bottom: 3),
-                                        child: Icon(
-                                          Icons.check_circle_outline,
-                                          size: 15,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 25,
-                                      width: 25,
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(50)),
-                                          color: homeSpecificModel!
-                                                      .data!
-                                                      .businsessData![index]
-                                                      .subscriptionType ==
-                                                  1
-                                              ? colors.primary
-                                              : colors.secondary),
-                                      child: const Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 5,
-                                            right: 5,
-                                            top: 3,
-                                            bottom: 3),
-                                        child: Icon(
-                                          Icons.verified_user,
-                                          size: 15,
-                                          color: Colors.white,
-                                        ),
+                                        child: Image.asset("Images/person.png",
+                                            color: Colors.white, scale: 2),
                                       ),
                                     ),
                                   ],
@@ -3848,6 +3751,210 @@ class _B2BHomeState extends State<B2BHome> {
                             ],
                           ),
                         ),
+
+                        // Container(
+                        //   margin: const EdgeInsets.only(left: 20, right: 20),
+                        //   child:
+                        //       // Padding(
+                        //       //   padding: const EdgeInsets.only(left: 95),
+                        //       //   child:
+                        //       //   Row(
+                        //       //     children: [
+                        //       //       GestureDetector(
+                        //       //         onTap: () {
+                        //       //           // openMap(
+                        //       //           //     homeSpecificModel!
+                        //       //           //             .data!
+                        //       //           //             .businsessData![index]
+                        //       //           //             .latitude! ??
+                        //       //           //         "",
+                        //       //           //     getHomeProductDetails
+                        //       //           //             ?.data.first.longitude! ??
+                        //       //           //         "");
+                        //       //         },
+                        //       //         child: const CircleAvatar(
+                        //       //           radius: 15,
+                        //       //           backgroundColor: colors.secondary,
+                        //       //           child: Icon(
+                        //       //             Icons.location_pin,
+                        //       //             size: 15,
+                        //       //             color: colors.white,
+                        //       //           ),
+                        //       //         ),
+                        //       //       ),
+                        //       //       const SizedBox(width: 7),
+                        //       //       Image.asset(
+                        //       //         "Images/phone.png",
+                        //       //         scale: 2,
+                        //       //         color: homeSpecificModel!
+                        //       //                     .data!
+                        //       //                     .businsessData![index]
+                        //       //                     .taxNumber ==
+                        //       //                 ""
+                        //       //             ? colors.primary
+                        //       //             : colors.secondary,
+                        //       //       ),
+                        //       //       const SizedBox(width: 7),
+                        //       //       Image.asset("Images/person.png", scale: 2),
+                        //       //       const SizedBox(width: 7),
+                        //       //       Image.asset("Images/register.png", scale: 2),
+                        //       //     ],
+                        //       //   ),
+                        //       // ),
+                        //       Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        //     children: [
+                        //       Padding(
+                        //         padding: const EdgeInsets.only(left: 0),
+                        //         child: Row(
+                        //           children: [
+                        //             GestureDetector(
+                        //               onTap: () {
+                        //                 // openMap(
+                        //                 //     getHomeProductDetails
+                        //                 //             ?.data.first.latitude! ??
+                        //                 //         "",
+                        //                 //     getHomeProductDetails
+                        //                 //             ?.data.first.longitude! ??
+                        //                 //         "");
+                        //               },
+                        //               child: const CircleAvatar(
+                        //                 radius: 15,
+                        //                 backgroundColor: colors.secondary,
+                        //                 child: Icon(
+                        //                   Icons.location_pin,
+                        //                   size: 15,
+                        //                   color: colors.white,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //             const SizedBox(width: 7),
+                        //             Image.asset(
+                        //               "Images/phone.png",
+                        //               scale: 2,
+                        //               color: homeSpecificModel!
+                        //                           .data!
+                        //                           .businsessData![index]
+                        //                           .taxNumber ==
+                        //                       ""
+                        //                   ? colors.primary
+                        //                   : colors.secondary,
+                        //             ),
+                        //             const SizedBox(width: 7),
+                        //             GestureDetector(
+                        //                 onTap: () {
+                        //                   launchUrl(Uri.parse(""));
+                        //                 },
+                        //                 child: Icon(Icons.mail,
+                        //                     color: colors.primary)),
+                        //             const SizedBox(width: 7),
+                        //             Image.asset("Images/register.png",
+                        //                 scale: 2),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //       Container(
+                        //         height: MediaQuery.of(context).size.height / 20,
+                        //         width: MediaQuery.of(context).size.width / 3,
+                        //         decoration: BoxDecoration(
+                        //             borderRadius: const BorderRadius.all(
+                        //                 Radius.circular(6)),
+                        //             border: Border.all(
+                        //                 width: 2, color: Colors.grey),
+                        //             color: colors.white),
+                        //         child: Row(
+                        //           mainAxisAlignment:
+                        //               MainAxisAlignment.spaceAround,
+                        //           children: [
+                        //             Container(
+                        //               height: 25,
+                        //               width: 25,
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: const BorderRadius.all(
+                        //                     Radius.circular(50)),
+                        //                 // color: homeSpecificModel!
+                        //                 //             .data!
+                        //                 //             .businsessData![index]
+                        //                 //             .taxNumber ==
+                        //                 //         ""
+                        //                 //     ? colors.primary
+                        //                 //     : colors.secondary
+                        //               ),
+                        //               child: Padding(
+                        //                 padding: EdgeInsets.only(
+                        //                     left: 5,
+                        //                     right: 5,
+                        //                     top: 3,
+                        //                     bottom: 3),
+                        //                 child: Image.asset("Images/phone.png",
+                        //                     color: homeSpecificModel!
+                        //                                 .data!
+                        //                                 .businsessData![index]
+                        //                                 .taxNumber ==
+                        //                             ""
+                        //                         ? colors.primary
+                        //                         : colors.secondary),
+                        //               ),
+                        //             ),
+                        //             Container(
+                        //               height: 25,
+                        //               width: 25,
+                        //               decoration: BoxDecoration(
+                        //                   borderRadius: const BorderRadius.all(
+                        //                       Radius.circular(50)),
+                        //                   color: homeSpecificModel!
+                        //                               .data!
+                        //                               .businsessData![index]
+                        //                               .subscriptionType ==
+                        //                           1
+                        //                       ? colors.primary
+                        //                       : colors.secondary),
+                        //               child: const Padding(
+                        //                 padding: EdgeInsets.only(
+                        //                     left: 5,
+                        //                     right: 5,
+                        //                     top: 3,
+                        //                     bottom: 3),
+                        //                 child: Icon(
+                        //                   Icons.check_circle_outline,
+                        //                   size: 15,
+                        //                   color: Colors.white,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //             Container(
+                        //               height: 25,
+                        //               width: 25,
+                        //               decoration: BoxDecoration(
+                        //                   borderRadius: const BorderRadius.all(
+                        //                       Radius.circular(50)),
+                        //                   color: homeSpecificModel!
+                        //                               .data!
+                        //                               .businsessData![index]
+                        //                               .subscriptionType ==
+                        //                           1
+                        //                       ? colors.primary
+                        //                       : colors.secondary),
+                        //               child: const Padding(
+                        //                 padding: EdgeInsets.only(
+                        //                     left: 5,
+                        //                     right: 5,
+                        //                     top: 3,
+                        //                     bottom: 3),
+                        //                 child: Icon(
+                        //                   Icons.verified_user,
+                        //                   size: 15,
+                        //                   color: Colors.white,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+
                         const SizedBox(
                           height: 10,
                         ),
@@ -3865,7 +3972,7 @@ class _B2BHomeState extends State<B2BHome> {
                                       .data!.businsessData![index].sellerId,
                                   textValue);
                             },
-                            title: "Contact Supplier",
+                            title: "Contact Supplier 22",
                           ),
                         )
                       ],
@@ -4039,26 +4146,46 @@ class _B2BHomeState extends State<B2BHome> {
                                       )),
                                   InkWell(
                                       onTap: () {
-                                        final imageProvider = Image.network(
+                                        print("broucher 1");
+
+                                        if (homeSpecificModel!
+                                            .data!
+                                            .clientData![index]
+                                            .broucherImage!
+                                            .isEmpty) {
+                                          Fluttertoast.showToast(
+                                              msg: "Broucher image is empty");
+                                        }
+                                        List<ImageProvider<Object>>
+                                            imageProviders = [];
+
+                                        for (int i = 0;
+                                            i <
                                                 homeSpecificModel!
-                                                        .data!
-                                                        .clientData![index]
-                                                        .broucherImage ??
-                                                    "")
-                                            .image;
-                                        showImageViewer(context, imageProvider,
-                                            onViewerDismissed: () {
-                                          print("dismissed");
+                                                    .data!
+                                                    .clientData![index]
+                                                    .broucherImage!
+                                                    .length;
+                                            i++) {
+                                          imageProviders.add(NetworkImage(
+                                              homeSpecificModel!
+                                                  .data!
+                                                  .clientData![index]
+                                                  .broucherImage![i]
+                                                  .toString()));
+                                        }
+
+                                        MultiImageProvider multiImageProvider =
+                                            MultiImageProvider(imageProviders);
+                                        showImageViewerPager(
+                                            context, multiImageProvider,
+                                            doubleTapZoomable: true,
+                                            onPageChanged: (page) {
+                                          print("page changed to $page");
+                                        }, onViewerDismissed: (page) {
+                                          print(
+                                              "dismissed while on page $page");
                                         });
-                                        // showDialog<String>(
-                                        //   context: context,
-                                        //   builder: (BuildContext context) =>
-                                        //       AlertDialog(
-                                        //     title: const Text('Broucher Image'),
-                                        //     content: Image.network(
-                                        //         "${homeSpecificModel!.data!.clientData![index].broucherImage}"),
-                                        //   ),
-                                        // );
                                       },
                                       child: const Text("Broucher"))
                                 ],
@@ -5332,4 +5459,30 @@ class _B2BHomeState extends State<B2BHome> {
           });
         });
   }
+}
+
+class ProductsImageProvider extends EasyImageProvider {
+  final List<String> products;
+  final int initialIndex;
+
+  ProductsImageProvider({required this.products, this.initialIndex = 0});
+
+  @override
+  ImageProvider<Object> imageBuilder(BuildContext context, int index) {
+    String? localImagePath = products[index];
+    File? imageFile;
+
+    if (localImagePath != null) {
+      imageFile = File(localImagePath);
+    }
+
+    ImageProvider imageProvider = imageFile != null
+        ? FileImage(imageFile)
+        : AssetImage("assets/images/product_placeholder.jpg") as ImageProvider;
+
+    return imageProvider;
+  }
+
+  @override
+  int get imageCount => products.length;
 }

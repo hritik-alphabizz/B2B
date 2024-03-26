@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:b2b/Api.path.dart';
+import 'package:b2b/AuthView/login.dart';
 import 'package:b2b/Constant/Constants.dart';
 import 'package:b2b/Model/suplier_Client_supplier_response.dart';
 import 'package:b2b/Screen/AllProducts.dart';
@@ -11,6 +12,7 @@ import 'package:b2b/color.dart';
 import 'package:b2b/utils/GetPreference.dart';
 import 'package:b2b/widgets/categoryCard.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/services.dart';
@@ -821,7 +823,6 @@ class _ClientScreenState extends State<ClientScreen> {
                               itemCount:
                                   getClientModel!.data![i].vendorData?.length ??
                                       0,
-                              //> 6 ? 6 : GetSub!.data![i].products!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
                                   onTap: () async {
@@ -1027,12 +1028,12 @@ class _ClientScreenState extends State<ClientScreen> {
                                               children: [
                                                 InkWell(
                                                     onTap: () {
-                                                       launchUrl(
+                                                      launchUrl(
                                                           Uri.parse(
-                                                              "${getClientModel!.data![i].vendorData![index].productInfo!.video}" ?? ""),
+                                                              "${getClientModel!.data![i].vendorData![index].productInfo!.video}" ??
+                                                                  ""),
                                                           mode: LaunchMode
                                                               .externalApplication);
-                                                   
                                                     },
                                                     child: Row(
                                                       children: const [
@@ -1061,18 +1062,53 @@ class _ClientScreenState extends State<ClientScreen> {
                                                         )),
                                                     InkWell(
                                                         onTap: () {
-                                                          showDialog<String>(
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                AlertDialog(
-                                                              title: const Text(
-                                                                  'Broucher Image'),
-                                                              content:
-                                                                  Image.network(
-                                                                      "${getClientModel!.data![i].vendorData![index].productInfo!.broucherImage}"),
-                                                            ),
-                                                          );
+                                                          print(
+                                                              "Client broucher");
+                                                          List<
+                                                                  ImageProvider<
+                                                                      Object>>
+                                                              imageProviders =
+                                                              [];
+
+                                                          for (int k = 0;
+                                                              k <
+                                                                  getClientModel!
+                                                                      .data![i]
+                                                                      .vendorData![
+                                                                          index]
+                                                                      .productInfo!
+                                                                      .broucherImage!
+                                                                      .length;
+                                                              k++) {
+                                                            imageProviders.add(NetworkImage("https://b2bdiary.com/" +
+                                                                getClientModel!
+                                                                    .data![i]
+                                                                    .vendorData![
+                                                                        index]
+                                                                    .productInfo!
+                                                                    .broucherImage![
+                                                                        k]
+                                                                    .toString()));
+                                                          }
+
+                                                          MultiImageProvider
+                                                              multiImageProvider =
+                                                              MultiImageProvider(
+                                                                  imageProviders);
+                                                          showImageViewerPager(
+                                                              context,
+                                                              multiImageProvider,
+                                                              doubleTapZoomable:
+                                                                  true,
+                                                              onPageChanged:
+                                                                  (page) {
+                                                            print(
+                                                                "page changed to $page");
+                                                          }, onViewerDismissed:
+                                                                  (page) {
+                                                            print(
+                                                                "dismissed while on page $page");
+                                                          });
                                                         },
                                                         child: const Text(
                                                             "Broucher"))
@@ -1086,113 +1122,122 @@ class _ClientScreenState extends State<ClientScreen> {
                                           ),
                                           Container(
                                             margin: const EdgeInsets.only(
-                                                left: 20, right: 20),
+                                                left: 15, right: 15),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
+                                                userId == null
+                                                    ? InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushReplacement(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const LoginPage(),
+                                                              ));
+                                                        },
+                                                        child: Container(
+                                                          height: 25,
+                                                          width: 25,
+                                                          decoration: const BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           50)),
-                                                          color: Colors
-                                                              .deepPurple),
-                                                  child: const Icon(
-                                                    Icons.add_circle,
-                                                    size: 15,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5)),
-                                                          color: Colors
-                                                              .deepPurple),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.message,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          6)),
-                                                          color:
-                                                              colors.secondary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.mail_outline,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 25,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          50)),
-                                                          color:
-                                                              colors.primary),
-                                                  child: const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 3,
-                                                        bottom: 3),
-                                                    child: Icon(
-                                                      Icons.location_pin,
-                                                      size: 15,
-                                                      color: Colors.white,
-                                                    ),
+                                                              color: Colors
+                                                                  .deepPurple),
+                                                          child: const Icon(
+                                                            Icons.add_circle,
+                                                            size: 15,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : SizedBox.shrink(),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 0),
+                                                  child: Row(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // openMap(
+                                                          //     getHomeProductDetails
+                                                          //             ?.data
+                                                          //             .first
+                                                          //             .latitude! ??
+                                                          //         "",
+                                                          //     getHomeProductDetails
+                                                          //             ?.data
+                                                          //             .first
+                                                          //             .longitude! ??
+                                                          //         "");
+                                                        },
+                                                        child:
+                                                            const CircleAvatar(
+                                                          radius: 15,
+                                                          backgroundColor:
+                                                              colors.secondary,
+                                                          child: Icon(
+                                                            Icons.location_pin,
+                                                            size: 15,
+                                                            color: colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                            "Images/Group 81121.png",
+                                                            height: 25,
+                                                          )),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                            "Images/Group 81119.png",
+                                                            height: 25,
+                                                          )),
+                                                      const SizedBox(width: 4),
+                                                      GestureDetector(
+                                                          onTap: () {
+                                                            launchUrl(
+                                                                Uri.parse("mailto:" +
+                                                                    (getClientModel!
+                                                                            .data![
+                                                                                i]
+                                                                            .vendorData![
+                                                                                index]
+                                                                            .sellerInfo!
+                                                                            .email ??
+                                                                        "")),
+                                                                mode: LaunchMode
+                                                                    .externalApplication);
+                                                          },
+                                                          child: Image.asset(
+                                                            "Images/Group 81117.png",
+                                                            height: 25,
+                                                          ))
+                                                      //  Icon(
+                                                      //     Icons.mail,
+                                                      //     color: colors
+                                                      //         .primary)),
+                                                    ],
                                                   ),
                                                 ),
                                                 Container(
                                                   height: MediaQuery.of(context)
                                                           .size
                                                           .height /
-                                                      20,
+                                                      23,
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
-                                                      3,
+                                                      3.2,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
@@ -1217,34 +1262,49 @@ class _ClientScreenState extends State<ClientScreen> {
                                                                     .all(Radius
                                                                         .circular(
                                                                             50)),
-                                                            color: getClientModel!
+                                                            color: colors
+                                                                .secondary),
+                                                        child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    0),
+                                                            child: Icon(
+                                                                Icons.person,
+                                                                color: Colors
+                                                                    .white)),
+                                                      ),
+                                                      Container(
+                                                        height: 25,
+                                                        width: 25,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                borderRadius:
+                                                                    const BorderRadius
+                                                                        .all(
+                                                                        Radius.circular(
+                                                                            50)),
+                                                                color: getClientModel!
                                                                             .data![
                                                                                 i]
                                                                             .vendorData![
                                                                                 index]
                                                                             .sellerDataInfo ==
-                                                                        null ||
-                                                                    getClientModel!
-                                                                            .data![
-                                                                                i]
-                                                                            .vendorData![
-                                                                                index]
-                                                                            .sellerDataInfo!
-                                                                            .taxNumber ==
-                                                                        ""
-                                                                ? colors.primary
-                                                                : colors
-                                                                    .secondary),
-                                                        child: const Padding(
+                                                                        null
+                                                                    ? colors
+                                                                        .primary
+                                                                    : getClientModel!.data![i].vendorData![index].sellerDataInfo!.taxNumber ==
+                                                                            ""
+                                                                        ? colors
+                                                                            .primary
+                                                                        : colors
+                                                                            .secondary),
+                                                        child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
-                                                                  left: 5,
-                                                                  right: 5,
-                                                                  top: 3,
-                                                                  bottom: 3),
-                                                          child: Icon(
-                                                            Icons.description,
-                                                            size: 15,
+                                                              const EdgeInsets
+                                                                  .all(3.0),
+                                                          child: Image.asset(
+                                                            "Images/phone.png",
+                                                            scale: 2,
                                                             color: Colors.white,
                                                           ),
                                                         ),
@@ -1264,58 +1324,23 @@ class _ClientScreenState extends State<ClientScreen> {
                                                                         .vendorData![
                                                                             index]
                                                                         .sellerInfo!
-                                                                        .subscriptionType ==
-                                                                    1
-                                                                ? colors.primary
+                                                                        .subscriptionType !=
+                                                                    "1"
+                                                                ? Colors.red
                                                                 : colors
                                                                     .secondary),
-                                                        child: const Padding(
+                                                        child: Padding(
                                                           padding:
                                                               EdgeInsets.only(
                                                                   left: 5,
                                                                   right: 5,
                                                                   top: 3,
                                                                   bottom: 3),
-                                                          child: Icon(
-                                                            Icons
-                                                                .check_circle_outline,
-                                                            size: 15,
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 25,
-                                                        width: 25,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                            color: getClientModel!
-                                                                        .data![
-                                                                            i]
-                                                                        .vendorData![
-                                                                            index]
-                                                                        .sellerInfo!
-                                                                        .subscriptionType ==
-                                                                    1
-                                                                ? colors.primary
-                                                                : colors
-                                                                    .secondary),
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 5,
-                                                                  right: 5,
-                                                                  top: 3,
-                                                                  bottom: 3),
-                                                          child: Icon(
-                                                            Icons.verified_user,
-                                                            size: 15,
-                                                            color: Colors.white,
-                                                          ),
+                                                          child: Image.asset(
+                                                              "Images/person.png",
+                                                              color:
+                                                                  Colors.white,
+                                                              scale: 2),
                                                         ),
                                                       ),
                                                     ],
@@ -1324,6 +1349,248 @@ class _ClientScreenState extends State<ClientScreen> {
                                               ],
                                             ),
                                           ),
+
+                                          // Container(
+                                          //   margin: const EdgeInsets.only(
+                                          //       left: 20, right: 20),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment.spaceAround,
+                                          //     children: [
+                                          //       Container(
+                                          //         height: 25,
+                                          //         width: 25,
+                                          //         decoration:
+                                          //             const BoxDecoration(
+                                          //                 borderRadius:
+                                          //                     BorderRadius.all(
+                                          //                         Radius
+                                          //                             .circular(
+                                          //                                 50)),
+                                          //                 color: Colors
+                                          //                     .deepPurple),
+                                          //         child: const Icon(
+                                          //           Icons.add_circle,
+                                          //           size: 15,
+                                          //           color: Colors.white,
+                                          //         ),
+                                          //       ),
+                                          //       Container(
+                                          //         height: 25,
+                                          //         width: 25,
+                                          //         decoration:
+                                          //             const BoxDecoration(
+                                          //                 borderRadius:
+                                          //                     BorderRadius.all(
+                                          //                         Radius
+                                          //                             .circular(
+                                          //                                 5)),
+                                          //                 color: Colors
+                                          //                     .deepPurple),
+                                          //         child: const Padding(
+                                          //           padding: EdgeInsets.only(
+                                          //               left: 5,
+                                          //               right: 5,
+                                          //               top: 3,
+                                          //               bottom: 3),
+                                          //           child: Icon(
+                                          //             Icons.message,
+                                          //             size: 15,
+                                          //             color: Colors.white,
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //       Container(
+                                          //         height: 25,
+                                          //         width: 25,
+                                          //         decoration:
+                                          //             const BoxDecoration(
+                                          //                 borderRadius:
+                                          //                     BorderRadius.all(
+                                          //                         Radius
+                                          //                             .circular(
+                                          //                                 6)),
+                                          //                 color:
+                                          //                     colors.secondary),
+                                          //         child: const Padding(
+                                          //           padding: EdgeInsets.only(
+                                          //               left: 5,
+                                          //               right: 5,
+                                          //               top: 3,
+                                          //               bottom: 3),
+                                          //           child: Icon(
+                                          //             Icons.mail_outline,
+                                          //             size: 15,
+                                          //             color: Colors.white,
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //       Container(
+                                          //         height: 25,
+                                          //         width: 25,
+                                          //         decoration:
+                                          //             const BoxDecoration(
+                                          //                 borderRadius:
+                                          //                     BorderRadius.all(
+                                          //                         Radius
+                                          //                             .circular(
+                                          //                                 50)),
+                                          //                 color:
+                                          //                     colors.primary),
+                                          //         child: const Padding(
+                                          //           padding: EdgeInsets.only(
+                                          //               left: 5,
+                                          //               right: 5,
+                                          //               top: 3,
+                                          //               bottom: 3),
+                                          //           child: Icon(
+                                          //             Icons.location_pin,
+                                          //             size: 15,
+                                          //             color: Colors.white,
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //       Container(
+                                          //         height: MediaQuery.of(context)
+                                          //                 .size
+                                          //                 .height /
+                                          //             20,
+                                          //         width: MediaQuery.of(context)
+                                          //                 .size
+                                          //                 .width /
+                                          //             3,
+                                          //         decoration: BoxDecoration(
+                                          //             borderRadius:
+                                          //                 const BorderRadius
+                                          //                     .all(
+                                          //                     Radius.circular(
+                                          //                         6)),
+                                          //             border: Border.all(
+                                          //                 width: 2,
+                                          //                 color: Colors.grey),
+                                          //             color: colors.white),
+                                          //         child: Row(
+                                          //           mainAxisAlignment:
+                                          //               MainAxisAlignment
+                                          //                   .spaceAround,
+                                          //           children: [
+                                          //             Container(
+                                          //               height: 25,
+                                          //               width: 25,
+                                          //               decoration: BoxDecoration(
+                                          //                   borderRadius:
+                                          //                       const BorderRadius
+                                          //                           .all(Radius
+                                          //                               .circular(
+                                          //                                   50)),
+                                          //                   color: getClientModel!
+                                          //                                   .data![
+                                          //                                       i]
+                                          //                                   .vendorData![
+                                          //                                       index]
+                                          //                                   .sellerDataInfo ==
+                                          //                               null ||
+                                          //                           getClientModel!
+                                          //                                   .data![
+                                          //                                       i]
+                                          //                                   .vendorData![
+                                          //                                       index]
+                                          //                                   .sellerDataInfo!
+                                          //                                   .taxNumber ==
+                                          //                               ""
+                                          //                       ? colors.primary
+                                          //                       : colors
+                                          //                           .secondary),
+                                          //               child: const Padding(
+                                          //                 padding:
+                                          //                     EdgeInsets.only(
+                                          //                         left: 5,
+                                          //                         right: 5,
+                                          //                         top: 3,
+                                          //                         bottom: 3),
+                                          //                 child: Icon(
+                                          //                   Icons.description,
+                                          //                   size: 15,
+                                          //                   color: Colors.white,
+                                          //                 ),
+                                          //               ),
+                                          //             ),
+                                          //             Container(
+                                          //               height: 25,
+                                          //               width: 25,
+                                          //               decoration: BoxDecoration(
+                                          //                   borderRadius:
+                                          //                       const BorderRadius
+                                          //                           .all(Radius
+                                          //                               .circular(
+                                          //                                   50)),
+                                          //                   color: getClientModel!
+                                          //                               .data![
+                                          //                                   i]
+                                          //                               .vendorData![
+                                          //                                   index]
+                                          //                               .sellerInfo!
+                                          //                               .subscriptionType ==
+                                          //                           1
+                                          //                       ? colors.primary
+                                          //                       : colors
+                                          //                           .secondary),
+                                          //               child: const Padding(
+                                          //                 padding:
+                                          //                     EdgeInsets.only(
+                                          //                         left: 5,
+                                          //                         right: 5,
+                                          //                         top: 3,
+                                          //                         bottom: 3),
+                                          //                 child: Icon(
+                                          //                   Icons
+                                          //                       .check_circle_outline,
+                                          //                   size: 15,
+                                          //                   color: Colors.white,
+                                          //                 ),
+                                          //               ),
+                                          //             ),
+                                          //             Container(
+                                          //               height: 25,
+                                          //               width: 25,
+                                          //               decoration: BoxDecoration(
+                                          //                   borderRadius:
+                                          //                       const BorderRadius
+                                          //                           .all(Radius
+                                          //                               .circular(
+                                          //                                   50)),
+                                          //                   color: getClientModel!
+                                          //                               .data![
+                                          //                                   i]
+                                          //                               .vendorData![
+                                          //                                   index]
+                                          //                               .sellerInfo!
+                                          //                               .subscriptionType ==
+                                          //                           1
+                                          //                       ? colors.primary
+                                          //                       : colors
+                                          //                           .secondary),
+                                          //               child: const Padding(
+                                          //                 padding:
+                                          //                     EdgeInsets.only(
+                                          //                         left: 5,
+                                          //                         right: 5,
+                                          //                         top: 3,
+                                          //                         bottom: 3),
+                                          //                 child: Icon(
+                                          //                   Icons.verified_user,
+                                          //                   size: 15,
+                                          //                   color: Colors.white,
+                                          //                 ),
+                                          //               ),
+                                          //             ),
+                                          //           ],
+                                          //         ),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
+
                                           const SizedBox(
                                             height: 30,
                                           ),

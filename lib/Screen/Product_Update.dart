@@ -37,7 +37,7 @@ class UpdateProduct extends StatefulWidget {
 List<String> otherImageList = [];
 GetSubData? selectedSubCategory;
 String? productImageUrl1;
-String? broncherImageUrl1;
+List<String> broncherImageUrl1 = [];
 GetSubCatModel? getSubCatModel;
 GetSubData? getSubData;
 
@@ -116,7 +116,7 @@ class _UpdateProductState extends State<UpdateProduct> {
   // File? _imageFile;
 
   String videoType = 'None';
-  var videoList = ['None', 'Youtube'];
+  var videoList = ['None', 'youtube'];
   String prodType = 'Select Type';
   var prodList = [
     'Select Type',
@@ -163,14 +163,23 @@ class _UpdateProductState extends State<UpdateProduct> {
         getProductModel = finalResult;
         _nameCtr.text = getProductModel!.data!.first.name ?? "";
         _extraDesCtr.text = getProductModel!.data!.first.extraDescription ?? "";
+        _videoLink.text = getProductModel!.data!.first.video ?? "";
         _shortDesCtr.text = getProductModel!.data!.first.shortDescription ?? "";
+        videoLinkindex = _videoLink.text == "" ? 0 : 1;
         _fullDesCtr.text = getProductModel!.data!.first.description ?? "";
         selectedState = getProductModel!.data!.first.categoryName ?? "";
         productImageUrl1 = getProductModel!.data!.first.image ?? "";
-        tagC.text = getProductModel!.data!.first!.tags.toString();
+        tagC.text = getProductModel!.data!.first!.tags
+            .toString()
+            .replaceAll("[", "")
+            .replaceAll("]", "");
         videoType = getProductModel!.data!.first.videoType == ''
             ? "None"
             : getProductModel!.data!.first.videoType ?? "None";
+        broncherImageUrl1 = getProductModel!.data!.first.broucherImage;
+        print(broncherImageUrl1.length.toString() + " " + "broncherImageUrl1");
+        otherImageList = getProductModel!.data!.first.otherImages;
+
         selectBrand = getProductModel!.data!.first!.brand.toString();
         List<String> stringList =
             getProductModel!.data!.first!.attributeTitle.split(', ');
@@ -937,7 +946,10 @@ class _UpdateProductState extends State<UpdateProduct> {
                                             borderRadius:
                                                 BorderRadius.circular(0),
                                             child: Image.network(
-                                              '${otherImageList[index]}',
+                                              otherImageList[index].contains(
+                                                      "https://b2bdiary.com/")
+                                                  ? otherImageList[index]
+                                                  : 'https://b2bdiary.com/${otherImageList[index]}',
                                               height: 100,
                                               width: 100,
                                               fit: BoxFit.fill,
@@ -976,46 +988,99 @@ class _UpdateProductState extends State<UpdateProduct> {
 
                         InkWell(
                           onTap: () async {
-                            // showExitPopup3();
-                            var result = await Navigator.push(
+                            broncherImageUrl1.clear();
+                            //  showExitPopup2();
+                            List<String> result = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Media(
-                                          from: 'Broncherimage',
+                                          from: 'other',
                                         )));
-
                             if (result != null) {
                               setState(() {
-                                broncherImageUrl1 = result.toString();
+                                broncherImageUrl1 = result;
                               });
                             }
                           },
                           child: Container(
-                            width: 100,
-                            color: colors.primary,
-                            height: broncherImageUrl1 == null ? 50 : 100,
-                            child: broncherImageUrl1 == null ||
-                                    broncherImageUrl1 == ""
-                                ? const Center(
-                                    child: Text(
-                                    "Upload ",
-                                    style: TextStyle(color: colors.white),
-                                  ))
-                                : Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(0),
-                                        child: Image.network(
-                                          broncherImageUrl1!,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                          ),
+                              color: broncherImageUrl1.isEmpty
+                                  ? colors.primary
+                                  : Colors.white,
+                              height: broncherImageUrl1.isEmpty ? 50 : 100,
+                              child: broncherImageUrl1 == null ||
+                                      broncherImageUrl1.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                      "Upload ",
+                                      style: TextStyle(color: colors.white),
+                                    ))
+                                  : ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: broncherImageUrl1.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                            child: Image.network(
+                                              broncherImageUrl1[index].contains(
+                                                      "https://b2bdiary.com/")
+                                                  ? broncherImageUrl1[index]
+                                                  : 'https://b2bdiary.com/${broncherImageUrl1[index]}',
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    )),
                         ),
+
+                        // InkWell(
+                        //   onTap: () async {
+                        //     // showExitPopup3();
+                        //     var result = await Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => const Media(
+                        //                   from: 'Broncherimage',
+                        //                 )));
+
+                        //     if (result != null) {
+                        //       setState(() {
+                        //         broncherImageUrl1 = result.toString();
+                        //       });
+                        //     }
+                        //   },
+                        //   child: Container(
+                        //     width: 100,
+                        //     color: colors.primary,
+                        //     height: broncherImageUrl1 == null ? 50 : 100,
+                        //     child: broncherImageUrl1 == null ||
+                        //             broncherImageUrl1 == ""
+                        //         ? const Center(
+                        //             child: Text(
+                        //             "Upload ",
+                        //             style: TextStyle(color: colors.white),
+                        //           ))
+                        //         : Column(
+                        //             children: [
+                        //               ClipRRect(
+                        //                 borderRadius: BorderRadius.circular(0),
+                        //                 child: Image.network(
+                        //                   broncherImageUrl1!,
+                        //                   height: 100,
+                        //                   width: 100,
+                        //                   fit: BoxFit.fill,
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //   ),
+                        // ),
 
                         const SizedBox(
                           height: 20,
@@ -1050,11 +1115,11 @@ class _UpdateProductState extends State<UpdateProduct> {
                           onChanged: (String? newValue) {
                             setState(() {
                               videoType = newValue!;
-                              if (newValue == 'Youtube') {
+                              if (newValue == 'youtube') {
                                 videoLinkindex = 1;
                                 print(newValue);
                               }
-                              if (newValue != 'Youtube') {
+                              if (newValue != 'youtube') {
                                 videoLinkindex = 0;
                               }
                             });
@@ -1104,6 +1169,7 @@ class _UpdateProductState extends State<UpdateProduct> {
                                         child: Row(
                                           children: [
                                             Expanded(
+                                              flex: 4,
                                               child: Container(
                                                 height: 45,
                                                 decoration: BoxDecoration(
@@ -1127,9 +1193,10 @@ class _UpdateProductState extends State<UpdateProduct> {
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 5,
+                                              width: 10,
                                             ),
                                             Expanded(
+                                              flex: 4,
                                               child: Container(
                                                 height: 45,
                                                 decoration: BoxDecoration(
@@ -1152,38 +1219,29 @@ class _UpdateProductState extends State<UpdateProduct> {
                                                 ),
                                               ),
                                             ),
-                                            // const SizedBox(
-                                            //   width: 5,
-                                            // ),
-                                            // Expanded(
-                                            //   child: Btn(
-                                            //     height: 45,
-                                            //     title: "Add",
-                                            //     onPress: () {
-                                            //
-                                            //       List<TextEditingController>
-                                            //           controlle1 = [];
-                                            //       controlle1.add(
-                                            //           TextEditingController());
-                                            //       controlle1.add(
-                                            //           TextEditingController());
-                                            //       controllersOfController
-                                            //           .add(controlle1);
-                                            //       print(
-                                            //           '_____ssas_____${myList.join(', ')}_________');
-                                            //       setState(() {
-                                            //         // addData(controller1, controller2);
-                                            //       });
-                                            //     },
-                                            //   ),
-                                            // )
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Expanded(
+                                                flex: 1,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      controllersOfController
+                                                          .removeAt(index);
+
+                                                      setState(() {});
+                                                    },
+                                                    child: Icon(Icons.delete))),
                                           ],
                                         ),
                                       )),
                             ),
                             Btn(
                               height: 45,
-                              title: "Add",
+                              title: "Add Attributes",
                               onPress: () {
                                 // addToMyList();
                                 List<TextEditingController> controlle1 = [];
@@ -1345,6 +1403,22 @@ class _UpdateProductState extends State<UpdateProduct> {
 
   bool isLodding = false;
 
+  String getImagesWIthoutUrl(List<String> images) {
+    var urls = "";
+
+    List<String> replacedStrings = images.map((str) {
+      if (str.contains('https://b2bdiary.com/')) {
+        return str.replaceAll("https://b2bdiary.com/", "");
+      } else {
+        return str;
+      }
+    }).toList();
+
+    // Join the strings with comma
+    String joinedString = replacedStrings.join(',');
+    return joinedString;
+  }
+
   UpdateProductApi() async {
     setState(() {
       isLodding = true;
@@ -1383,8 +1457,12 @@ class _UpdateProductState extends State<UpdateProduct> {
       'sub_cat_id': selectedSubCatId ?? '1',
       'product_type': 'simple_type',
       'pro_input_image': productImageUrl1 ?? "",
-      'other_images': otherImageList.join(','),
+      'other_images': getImagesWIthoutUrl(otherImageList),
+      "broucher_image": getImagesWIthoutUrl(broncherImageUrl1),
+      "video": _videoLink.text,
       'attribute_values': '1',
+      "pro_input_video": _videoLink.text,
+      "video_type": videoType.toLowerCase(),
       'product_type': 'simple_product',
       'simple_price': '4',
       'simple_special_price': '2',
@@ -1394,7 +1472,7 @@ class _UpdateProductState extends State<UpdateProduct> {
       'pro_input_description': _fullDesCtr.text,
       'extra_input_description': _extraDesCtr.text
     });
-    print("------this ------------>${request.fields}");
+    log("------this ------------>${request.fields}");
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {

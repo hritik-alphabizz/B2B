@@ -11,16 +11,17 @@
 
 class GetProductModel {
   GetProductModel({
-      bool? error, 
-      String? message, 
-      String? minPrice, 
-      String? maxPrice, 
-      String? search, 
-      List<Filters>? filters, 
-      List<String>? tags, 
-      String? total, 
-      String? offset, 
-      List<Data>? data,}){
+    bool? error,
+    String? message,
+    String? minPrice,
+    String? maxPrice,
+    String? search,
+    List<Filters>? filters,
+    List<String>? tags,
+    String? total,
+    String? offset,
+    List<Data>? data,
+  }) {
     _error = error;
     _message = message;
     _minPrice = minPrice;
@@ -31,7 +32,7 @@ class GetProductModel {
     _total = total;
     _offset = offset;
     _data = data;
-}
+  }
 
   GetProductModel.fromJson(dynamic json) {
     _error = json['error'];
@@ -65,27 +66,30 @@ class GetProductModel {
   String? _total;
   String? _offset;
   List<Data>? _data;
-GetProductModel copyWith({  bool? error,
-  String? message,
-  String? minPrice,
-  String? maxPrice,
-  String? search,
-  List<Filters>? filters,
-  List<String>? tags,
-  String? total,
-  String? offset,
-  List<Data>? data,
-}) => GetProductModel(  error: error ?? _error,
-  message: message ?? _message,
-  minPrice: minPrice ?? _minPrice,
-  maxPrice: maxPrice ?? _maxPrice,
-  search: search ?? _search,
-  filters: filters ?? _filters,
-  tags: tags ?? _tags,
-  total: total ?? _total,
-  offset: offset ?? _offset,
-  data: data ?? _data,
-);
+  GetProductModel copyWith({
+    bool? error,
+    String? message,
+    String? minPrice,
+    String? maxPrice,
+    String? search,
+    List<Filters>? filters,
+    List<String>? tags,
+    String? total,
+    String? offset,
+    List<Data>? data,
+  }) =>
+      GetProductModel(
+        error: error ?? _error,
+        message: message ?? _message,
+        minPrice: minPrice ?? _minPrice,
+        maxPrice: maxPrice ?? _maxPrice,
+        search: search ?? _search,
+        filters: filters ?? _filters,
+        tags: tags ?? _tags,
+        total: total ?? _total,
+        offset: offset ?? _offset,
+        data: data ?? _data,
+      );
   bool? get error => _error;
   String? get message => _message;
   String? get minPrice => _minPrice;
@@ -115,7 +119,6 @@ GetProductModel copyWith({  bool? error,
     }
     return map;
   }
-
 }
 
 /// total : "3"
@@ -199,84 +202,85 @@ GetProductModel copyWith({  bool? error,
 
 class Data {
   Data({
-      String? total, 
-      String? sales, 
-      String? stockType, 
-      String? isPricesInclusiveTax, 
-      String? type, 
-      String? attrValueIds, 
-      String? sellerRating, 
-      String? sellerSlug, 
-      String? sellerNoOfRatings, 
-      String? sellerProfile, 
-      String? storeName, 
-      String? typeOfSeller, 
-      String? storeDescription, 
-      String? sellerId, 
-      String? sellerName, 
-      String? sellerAddress, 
-      String? id, 
-      String? stock, 
-      String? name, 
-      String? attributeValue, 
-      String? attributeTitle, 
-      String? categoryId, 
-      String? shortDescription, 
-      String? slug, 
-      String? description, 
-      String? extraDescription, 
-      String? totalAllowedQuantity, 
-      String? status, 
-      String? deliverableType, 
-      String? deliverableZipcodes, 
-      String? minimumOrderQuantity, 
-      String? sku, 
-      String? quantityStepSize, 
-      String? codAllowed, 
-      String? rowOrder, 
-      String? rating, 
-      String? noOfRatings, 
-      String? image, 
-      String? isReturnable, 
-      String? isCancelable, 
-      String? cancelableTill, 
-      String? indicator, 
-      List<dynamic>? otherImages, 
-      String? videoType, 
-      String? video, 
-      List<String>? tags, 
-      String? warrantyPeriod, 
-      String? guaranteePeriod, 
-      String? madeIn, 
-      String? hsnCode, 
-      String? downloadAllowed, 
-      String? downloadType, 
-      String? downloadLink, 
-      String? pickupLocation, 
-      String? brand, 
-      String? availability, 
-      String? categoryName, 
-      String? taxPercentage, 
-      String? taxId, 
-      String? broucherImage, 
-      List<dynamic>? reviewImages, 
-      List<dynamic>? attributes, 
-      List<Variants>? variants, 
-      String? totalStock, 
-      MinMaxPrice? minMaxPrice, 
-      String? relativePath, 
-      List<dynamic>? otherImagesRelativePath, 
-      String? videoRelativePath, 
-      String? totalProduct, 
-      String? deliverableZipcodesIds, 
-      bool? isDeliverable, 
-      bool? isPurchased, 
-      String? isFavorite, 
-      String? imageMd, 
-      String? imageSm, 
-      List<dynamic>? otherImagesSm, 
-      List<dynamic>? otherImagesMd, 
-      List<dynamic>? variantAttributes,}){
+    String? total,
+    String? sales,
+    String? stockType,
+    String? isPricesInclusiveTax,
+    String? type,
+    String? attrValueIds,
+    String? sellerRating,
+    String? sellerSlug,
+    String? sellerNoOfRatings,
+    String? sellerProfile,
+    String? storeName,
+    String? typeOfSeller,
+    String? storeDescription,
+    String? sellerId,
+    String? sellerName,
+    String? sellerAddress,
+    String? id,
+    String? stock,
+    String? name,
+    String? attributeValue,
+    String? attributeTitle,
+    String? categoryId,
+    String? shortDescription,
+    String? slug,
+    String? description,
+    String? extraDescription,
+    String? totalAllowedQuantity,
+    String? status,
+    String? deliverableType,
+    String? deliverableZipcodes,
+    String? minimumOrderQuantity,
+    String? sku,
+    String? quantityStepSize,
+    String? codAllowed,
+    String? rowOrder,
+    String? rating,
+    String? noOfRatings,
+    String? image,
+    String? isReturnable,
+    String? isCancelable,
+    String? cancelableTill,
+    String? indicator,
+    List<dynamic>? otherImages,
+    List<dynamic>? broucherImage,
+    String? videoType,
+    String? video,
+    List<String>? tags,
+    String? warrantyPeriod,
+    String? guaranteePeriod,
+    String? madeIn,
+    String? hsnCode,
+    String? downloadAllowed,
+    String? downloadType,
+    String? downloadLink,
+    String? pickupLocation,
+    String? brand,
+    String? availability,
+    String? categoryName,
+    String? taxPercentage,
+    String? taxId,
+    List<dynamic>? reviewImages,
+    List<dynamic>? attributes,
+    List<Variants>? variants,
+    String? totalStock,
+    MinMaxPrice? minMaxPrice,
+    String? relativePath,
+    List<dynamic>? otherImagesRelativePath,
+    String? videoRelativePath,
+    String? totalProduct,
+    String? deliverableZipcodesIds,
+    bool? isDeliverable,
+    bool? isPurchased,
+    String? isFavorite,
+    String? imageMd,
+    String? imageSm,
+    List<dynamic>? otherImagesSm,
+    List<dynamic>? otherImagesMd,
+    List<dynamic>? variantAttributes,
+  }) {
     _total = total;
     _sales = sales;
     _stockType = stockType;
@@ -355,7 +359,7 @@ class Data {
     _otherImagesSm = otherImagesSm;
     _otherImagesMd = otherImagesMd;
     _variantAttributes = variantAttributes;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _total = json['total'];
@@ -442,7 +446,9 @@ class Data {
       });
     }
     _totalStock = json['total_stock'];
-    _minMaxPrice = json['min_max_price'] != null ? MinMaxPrice.fromJson(json['min_max_price']) : null;
+    _minMaxPrice = json['min_max_price'] != null
+        ? MinMaxPrice.fromJson(json['min_max_price'])
+        : null;
     _relativePath = json['relative_path'];
     // if (json['other_images_relative_path'] != null) {
     //   _otherImagesRelativePath = [];
@@ -536,7 +542,7 @@ class Data {
   String? _categoryName;
   String? _taxPercentage;
   String? _taxId;
-  String? _broucherImage;
+  List<dynamic>? _broucherImage;
   List<dynamic>? _reviewImages;
   List<dynamic>? _attributes;
   List<Variants>? _variants;
@@ -555,163 +561,168 @@ class Data {
   List<dynamic>? _otherImagesSm;
   List<dynamic>? _otherImagesMd;
   List<dynamic>? _variantAttributes;
-Data copyWith({  String? total,
-  String? sales,
-  String? stockType,
-  String? isPricesInclusiveTax,
-  String? type,
-  String? attrValueIds,
-  String? sellerRating,
-  String? sellerSlug,
-  String? sellerNoOfRatings,
-  String? sellerProfile,
-  String? storeName,
-  String? typeOfSeller,
-  String? storeDescription,
-  String? sellerId,
-  String? sellerName,
-  String? sellerAddress,
-  String? id,
-  String? stock,
-  String? name,
-  String? attributeValue,
-  String? attributeTitle,
-  String? categoryId,
-  String? shortDescription,
-  String? slug,
-  String? description,
-  String? extraDescription,
-  String? totalAllowedQuantity,
-  String? status,
-  String? deliverableType,
-  String? deliverableZipcodes,
-  String? minimumOrderQuantity,
-  String? sku,
-  String? quantityStepSize,
-  String? codAllowed,
-  String? rowOrder,
-  String? rating,
-  String? noOfRatings,
-  String? image,
-  String? isReturnable,
-  String? isCancelable,
-  String? cancelableTill,
-  String? indicator,
-  List<dynamic>? otherImages,
-  String? videoType,
-  String? video,
-  List<String>? tags,
-  String? warrantyPeriod,
-  String? guaranteePeriod,
-  String? madeIn,
-  String? hsnCode,
-  String? downloadAllowed,
-  String? downloadType,
-  String? downloadLink,
-  String? pickupLocation,
-  String? brand,
-  String? availability,
-  String? categoryName,
-  String? taxPercentage,
-  String? taxId,
-  String? broucherImage,
-  List<dynamic>? reviewImages,
-  List<dynamic>? attributes,
-  List<Variants>? variants,
-  String? totalStock,
-  MinMaxPrice? minMaxPrice,
-  String? relativePath,
-  List<dynamic>? otherImagesRelativePath,
-  String? videoRelativePath,
-  String? totalProduct,
-  String? deliverableZipcodesIds,
-  bool? isDeliverable,
-  bool? isPurchased,
-  String? isFavorite,
-  String? imageMd,
-  String? imageSm,
-  List<dynamic>? otherImagesSm,
-  List<dynamic>? otherImagesMd,
-  List<dynamic>? variantAttributes,
-}) => Data(  total: total ?? _total,
-  sales: sales ?? _sales,
-  stockType: stockType ?? _stockType,
-  isPricesInclusiveTax: isPricesInclusiveTax ?? _isPricesInclusiveTax,
-  type: type ?? _type,
-  attrValueIds: attrValueIds ?? _attrValueIds,
-  sellerRating: sellerRating ?? _sellerRating,
-  sellerSlug: sellerSlug ?? _sellerSlug,
-  sellerNoOfRatings: sellerNoOfRatings ?? _sellerNoOfRatings,
-  sellerProfile: sellerProfile ?? _sellerProfile,
-  storeName: storeName ?? _storeName,
-  typeOfSeller: typeOfSeller ?? _typeOfSeller,
-  storeDescription: storeDescription ?? _storeDescription,
-  sellerId: sellerId ?? _sellerId,
-  sellerName: sellerName ?? _sellerName,
-  sellerAddress: sellerAddress ?? _sellerAddress,
-  id: id ?? _id,
-  stock: stock ?? _stock,
-  name: name ?? _name,
-  attributeValue: attributeValue ?? _attributeValue,
-  attributeTitle: attributeTitle ?? _attributeTitle,
-  categoryId: categoryId ?? _categoryId,
-  shortDescription: shortDescription ?? _shortDescription,
-  slug: slug ?? _slug,
-  description: description ?? _description,
-  extraDescription: extraDescription ?? _extraDescription,
-  totalAllowedQuantity: totalAllowedQuantity ?? _totalAllowedQuantity,
-  status: status ?? _status,
-  deliverableType: deliverableType ?? _deliverableType,
-  deliverableZipcodes: deliverableZipcodes ?? _deliverableZipcodes,
-  minimumOrderQuantity: minimumOrderQuantity ?? _minimumOrderQuantity,
-  sku: sku ?? _sku,
-  quantityStepSize: quantityStepSize ?? _quantityStepSize,
-  codAllowed: codAllowed ?? _codAllowed,
-  rowOrder: rowOrder ?? _rowOrder,
-  rating: rating ?? _rating,
-  noOfRatings: noOfRatings ?? _noOfRatings,
-  image: image ?? _image,
-  isReturnable: isReturnable ?? _isReturnable,
-  isCancelable: isCancelable ?? _isCancelable,
-  cancelableTill: cancelableTill ?? _cancelableTill,
-  indicator: indicator ?? _indicator,
-  otherImages: otherImages ?? _otherImages,
-  videoType: videoType ?? _videoType,
-  video: video ?? _video,
-  tags: tags ?? _tags,
-  warrantyPeriod: warrantyPeriod ?? _warrantyPeriod,
-  guaranteePeriod: guaranteePeriod ?? _guaranteePeriod,
-  madeIn: madeIn ?? _madeIn,
-  hsnCode: hsnCode ?? _hsnCode,
-  downloadAllowed: downloadAllowed ?? _downloadAllowed,
-  downloadType: downloadType ?? _downloadType,
-  downloadLink: downloadLink ?? _downloadLink,
-  pickupLocation: pickupLocation ?? _pickupLocation,
-  brand: brand ?? _brand,
-  availability: availability ?? _availability,
-  categoryName: categoryName ?? _categoryName,
-  taxPercentage: taxPercentage ?? _taxPercentage,
-  taxId: taxId ?? _taxId,
-  broucherImage: broucherImage ?? _broucherImage,
-  reviewImages: reviewImages ?? _reviewImages,
-  attributes: attributes ?? _attributes,
-  variants: variants ?? _variants,
-  totalStock: totalStock ?? _totalStock,
-  minMaxPrice: minMaxPrice ?? _minMaxPrice,
-  relativePath: relativePath ?? _relativePath,
-  otherImagesRelativePath: otherImagesRelativePath ?? _otherImagesRelativePath,
-  videoRelativePath: videoRelativePath ?? _videoRelativePath,
-  totalProduct: totalProduct ?? _totalProduct,
-  deliverableZipcodesIds: deliverableZipcodesIds ?? _deliverableZipcodesIds,
-  isDeliverable: isDeliverable ?? _isDeliverable,
-  isPurchased: isPurchased ?? _isPurchased,
-  isFavorite: isFavorite ?? _isFavorite,
-  imageMd: imageMd ?? _imageMd,
-  imageSm: imageSm ?? _imageSm,
-  otherImagesSm: otherImagesSm ?? _otherImagesSm,
-  otherImagesMd: otherImagesMd ?? _otherImagesMd,
-  variantAttributes: variantAttributes ?? _variantAttributes,
-);
+  Data copyWith({
+    String? total,
+    String? sales,
+    String? stockType,
+    String? isPricesInclusiveTax,
+    String? type,
+    String? attrValueIds,
+    String? sellerRating,
+    String? sellerSlug,
+    String? sellerNoOfRatings,
+    String? sellerProfile,
+    String? storeName,
+    String? typeOfSeller,
+    String? storeDescription,
+    String? sellerId,
+    String? sellerName,
+    String? sellerAddress,
+    String? id,
+    String? stock,
+    String? name,
+    String? attributeValue,
+    String? attributeTitle,
+    String? categoryId,
+    String? shortDescription,
+    String? slug,
+    String? description,
+    String? extraDescription,
+    String? totalAllowedQuantity,
+    String? status,
+    String? deliverableType,
+    String? deliverableZipcodes,
+    String? minimumOrderQuantity,
+    String? sku,
+    String? quantityStepSize,
+    String? codAllowed,
+    String? rowOrder,
+    String? rating,
+    String? noOfRatings,
+    String? image,
+    String? isReturnable,
+    String? isCancelable,
+    String? cancelableTill,
+    String? indicator,
+    List<dynamic>? otherImages,
+    String? videoType,
+    String? video,
+    List<String>? tags,
+    String? warrantyPeriod,
+    String? guaranteePeriod,
+    String? madeIn,
+    String? hsnCode,
+    String? downloadAllowed,
+    String? downloadType,
+    String? downloadLink,
+    String? pickupLocation,
+    String? brand,
+    String? availability,
+    String? categoryName,
+    String? taxPercentage,
+    String? taxId,
+    List<dynamic>? broucherImage,
+    List<dynamic>? reviewImages,
+    List<dynamic>? attributes,
+    List<Variants>? variants,
+    String? totalStock,
+    MinMaxPrice? minMaxPrice,
+    String? relativePath,
+    List<dynamic>? otherImagesRelativePath,
+    String? videoRelativePath,
+    String? totalProduct,
+    String? deliverableZipcodesIds,
+    bool? isDeliverable,
+    bool? isPurchased,
+    String? isFavorite,
+    String? imageMd,
+    String? imageSm,
+    List<dynamic>? otherImagesSm,
+    List<dynamic>? otherImagesMd,
+    List<dynamic>? variantAttributes,
+  }) =>
+      Data(
+        total: total ?? _total,
+        sales: sales ?? _sales,
+        stockType: stockType ?? _stockType,
+        isPricesInclusiveTax: isPricesInclusiveTax ?? _isPricesInclusiveTax,
+        type: type ?? _type,
+        attrValueIds: attrValueIds ?? _attrValueIds,
+        sellerRating: sellerRating ?? _sellerRating,
+        sellerSlug: sellerSlug ?? _sellerSlug,
+        sellerNoOfRatings: sellerNoOfRatings ?? _sellerNoOfRatings,
+        sellerProfile: sellerProfile ?? _sellerProfile,
+        storeName: storeName ?? _storeName,
+        typeOfSeller: typeOfSeller ?? _typeOfSeller,
+        storeDescription: storeDescription ?? _storeDescription,
+        sellerId: sellerId ?? _sellerId,
+        sellerName: sellerName ?? _sellerName,
+        sellerAddress: sellerAddress ?? _sellerAddress,
+        id: id ?? _id,
+        stock: stock ?? _stock,
+        name: name ?? _name,
+        attributeValue: attributeValue ?? _attributeValue,
+        attributeTitle: attributeTitle ?? _attributeTitle,
+        categoryId: categoryId ?? _categoryId,
+        shortDescription: shortDescription ?? _shortDescription,
+        slug: slug ?? _slug,
+        description: description ?? _description,
+        extraDescription: extraDescription ?? _extraDescription,
+        totalAllowedQuantity: totalAllowedQuantity ?? _totalAllowedQuantity,
+        status: status ?? _status,
+        deliverableType: deliverableType ?? _deliverableType,
+        deliverableZipcodes: deliverableZipcodes ?? _deliverableZipcodes,
+        minimumOrderQuantity: minimumOrderQuantity ?? _minimumOrderQuantity,
+        sku: sku ?? _sku,
+        quantityStepSize: quantityStepSize ?? _quantityStepSize,
+        codAllowed: codAllowed ?? _codAllowed,
+        rowOrder: rowOrder ?? _rowOrder,
+        rating: rating ?? _rating,
+        noOfRatings: noOfRatings ?? _noOfRatings,
+        image: image ?? _image,
+        isReturnable: isReturnable ?? _isReturnable,
+        isCancelable: isCancelable ?? _isCancelable,
+        cancelableTill: cancelableTill ?? _cancelableTill,
+        indicator: indicator ?? _indicator,
+        otherImages: otherImages ?? _otherImages,
+        videoType: videoType ?? _videoType,
+        video: video ?? _video,
+        tags: tags ?? _tags,
+        warrantyPeriod: warrantyPeriod ?? _warrantyPeriod,
+        guaranteePeriod: guaranteePeriod ?? _guaranteePeriod,
+        madeIn: madeIn ?? _madeIn,
+        hsnCode: hsnCode ?? _hsnCode,
+        downloadAllowed: downloadAllowed ?? _downloadAllowed,
+        downloadType: downloadType ?? _downloadType,
+        downloadLink: downloadLink ?? _downloadLink,
+        pickupLocation: pickupLocation ?? _pickupLocation,
+        brand: brand ?? _brand,
+        availability: availability ?? _availability,
+        categoryName: categoryName ?? _categoryName,
+        taxPercentage: taxPercentage ?? _taxPercentage,
+        taxId: taxId ?? _taxId,
+        broucherImage: broucherImage ?? _broucherImage,
+        reviewImages: reviewImages ?? _reviewImages,
+        attributes: attributes ?? _attributes,
+        variants: variants ?? _variants,
+        totalStock: totalStock ?? _totalStock,
+        minMaxPrice: minMaxPrice ?? _minMaxPrice,
+        relativePath: relativePath ?? _relativePath,
+        otherImagesRelativePath:
+            otherImagesRelativePath ?? _otherImagesRelativePath,
+        videoRelativePath: videoRelativePath ?? _videoRelativePath,
+        totalProduct: totalProduct ?? _totalProduct,
+        deliverableZipcodesIds:
+            deliverableZipcodesIds ?? _deliverableZipcodesIds,
+        isDeliverable: isDeliverable ?? _isDeliverable,
+        isPurchased: isPurchased ?? _isPurchased,
+        isFavorite: isFavorite ?? _isFavorite,
+        imageMd: imageMd ?? _imageMd,
+        imageSm: imageSm ?? _imageSm,
+        otherImagesSm: otherImagesSm ?? _otherImagesSm,
+        otherImagesMd: otherImagesMd ?? _otherImagesMd,
+        variantAttributes: variantAttributes ?? _variantAttributes,
+      );
   String? get total => _total;
   String? get sales => _sales;
   String? get stockType => _stockType;
@@ -771,7 +782,7 @@ Data copyWith({  String? total,
   String? get categoryName => _categoryName;
   String? get taxPercentage => _taxPercentage;
   String? get taxId => _taxId;
-  String? get broucherImage => _broucherImage;
+  List<dynamic>? get broucherImage => _broucherImage;
   List<dynamic>? get reviewImages => _reviewImages;
   List<dynamic>? get attributes => _attributes;
   List<Variants>? get variants => _variants;
@@ -835,9 +846,12 @@ Data copyWith({  String? total,
     map['is_cancelable'] = _isCancelable;
     map['cancelable_till'] = _cancelableTill;
     map['indicator'] = _indicator;
-    // if (_otherImages != null) {
-    //   map['other_images'] = _otherImages?.map((v) => v.toJson()).toList();
-    // }
+    if (_broucherImage != null) {
+      map['broucher_image'] = _broucherImage?.map((v) => v.toJson()).toList();
+    }
+    if (_otherImages != null) {
+      map['other_images'] = _otherImages?.map((v) => v.toJson()).toList();
+    }
     map['video_type'] = _videoType;
     map['video'] = _video;
     map['tags'] = _tags;
@@ -854,7 +868,6 @@ Data copyWith({  String? total,
     map['category_name'] = _categoryName;
     map['tax_percentage'] = _taxPercentage;
     map['tax_id'] = _taxId;
-    map['broucher_image'] = _broucherImage;
     if (_reviewImages != null) {
       map['review_images'] = _reviewImages?.map((v) => v.toJson()).toList();
     }
@@ -870,7 +883,8 @@ Data copyWith({  String? total,
     }
     map['relative_path'] = _relativePath;
     if (_otherImagesRelativePath != null) {
-      map['other_images_relative_path'] = _otherImagesRelativePath?.map((v) => v.toJson()).toList();
+      map['other_images_relative_path'] =
+          _otherImagesRelativePath?.map((v) => v.toJson()).toList();
     }
     map['video_relative_path'] = _videoRelativePath;
     map['total_product'] = _totalProduct;
@@ -887,11 +901,11 @@ Data copyWith({  String? total,
       map['other_images_md'] = _otherImagesMd?.map((v) => v.toJson()).toList();
     }
     if (_variantAttributes != null) {
-      map['variant_attributes'] = _variantAttributes?.map((v) => v.toJson()).toList();
+      map['variant_attributes'] =
+          _variantAttributes?.map((v) => v.toJson()).toList();
     }
     return map;
   }
-
 }
 
 /// min_price : 650
@@ -902,17 +916,18 @@ Data copyWith({  String? total,
 
 class MinMaxPrice {
   MinMaxPrice({
-      num? minPrice, 
-      num? maxPrice, 
-      num? specialPrice, 
-      num? maxSpecialPrice, 
-      num? discountInPercentage,}){
+    num? minPrice,
+    num? maxPrice,
+    num? specialPrice,
+    num? maxSpecialPrice,
+    num? discountInPercentage,
+  }) {
     _minPrice = minPrice;
     _maxPrice = maxPrice;
     _specialPrice = specialPrice;
     _maxSpecialPrice = maxSpecialPrice;
     _discountInPercentage = discountInPercentage;
-}
+  }
 
   MinMaxPrice.fromJson(dynamic json) {
     _minPrice = json['min_price'];
@@ -926,17 +941,20 @@ class MinMaxPrice {
   num? _specialPrice;
   num? _maxSpecialPrice;
   num? _discountInPercentage;
-MinMaxPrice copyWith({  num? minPrice,
-  num? maxPrice,
-  num? specialPrice,
-  num? maxSpecialPrice,
-  num? discountInPercentage,
-}) => MinMaxPrice(  minPrice: minPrice ?? _minPrice,
-  maxPrice: maxPrice ?? _maxPrice,
-  specialPrice: specialPrice ?? _specialPrice,
-  maxSpecialPrice: maxSpecialPrice ?? _maxSpecialPrice,
-  discountInPercentage: discountInPercentage ?? _discountInPercentage,
-);
+  MinMaxPrice copyWith({
+    num? minPrice,
+    num? maxPrice,
+    num? specialPrice,
+    num? maxSpecialPrice,
+    num? discountInPercentage,
+  }) =>
+      MinMaxPrice(
+        minPrice: minPrice ?? _minPrice,
+        maxPrice: maxPrice ?? _maxPrice,
+        specialPrice: specialPrice ?? _specialPrice,
+        maxSpecialPrice: maxSpecialPrice ?? _maxSpecialPrice,
+        discountInPercentage: discountInPercentage ?? _discountInPercentage,
+      );
   num? get minPrice => _minPrice;
   num? get maxPrice => _maxPrice;
   num? get specialPrice => _specialPrice;
@@ -952,7 +970,6 @@ MinMaxPrice copyWith({  num? minPrice,
     map['discount_in_percentage'] = _discountInPercentage;
     return map;
   }
-
 }
 
 /// id : "1"
@@ -985,33 +1002,34 @@ MinMaxPrice copyWith({  num? minPrice,
 
 class Variants {
   Variants({
-      String? id, 
-      String? productId, 
-      String? attributeValueIds, 
-      String? attributeSet, 
-      String? price, 
-      String? specialPrice, 
-      String? sku, 
-      String? stock, 
-      String? weight, 
-      String? height, 
-      String? breadth, 
-      String? length, 
-      List<dynamic>? images, 
-      String? availability, 
-      String? status, 
-      String? dateAdded, 
-      String? color, 
-      String? packete, 
-      String? variantIds, 
-      String? attrName, 
-      String? variantValues, 
-      String? swatcheType, 
-      String? swatcheValue, 
-      List<dynamic>? imagesMd, 
-      List<dynamic>? imagesSm, 
-      List<dynamic>? variantRelativePath, 
-      String? cartCount,}){
+    String? id,
+    String? productId,
+    String? attributeValueIds,
+    String? attributeSet,
+    String? price,
+    String? specialPrice,
+    String? sku,
+    String? stock,
+    String? weight,
+    String? height,
+    String? breadth,
+    String? length,
+    List<dynamic>? images,
+    String? availability,
+    String? status,
+    String? dateAdded,
+    String? color,
+    String? packete,
+    String? variantIds,
+    String? attrName,
+    String? variantValues,
+    String? swatcheType,
+    String? swatcheValue,
+    List<dynamic>? imagesMd,
+    List<dynamic>? imagesSm,
+    List<dynamic>? variantRelativePath,
+    String? cartCount,
+  }) {
     _id = id;
     _productId = productId;
     _attributeValueIds = attributeValueIds;
@@ -1039,7 +1057,7 @@ class Variants {
     _imagesSm = imagesSm;
     _variantRelativePath = variantRelativePath;
     _cartCount = cartCount;
-}
+  }
 
   Variants.fromJson(dynamic json) {
     _id = json['id'];
@@ -1117,61 +1135,64 @@ class Variants {
   List<dynamic>? _imagesSm;
   List<dynamic>? _variantRelativePath;
   String? _cartCount;
-Variants copyWith({  String? id,
-  String? productId,
-  String? attributeValueIds,
-  String? attributeSet,
-  String? price,
-  String? specialPrice,
-  String? sku,
-  String? stock,
-  String? weight,
-  String? height,
-  String? breadth,
-  String? length,
-  List<dynamic>? images,
-  String? availability,
-  String? status,
-  String? dateAdded,
-  String? color,
-  String? packete,
-  String? variantIds,
-  String? attrName,
-  String? variantValues,
-  String? swatcheType,
-  String? swatcheValue,
-  List<dynamic>? imagesMd,
-  List<dynamic>? imagesSm,
-  List<dynamic>? variantRelativePath,
-  String? cartCount,
-}) => Variants(  id: id ?? _id,
-  productId: productId ?? _productId,
-  attributeValueIds: attributeValueIds ?? _attributeValueIds,
-  attributeSet: attributeSet ?? _attributeSet,
-  price: price ?? _price,
-  specialPrice: specialPrice ?? _specialPrice,
-  sku: sku ?? _sku,
-  stock: stock ?? _stock,
-  weight: weight ?? _weight,
-  height: height ?? _height,
-  breadth: breadth ?? _breadth,
-  length: length ?? _length,
-  images: images ?? _images,
-  availability: availability ?? _availability,
-  status: status ?? _status,
-  dateAdded: dateAdded ?? _dateAdded,
-  color: color ?? _color,
-  packete: packete ?? _packete,
-  variantIds: variantIds ?? _variantIds,
-  attrName: attrName ?? _attrName,
-  variantValues: variantValues ?? _variantValues,
-  swatcheType: swatcheType ?? _swatcheType,
-  swatcheValue: swatcheValue ?? _swatcheValue,
-  imagesMd: imagesMd ?? _imagesMd,
-  imagesSm: imagesSm ?? _imagesSm,
-  variantRelativePath: variantRelativePath ?? _variantRelativePath,
-  cartCount: cartCount ?? _cartCount,
-);
+  Variants copyWith({
+    String? id,
+    String? productId,
+    String? attributeValueIds,
+    String? attributeSet,
+    String? price,
+    String? specialPrice,
+    String? sku,
+    String? stock,
+    String? weight,
+    String? height,
+    String? breadth,
+    String? length,
+    List<dynamic>? images,
+    String? availability,
+    String? status,
+    String? dateAdded,
+    String? color,
+    String? packete,
+    String? variantIds,
+    String? attrName,
+    String? variantValues,
+    String? swatcheType,
+    String? swatcheValue,
+    List<dynamic>? imagesMd,
+    List<dynamic>? imagesSm,
+    List<dynamic>? variantRelativePath,
+    String? cartCount,
+  }) =>
+      Variants(
+        id: id ?? _id,
+        productId: productId ?? _productId,
+        attributeValueIds: attributeValueIds ?? _attributeValueIds,
+        attributeSet: attributeSet ?? _attributeSet,
+        price: price ?? _price,
+        specialPrice: specialPrice ?? _specialPrice,
+        sku: sku ?? _sku,
+        stock: stock ?? _stock,
+        weight: weight ?? _weight,
+        height: height ?? _height,
+        breadth: breadth ?? _breadth,
+        length: length ?? _length,
+        images: images ?? _images,
+        availability: availability ?? _availability,
+        status: status ?? _status,
+        dateAdded: dateAdded ?? _dateAdded,
+        color: color ?? _color,
+        packete: packete ?? _packete,
+        variantIds: variantIds ?? _variantIds,
+        attrName: attrName ?? _attrName,
+        variantValues: variantValues ?? _variantValues,
+        swatcheType: swatcheType ?? _swatcheType,
+        swatcheValue: swatcheValue ?? _swatcheValue,
+        imagesMd: imagesMd ?? _imagesMd,
+        imagesSm: imagesSm ?? _imagesSm,
+        variantRelativePath: variantRelativePath ?? _variantRelativePath,
+        cartCount: cartCount ?? _cartCount,
+      );
   String? get id => _id;
   String? get productId => _productId;
   String? get attributeValueIds => _attributeValueIds;
@@ -1234,12 +1255,12 @@ Variants copyWith({  String? id,
       map['images_sm'] = _imagesSm?.map((v) => v.toJson()).toList();
     }
     if (_variantRelativePath != null) {
-      map['variant_relative_path'] = _variantRelativePath?.map((v) => v.toJson()).toList();
+      map['variant_relative_path'] =
+          _variantRelativePath?.map((v) => v.toJson()).toList();
     }
     map['cart_count'] = _cartCount;
     return map;
   }
-
 }
 
 /// attribute_values : "s"
@@ -1250,17 +1271,18 @@ Variants copyWith({  String? id,
 
 class Filters {
   Filters({
-      String? attributeValues, 
-      String? attributeValuesId, 
-      String? name, 
-      String? swatcheType, 
-      String? swatcheValue,}){
+    String? attributeValues,
+    String? attributeValuesId,
+    String? name,
+    String? swatcheType,
+    String? swatcheValue,
+  }) {
     _attributeValues = attributeValues;
     _attributeValuesId = attributeValuesId;
     _name = name;
     _swatcheType = swatcheType;
     _swatcheValue = swatcheValue;
-}
+  }
 
   Filters.fromJson(dynamic json) {
     _attributeValues = json['attribute_values'];
@@ -1274,17 +1296,20 @@ class Filters {
   String? _name;
   String? _swatcheType;
   String? _swatcheValue;
-Filters copyWith({  String? attributeValues,
-  String? attributeValuesId,
-  String? name,
-  String? swatcheType,
-  String? swatcheValue,
-}) => Filters(  attributeValues: attributeValues ?? _attributeValues,
-  attributeValuesId: attributeValuesId ?? _attributeValuesId,
-  name: name ?? _name,
-  swatcheType: swatcheType ?? _swatcheType,
-  swatcheValue: swatcheValue ?? _swatcheValue,
-);
+  Filters copyWith({
+    String? attributeValues,
+    String? attributeValuesId,
+    String? name,
+    String? swatcheType,
+    String? swatcheValue,
+  }) =>
+      Filters(
+        attributeValues: attributeValues ?? _attributeValues,
+        attributeValuesId: attributeValuesId ?? _attributeValuesId,
+        name: name ?? _name,
+        swatcheType: swatcheType ?? _swatcheType,
+        swatcheValue: swatcheValue ?? _swatcheValue,
+      );
   String? get attributeValues => _attributeValues;
   String? get attributeValuesId => _attributeValuesId;
   String? get name => _name;
@@ -1300,5 +1325,4 @@ Filters copyWith({  String? attributeValues,
     map['swatche_value'] = _swatcheValue;
     return map;
   }
-
 }

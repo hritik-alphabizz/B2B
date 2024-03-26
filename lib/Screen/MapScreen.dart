@@ -33,11 +33,11 @@ class _GogglemapState extends State<Gogglemap> {
     _getAddressFromLatLng();
     widget.tempMode2?.forEach((element) {
       element.temp?.forEach((element) {
-        if (element.lat != '' && element.lang != '') {
-          lat.add(element.lat ?? "0.0");
-          long.add(element.lang ?? "0.0");
+        if (element.latitude != '' && element.longitude != '') {
+          lat.add(element.latitude ?? "0.0");
+          long.add(element.longitude ?? "0.0");
           print(
-              "kjaskahsjkahsjhajk ${element.lat != '' && element.lang != ''}");
+              "kjaskahsjkahsjhajk ${element.latitude != '' && element.longitude != ''}");
         }
         restoName.add(element.storeName ?? "");
       });

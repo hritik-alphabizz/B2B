@@ -104,14 +104,23 @@ class _GetProductScreenState extends State<GetProductScreen> {
                                             ))),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 20, left: 10),
+                                          top: 10, left: 10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         //mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                              "${getProductModel!.data![i].name}"),
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            child: Text(
+                                              "${getProductModel!.data![i].name}",
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                            ),
+                                          ),
                                           const SizedBox(
                                             height: 1,
                                           ),
@@ -135,9 +144,9 @@ class _GetProductScreenState extends State<GetProductScreen> {
                                                                 .productId ??
                                                             "",
                                                       ))).then((value) {
-                                                        if(value !=null){
-                                                          getProductApi();
-                                                        }
+                                            if (value != null) {
+                                              getProductApi();
+                                            }
                                           });
                                         },
                                         child: const Icon(
