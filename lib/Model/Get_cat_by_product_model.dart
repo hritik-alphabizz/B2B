@@ -159,13 +159,13 @@ class Product {
   dynamic active;
   String? company;
   String? address;
-  BonusType? bonusType;
+  String? bonusType;
   dynamic bonus;
   String? cashReceived;
   dynamic dob;
   dynamic countryCode;
   String? city;
-  Destrict? destrict;
+  String? destrict;
   String? area;
   dynamic street;
   String? pincode;
@@ -176,7 +176,7 @@ class Product {
   dynamic fcmId;
   String? latitude;
   String? longitude;
-  Type? type;
+  String? type;
   String? createdAt;
   dynamic userType;
   String? typeOfSeller;
@@ -224,11 +224,11 @@ class Product {
   String? cancelableTill;
   List<dynamic>? otherImages;
   List<String>? broucherImage;
-  VideoType? videoType;
+  String? videoType;
   String? video;
   String? tags;
-  Period? warrantyPeriod;
-  Period? guaranteePeriod;
+  String? warrantyPeriod;
+  String? guaranteePeriod;
   String? madeIn;
   String? hsnCode;
   String? brand;
@@ -236,7 +236,7 @@ class Product {
   String? extraDescription;
   String? deliverableType;
   dynamic deliverableZipcodes;
-  PickupLocation? pickupLocation;
+  dynamic? pickupLocation;
   String? subCatId;
   String? attributeTitle;
   String? attributeValue;
@@ -450,13 +450,13 @@ class Product {
         active: json["active"],
         company: json["company"],
         address: json["address"],
-        bonusType: bonusTypeValues.map[json["bonus_type"]]!,
+        bonusType: json["bonus_type"] ?? "",
         bonus: json["bonus"],
         cashReceived: json["cash_received"],
         dob: json["dob"],
         countryCode: json["country_code"],
         city: json["city"],
-        destrict: destrictValues.map[json["destrict"]]!,
+        destrict: json["destrict"] ?? "",
         area: json["area"],
         street: json["street"],
         pincode: json["pincode"],
@@ -467,10 +467,10 @@ class Product {
         fcmId: json["fcm_id"],
         latitude: json["latitude"],
         longitude: json["longitude"],
-        type: typeValues.map[json["type"]]!,
+        type: json["type"] ?? "",
         createdAt: json["created_at"],
         userType: json["user_type"],
-        typeOfSeller: json["type_of_seller"]!,
+        typeOfSeller: json["type_of_seller"] ?? "",
         state: json["state"],
         country: json["country"],
         subscriptionType: json["subscription_type"],
@@ -519,11 +519,11 @@ class Product {
         broucherImage: json["broucher_image"] == null
             ? []
             : List<String>.from(json["broucher_image"]!.map((x) => x)),
-        videoType: videoTypeValues.map[json["video_type"]]!,
+        videoType: json["video_type"] ?? "",
         video: json["video"],
         tags: json["tags"],
-        warrantyPeriod: periodValues.map[json["warranty_period"]]!,
-        guaranteePeriod: periodValues.map[json["guarantee_period"]]!,
+        warrantyPeriod: json["warranty_period"] ?? "",
+        guaranteePeriod: json["guarantee_period"] ?? "",
         madeIn: json["made_in"],
         hsnCode: json["hsn_code"],
         brand: json["brand"],
@@ -531,7 +531,7 @@ class Product {
         extraDescription: json["extra_description"],
         deliverableType: json["deliverable_type"],
         deliverableZipcodes: json["deliverable_zipcodes"],
-        pickupLocation: pickupLocationValues.map[json["pickup_location"]]!,
+        pickupLocation: json["pickup_location"] ?? "",
         subCatId: json["sub_cat_id"],
         attributeTitle: json["attribute_title"],
         attributeValue: json["attribute_value"],
@@ -571,7 +571,7 @@ class Product {
         "address_proof": addressProof,
         "authorized_signature": authorizedSignature,
         "pan_number": panNumber,
-        "tax_name": taxNameValues.reverse[taxName],
+        "tax_name": taxName,
         "tax_number": taxNumber,
         "permissions": permissions,
         "commission": commission,
@@ -588,7 +588,7 @@ class Product {
         "linkedin": linkedin,
         "purchase_id": purchaseId,
         "seller_category_id": sellerCategoryId,
-        "partner_address": partnerAddressValues.reverse[partnerAddress],
+        "partner_address": partnerAddress,
         "ip_address": ipAddress,
         "username": username,
         "password": password,
@@ -609,13 +609,13 @@ class Product {
         "active": active,
         "company": company,
         "address": address,
-        "bonus_type": bonusTypeValues.reverse[bonusType],
+        "bonus_type": bonusType,
         "bonus": bonus,
         "cash_received": cashReceived,
         "dob": dob,
         "country_code": countryCode,
         "city": city,
-        "destrict": destrictValues.reverse[destrict],
+        "destrict": destrict,
         "area": area,
         "street": street,
         "pincode": pincode,
@@ -626,10 +626,10 @@ class Product {
         "fcm_id": fcmId,
         "latitude": latitude,
         "longitude": longitude,
-        "type": typeValues.reverse[type],
+        "type": type,
         "created_at": createdAt,
         "user_type": userType,
-        "type_of_seller": typeOfSellerValues.reverse[typeOfSeller],
+        "type_of_seller": typeOfSeller,
         "state": state,
         "country": country,
         "subscription_type": subscriptionType,
@@ -678,11 +678,11 @@ class Product {
         "broucher_image": broucherImage == null
             ? []
             : List<String>.from(broucherImage!.map((x) => x)),
-        "video_type": videoTypeValues.reverse[videoType],
+        "video_type": videoType,
         "video": video,
         "tags": tags,
-        "warranty_period": periodValues.reverse[warrantyPeriod],
-        "guarantee_period": periodValues.reverse[guaranteePeriod],
+        "warranty_period": warrantyPeriod,
+        "guarantee_period": guaranteePeriod,
         "made_in": madeIn,
         "hsn_code": hsnCode,
         "brand": brand,
@@ -690,7 +690,7 @@ class Product {
         "extra_description": extraDescription,
         "deliverable_type": deliverableType,
         "deliverable_zipcodes": deliverableZipcodes,
-        "pickup_location": pickupLocationValues.reverse[pickupLocation],
+        "pickup_location": pickupLocation,
         "sub_cat_id": subCatId,
         "attribute_title": attributeTitle,
         "attribute_value": attributeValue,
@@ -710,118 +710,4 @@ class Product {
             ? []
             : List<dynamic>.from(otherImagesMd!.map((x) => x)),
       };
-}
-
-enum BonusType { PERCENTAGE_PER_ORDER }
-
-final bonusTypeValues =
-    EnumValues({"percentage_per_order": BonusType.PERCENTAGE_PER_ORDER});
-
-enum Destrict {
-  AHMEDABAD,
-  DESTRICT_AHMEDABAD,
-  DESTRICT_RAJKOT,
-  DISTRICT,
-  INDORE,
-  RAJKOT,
-  SURAT
-}
-
-final destrictValues = EnumValues({
-  "AHMEDABAD": Destrict.AHMEDABAD,
-  "ahmedabad ": Destrict.DESTRICT_AHMEDABAD,
-  "rajkot": Destrict.DESTRICT_RAJKOT,
-  " district": Destrict.DISTRICT,
-  "indore": Destrict.INDORE,
-  "RAJKOT": Destrict.RAJKOT,
-  "SURAT": Destrict.SURAT
-});
-
-enum Period { EMPTY, THE_1_MONTH }
-
-final periodValues =
-    EnumValues({"": Period.EMPTY, "1 month": Period.THE_1_MONTH});
-
-enum PartnerAddress {
-  BAPUNAGAR_RAJKOT,
-  EMPTY,
-  MASTER_SOCIETY_RAJKOT,
-  NARAYAN_NAGAR_MAIN_ROAD_RAJKOT,
-  NEAR_GONDAL_CHOWKDI_VAVDI_RAJKOT,
-  NEAR_PD_MALAVIYA_RAJKOT,
-  PALASIA_INDORE,
-  RAJKOT,
-  VIJAY_NAGAR_INDORE
-}
-
-final partnerAddressValues = EnumValues({
-  "BAPUNAGAR, RAJKOT": PartnerAddress.BAPUNAGAR_RAJKOT,
-  "": PartnerAddress.EMPTY,
-  "MASTER SOCIETY, RAJKOT": PartnerAddress.MASTER_SOCIETY_RAJKOT,
-  "NARAYAN NAGAR MAIN ROAD, RAJKOT":
-      PartnerAddress.NARAYAN_NAGAR_MAIN_ROAD_RAJKOT,
-  "NEAR GONDAL CHOWKDI, VAVDI, RAJKOT":
-      PartnerAddress.NEAR_GONDAL_CHOWKDI_VAVDI_RAJKOT,
-  "NEAR PD MALAVIYA, RAJKOT": PartnerAddress.NEAR_PD_MALAVIYA_RAJKOT,
-  "palasia indore": PartnerAddress.PALASIA_INDORE,
-  "rajkot": PartnerAddress.RAJKOT,
-  "vijay nagar Indore ": PartnerAddress.VIJAY_NAGAR_INDORE
-});
-
-enum PickupLocation { EMPTY, PICKUP_LOCATION }
-
-final pickupLocationValues =
-    EnumValues({" ": PickupLocation.EMPTY, "": PickupLocation.PICKUP_LOCATION});
-
-enum ProductImageOthers { EMPTY }
-
-final productImageOthersValues = EnumValues({"[]": ProductImageOthers.EMPTY});
-
-enum TaxName { ADF, EMPTY, GST_NUMBER }
-
-final taxNameValues = EnumValues(
-    {"adf": TaxName.ADF, "": TaxName.EMPTY, " gst number": TaxName.GST_NUMBER});
-
-enum Type { SIMPLE_PRODUCT }
-
-final typeValues = EnumValues({"simple_product": Type.SIMPLE_PRODUCT});
-
-enum TypeOfSeller {
-  MANUFACTURERS,
-  MANUFACTURERS_WHOLESALER,
-  MANUFACTURERS_WHOLESALER_RETAILERS,
-  RETAILERS,
-  SERVICE_PROVIDER,
-  TYPE_OF_SELLER_MANUFACTURERS,
-  WHOLESALER,
-  WHOLESALER_RETAILERS
-}
-
-final typeOfSellerValues = EnumValues({
-  "Manufacturers": TypeOfSeller.MANUFACTURERS,
-  "Manufacturers,Wholesaler": TypeOfSeller.MANUFACTURERS_WHOLESALER,
-  "Manufacturers,Wholesaler,Retailers":
-      TypeOfSeller.MANUFACTURERS_WHOLESALER_RETAILERS,
-  "Retailers": TypeOfSeller.RETAILERS,
-  "Service Provider": TypeOfSeller.SERVICE_PROVIDER,
-  " Manufacturers": TypeOfSeller.TYPE_OF_SELLER_MANUFACTURERS,
-  "Wholesaler": TypeOfSeller.WHOLESALER,
-  "Wholesaler,Retailers": TypeOfSeller.WHOLESALER_RETAILERS
-});
-
-enum VideoType { EMPTY, YOUTUBE }
-
-final videoTypeValues =
-    EnumValues({"": VideoType.EMPTY, "youtube": VideoType.YOUTUBE});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

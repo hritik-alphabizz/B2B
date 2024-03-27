@@ -195,7 +195,7 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
         setState(
           () {
             scrollLoadmore = true;
-            getMedia();
+            //  getMedia();
           },
         );
     }
@@ -400,7 +400,7 @@ class _MediaState extends State<Media> with TickerProviderStateMixin {
               scrollLoadmore = false;
             });
         } on TimeoutException catch (_) {
-          setSnackbar("gjgjhghj");
+          // setSnackbar("gjgjhghj");
           setState(() {
             scrollLoadmore = false;
           });

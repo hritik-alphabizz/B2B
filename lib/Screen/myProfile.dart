@@ -311,6 +311,7 @@ class _MyProfileState extends State<MyProfile> {
     log(profileStore2.toString());
     if (profileStore2['error'] == false) {
       imagee = "${profileStore2['data']['broucher']}";
+      profileImage = "${profileStore2['data']['image']}";
       namee = "${profileStore2['data']['username']}";
       emaill = "${profileStore2['data']['email']}";
       mobilee = "${profileStore2['data']['mobile']}";

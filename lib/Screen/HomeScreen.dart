@@ -111,7 +111,7 @@ var facebook;
 var insta;
 var linkdin;
 
-var imagee;
+var imagee, profileImage = "";
 var namee;
 var emaill;
 var mobilee;
@@ -463,6 +463,8 @@ class _B2BHomeState extends State<B2BHome> {
       setState(() {
         isSwitched = false;
         textValue = 'General';
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const B2BHome()));
       });
     }
   }
@@ -1263,10 +1265,10 @@ class _B2BHomeState extends State<B2BHome> {
                   : RefreshIndicator(
                       onRefresh: () {
                         return Future.delayed(const Duration(seconds: 2), () {
-                          homeCategories();
-                          homeProducts();
-                          getProfile();
-                          getSpecifiyApi();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const B2BHome()));
                         });
                       },
                       child: ListView.builder(
@@ -1982,6 +1984,7 @@ class _B2BHomeState extends State<B2BHome> {
       var finalResult = GetCatByProductModel.fromJson(json.decode(result));
       setState(() {
         GetSub = finalResult;
+        print("got res");
       });
     } else {
       print(response.reasonPhrase);
@@ -2284,22 +2287,26 @@ class _B2BHomeState extends State<B2BHome> {
                                                                   Object>>
                                                           imageProviders = [];
 
-                                                      for (int i = 0;
-                                                          i <
+                                                      for (int k = 0;
+                                                          k <
                                                               GetSub!
                                                                   .data![i]
                                                                   .products![
                                                                       index]
                                                                   .broucherImage!
                                                                   .length;
-                                                          i++) {
+                                                          k++) {
+                                                        print(GetSub!
+                                                            .data![i]
+                                                            .products![index]
+                                                            .broucherImage![k]);
                                                         imageProviders.add(
                                                             NetworkImage(GetSub!
                                                                 .data![i]
                                                                 .products![
                                                                     index]
                                                                 .broucherImage![
-                                                                    i]
+                                                                    k]
                                                                 .toString()));
                                                       }
 
@@ -3540,19 +3547,19 @@ class _B2BHomeState extends State<B2BHome> {
                                         List<ImageProvider<Object>>
                                             imageProviders = [];
 
-                                        for (int i = 0;
-                                            i <
+                                        for (int k = 0;
+                                            k <
                                                 homeSpecificModel!
                                                     .data!
                                                     .businsessData![index]
                                                     .broucherImage!
                                                     .length;
-                                            i++) {
+                                            k++) {
                                           imageProviders.add(NetworkImage(
                                               homeSpecificModel!
                                                   .data!
                                                   .businsessData![index]
-                                                  .broucherImage!
+                                                  .broucherImage![k]
                                                   .toString()));
                                         }
 
@@ -4159,19 +4166,19 @@ class _B2BHomeState extends State<B2BHome> {
                                         List<ImageProvider<Object>>
                                             imageProviders = [];
 
-                                        for (int i = 0;
-                                            i <
+                                        for (int k = 0;
+                                            k <
                                                 homeSpecificModel!
                                                     .data!
                                                     .clientData![index]
                                                     .broucherImage!
                                                     .length;
-                                            i++) {
+                                            k++) {
                                           imageProviders.add(NetworkImage(
                                               homeSpecificModel!
                                                   .data!
                                                   .clientData![index]
-                                                  .broucherImage![i]
+                                                  .broucherImage![k]
                                                   .toString()));
                                         }
 
@@ -4440,46 +4447,66 @@ class _B2BHomeState extends State<B2BHome> {
                               : const SizedBox();
                         },
                         child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          child: Row(
                             children: [
-                              Row(
+                              CircleAvatar(
+                                radius: 30.0,
+                                backgroundImage: NetworkImage(
+                                    ("https://b2bdiary.com/uploads/media/2023/" +
+                                                profileImage ??
+                                            "") ??
+                                        ""), // Provide your image asset here
+                              ),
+                              SizedBox(width: 5),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "Name: ${namee ?? ''}",
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        child: Text(
+                                          "Name: ${namee ?? ''}",
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Icon(
+                                        Icons.edit,
+                                        color: colors.white,
+                                        size: 15,
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                    child: Text(
+                                      "Mobile No: ${mNo ?? ''}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13),
+                                    ),
                                   ),
                                   const SizedBox(
-                                    width: 5,
-                                  ),
-                                  const Icon(
-                                    Icons.edit,
-                                    color: colors.white,
-                                    size: 15,
-                                  ),
-                                  const SizedBox(
-                                    height: 3,
+                                    height: 2,
                                   ),
                                 ],
-                              ),
-                              SizedBox(
-                                width: 150,
-                                child: Text(
-                                  "Mobile No: ${mNo ?? ''}",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 2,
                               ),
                             ],
                           ),
@@ -4981,6 +5008,8 @@ class _B2BHomeState extends State<B2BHome> {
       emaill = "${profileStore2['data']['email']}";
       mNo = "${profileStore2['data']['mobile']}";
       // companyName2="${profileStore2['data']['mobile']}";
+      profileImage = "${profileStore2['data']['image']}";
+
       bussinessAddress2 = "${profileStore2['seller_data']['company_address']}";
       gstNumber2 = "${profileStore2['seller_data']['tax_number']}";
       udyogNumber2 = "${profileStore2['seller_data']['udyog_num']}";
@@ -5009,6 +5038,7 @@ class _B2BHomeState extends State<B2BHome> {
   GetHomeProductsModel? homeProductsModel;
 
   homeProducts() async {
+    homeProductsModel = null;
     var headers = {
       'Cookie': 'ci_session=70e96d2327e44495fa936ae29e0b3378358ed10c'
     };

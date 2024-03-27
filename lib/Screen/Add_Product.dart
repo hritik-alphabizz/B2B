@@ -222,8 +222,61 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          customAppBar(text: "Add Product", isTrue: false, context: context),
+      appBar: AppBar(
+        elevation: 0,
+        // backgroundColor: colors.white,
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(1),
+                bottomLeft: Radius.circular(1)),
+            gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  colors.primary,
+                  colors.primary,
+                ],
+                stops: [
+                  0,
+                  1,
+                ]),
+          ),
+        ),
+        leading: InkWell(
+            onTap: () {
+              // if (isTrue) {
+              productImageUrl1 = "";
+              otherImageList.clear();
+              broncherImageUrl1.clear();
+              Navigator.pop(context);
+            },
+            child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  color: colors.white,
+                ))),
+        title: Text(
+          'Add Product',
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        actions: [],
+      ),
+
+      //  customAppBar(
+      //     text: "Add Product",
+      //     isTrue: false,
+      //     context: context,
+      //     onTaped: () {
+      //       print("hereee")
+      //       productImageUrl1 = "";
+      //       otherImageList.clear();
+      //       broncherImageUrl1.clear();
+      //       Navigator.pushReplacement(context,
+      //           MaterialPageRoute(builder: (context) => const B2BHome()));
+      //     }),
       // appBar: AppBar(
       //   title: Text('Add Product'),
       //   backgroundColor: colors.primary,
@@ -1567,6 +1620,9 @@ class _AddProductState extends State<AddProduct> {
       if (finalResult["error"] == true) {
         Fluttertoast.showToast(msg: "${finalResult['message']}");
       } else {
+        productImageUrl1 = "";
+        otherImageList.clear();
+        broncherImageUrl1.clear();
         Fluttertoast.showToast(
             msg: "${finalResult['message']}" ". It's in review now.");
         Navigator.pop(context);

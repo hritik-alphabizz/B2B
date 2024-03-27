@@ -1568,19 +1568,19 @@ class _DetailPageState extends State<DetailPage> {
                   const SizedBox(
                     width: 1,
                   ),
-                  Container(
-                    height: 30,
-                    // width: 70,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _pickPDF();
-                        Navigator.pop(context);
-                        // getImageCmera(ImageSource.gallery, context, 1);
-                      },
-                      //return true when click on "Yes"
-                      child: const Text('PDF', style: TextStyle(fontSize: 10)),
-                    ),
-                  ),
+                  // Container(
+                  //   height: 30,
+                  //   // width: 70,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       _pickPDF();
+                  //       Navigator.pop(context);
+                  //       // getImageCmera(ImageSource.gallery, context, 1);
+                  //     },
+                  //     //return true when click on "Yes"
+                  //     child: const Text('PDF', style: TextStyle(fontSize: 10)),
+                  //   ),
+                  // ),
                 ],
               )),
         ) ??
